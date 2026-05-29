@@ -1,0 +1,67 @@
+{
+  "flex-layout.row#top-slider-desktop": {
+    "title": "Barra de avisos",
+    "props": {
+      "fullWidth": true,
+      "blockClass": "top-slider-row"
+    },
+    "children": ["list-context.info-card-list#top-desktop"]
+  },
+
+  "list-context.info-card-list#top-desktop": {
+    "title": "Slider de avisos - Desktop",
+    "children": ["slider-layout#top-desktop"],
+    "props": {
+      "blockClass": "top-slider-list-desktop"
+    }
+  },
+
+  "slider-layout#top-desktop": {
+    "props": {
+      "itemsPerPage": {
+        "desktop": 1,
+        "tablet": 1,
+        "phone": 1
+      },
+      "showNavigationArrows": "never",
+      "showPaginationDots": "never",
+
+      "blockClass": "top-slider-desktop"
+    }
+  },
+
+  "flex-layout.row#top-slider-mobile": {
+    "title": "Barra de avisos - Mobile",
+    "props": {
+      "fullWidth": true,
+      "blockClass": "top-slider-row-mobile"
+    },
+    "children": ["list-context.info-card-list#top-mobile"]
+  },
+
+  "list-context.info-card-list#top-mobile": {
+    "title": "Slider de avisos - Mobile",
+    "children": ["slider-layout#top-mobile"],
+    "props": {
+      "blockClass": "top-slider-list-mobile"
+    }
+  },
+
+  "slider-layout#top-mobile": {
+    "props": {
+      "itemsPerPage": {
+        "desktop": 1,
+        "tablet": 1,
+        "phone": 1
+      },
+      "infinite": true,
+      "showNavigationArrows": "never",
+      "showPaginationDots": "always",
+      "autoplay": {
+        "timeout": 4000,
+        "stopOnHover": true
+      },
+      "blockClass": "top-slider-mobile"
+    }
+  }
+}

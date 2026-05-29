@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "vtex-developer": {
+      "command": "npx",
+      "args": ["-y", "@vtex/developer-mcp"],
+      "type": "stdio"
+    }
+  }
+}

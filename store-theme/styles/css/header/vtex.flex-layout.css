@@ -1,0 +1,14 @@
+.flexRowContent--top-slider-row {
+    :global(.vtex-slider-layout-0-x-infoCardContainer ) {
+        padding: 0;
+    }
+    :global(.vtex-slider-layout-0-x-infoCardTextContainer) {
+        display: none;
+    }
+    :global(.vtex-slider-layout-0-x-infoCardImageContainer) {
+        width: 100%;
+        :global(.vtex-slider-layout-0-x-infoCardImage) {
+            display: block;
+        }
+    }
+}

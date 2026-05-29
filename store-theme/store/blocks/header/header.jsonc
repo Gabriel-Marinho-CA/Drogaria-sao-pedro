@@ -1,0 +1,225 @@
+{
+  "header": {
+    "blocks": ["header-layout.desktop", "header-layout.mobile"]
+  },
+  "header.full": {
+    "blocks": ["header-layout.desktop", "header-layout.mobile"]
+  },
+
+  // ─── DESKTOP ──────────────────────────────────────────────────────────────
+  "header-layout.desktop": {
+    "children": [
+      "flex-layout.row#top-slider-desktop",
+      "sticky-layout#header-desktop"
+    ]
+  },
+
+  // Announcement bar — fica acima do sticky, rola com a página
+  "flex-layout.row#top-slider-desktop": {
+    "props": {
+      "title": "Header - Announcement Bar Desktop",
+      "blockClass": "top-slider-row",
+      "fullWidth": true
+    },
+    "children": ["slider-layout#announcement"]
+  },
+
+  "sticky-layout#header-desktop": {
+    "props": {
+      "title": "Header - Sticky Desktop",
+      "blockClass": "sticky-header"
+    },
+    "children": ["flex-layout.row#header-main-desktop"]
+  },
+
+  "flex-layout.row#header-main-desktop": {
+    "props": {
+      "title": "Header - Barra Principal Desktop",
+      "blockClass": "header-main-row",
+      "fullWidth": true,
+      "horizontalAlign": "center",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": false
+    },
+    "children": [
+      "flex-layout.col#logo",
+      "flex-layout.col#search",
+      "flex-layout.col#login-minicart"
+    ]
+  },
+
+  // Logo
+  "flex-layout.col#logo": {
+    "props": {
+      "title": "Logo",
+      "blockClass": "header-logo-col",
+      "verticalAlign": "middle",
+      "width": "auto"
+    },
+    "children": ["logo#desktop"]
+  },
+  "logo#desktop": {
+    "props": {
+      "title": "Logo - Drogaria São Pedro",
+      "href": "/",
+      "url": "assets/logo/logo-desktop.png",
+      "width": "180",
+      "height": "60"
+    }
+  },
+
+  // Search bar — ocupa o espaço restante
+  "flex-layout.col#search": {
+    "props": {
+      "title": "Barra de Busca",
+      "blockClass": "header-search-col",
+      "verticalAlign": "middle",
+      "width": "grow"
+    },
+    "children": ["search-bar"]
+  },
+
+  // Login + Divider + Minicart
+  "flex-layout.col#login-minicart": {
+    "props": {
+      "title": "Login e Carrinho",
+      "blockClass": "header-actions-col",
+      "verticalAlign": "middle",
+      "width": "auto"
+    },
+    "children": ["login", "minicart.v2"]
+  },
+
+  "login": {
+    "props": {
+      "iconLabel": "Bem vindo,\nFaça seu Login ou Cadastro",
+      "iconSize": 30
+    }
+  },
+
+  "minicart.v2": {
+    "props": {
+      "MinicartIcon": "icon-cart#minicart-icon",
+      "customPixelEventId": "add-to-cart-button"
+    },
+    "children": ["minicart-base-content"]
+  },
+  "icon-cart#minicart-icon": {
+    "props": {
+      "size": 26
+    }
+  },
+
+  // ─── MOBILE ───────────────────────────────────────────────────────────────
+  "header-layout.mobile": {
+    "children": [
+      "flex-layout.row#top-slider-mobile",
+      "sticky-layout#header-mobile"
+    ]
+  },
+
+  // Announcement bar mobile
+  "flex-layout.row#top-slider-mobile": {
+    "props": {
+      "title": "Header - Announcement Bar Mobile",
+      "blockClass": "top-slider-row",
+      "fullWidth": true
+    },
+    "children": ["slider-layout#announcement"]
+  },
+
+  "sticky-layout#header-mobile": {
+    "props": {
+      "title": "Header - Sticky Mobile",
+      "blockClass": "sticky-header"
+    },
+    "children": [
+      "flex-layout.row#header-top-mobile",
+      "flex-layout.row#header-search-mobile"
+    ]
+  },
+
+  // Linha 1 mobile: Drawer + Logo + Login + Minicart
+  "flex-layout.row#header-top-mobile": {
+    "props": {
+      "title": "Header - Topo Mobile",
+      "blockClass": "header-top-mobile",
+      "fullWidth": true,
+      "verticalAlign": "middle",
+      "preventHorizontalStretch": true
+    },
+    "children": [
+      "drawer",
+      "logo#mobile",
+      "flex-layout.col#spacer-mobile",
+      "login",
+      "minicart.v2"
+    ]
+  },
+
+  // Linha 2 mobile: Search bar em linha própria
+  "flex-layout.row#header-search-mobile": {
+    "props": {
+      "title": "Header - Busca Mobile",
+      "blockClass": "header-search-mobile",
+      "fullWidth": true
+    },
+    "children": ["search-bar"]
+  },
+
+  "drawer": {
+    "children": ["menu#drawer"]
+  },
+  "menu#drawer": {
+    "props": {
+      "orientation": "vertical"
+    },
+    "children": []
+  },
+
+  "flex-layout.col#spacer-mobile": {
+    "props": {
+      "width": "grow"
+    }
+  },
+
+  // ─── ANNOUNCEMENT BAR (slider compartilhado desktop/mobile) ───────────────
+  "slider-layout#announcement": {
+    "props": {
+      "title": "Announcement Bar - Slider",
+      "blockClass": "announcement-slider",
+      "autoplay": true,
+      "autoplayTimeout": 4000,
+      "showPaginationDots": false,
+      "showNavigationArrows": "never",
+      "infinite": true
+    },
+    "children": ["rich-text#announcement-1", "rich-text#announcement-2"]
+  },
+  "rich-text#announcement-1": {
+    "props": {
+      "title": "Announcement - Mensagem 1",
+      "text": "Frete grátis acima de R$ 99,00",
+      "textPosition": "center",
+      "blockClass": "announcement-text"
+    }
+  },
+  "rich-text#announcement-2": {
+    "props": {
+      "title": "Announcement - Mensagem 2",
+      "text": "Retire sua compra em uma de nossas lojas",
+      "textPosition": "center",
+      "blockClass": "announcement-text"
+    }
+  },
+
+  "logo#mobile": {
+    "props": {
+      "title": "Logo - Mobile",
+      "href": "/",
+      "url": "assets/logo/logo-desktop.png",
+      "width": "140",
+      "height": "45"
+    }
+  }
+}
