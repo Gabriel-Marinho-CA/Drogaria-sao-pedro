@@ -12,7 +12,12 @@
     "title": "Slider de avisos - Desktop",
     "children": ["slider-layout#top-desktop"],
     "props": {
-      "blockClass": "top-slider-list-desktop"
+      "blockClass": "top-slider-list-desktop",
+      "infoCards": [
+        {
+          "image": "assets/imgs/imagem-barra-aviso.png"
+        }
+      ]
     }
   },
 
@@ -43,7 +48,12 @@
     "title": "Slider de avisos - Mobile",
     "children": ["slider-layout#top-mobile"],
     "props": {
-      "blockClass": "top-slider-list-mobile"
+      "blockClass": "top-slider-list-mobile",
+      "infoCards": [
+        {
+          "image": "assets/imgs/imagem-barra-aviso.png"
+        }
+      ]
     }
   },
 

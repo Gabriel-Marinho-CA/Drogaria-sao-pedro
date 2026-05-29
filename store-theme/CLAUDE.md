@@ -232,6 +232,16 @@ store-theme/
     └── mcp.json           # MCP server configuration
 ```
 
+## Regra de Trabalho — CSS é com o Dev
+
+**Nunca criar, editar ou deletar arquivos CSS neste diretório** (`store-theme/`), exceto em subdiretórios cujo nome contenha a palavra `checkout`.
+
+Toda estilização é de responsabilidade do desenvolvedor. O papel do Claude aqui é **exclusivamente montar estruturas de blocos** em JSON/JSONC (`store/blocks/**`). Não sugerir, não incluir exemplos de CSS embutidos como parte da entrega — apenas indicar qual `blockClass` ou handle o dev deverá estilizar.
+
+Se uma tarefa exigir toque em CSS fora dos diretórios de checkout, recusar e lembrar esta regra.
+
+---
+
 ## Styling Strategy
 
 1. **Token-based**: Use `style.json` for semantic tokens (colors, spacing, typography)

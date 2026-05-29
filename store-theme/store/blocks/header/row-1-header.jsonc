@@ -1,0 +1,59 @@
+{
+    "sticky-layout#row-desktop": {
+        "props": {
+            "blockClass": "sticky-header"
+        },
+        "children": [
+            "flex-layout.row#main-row"
+        ]
+    },
+    "flex-layout.row#main-row": {
+        "props": {
+            "blockClass": "main-header-row",
+            "fullWidth": false,
+            "verticalAlign": "middle",
+            "horizontalAlign": "center"
+        },
+        "children": [
+            "flex-layout.col#logo",
+            "flex-layout.col#search",
+            "flex-layout.col#user-actions"
+        ]
+    },
+    "flex-layout.col#logo": {
+        "props": {
+            "blockClass": "header-col-logo",
+            "verticalAlign": "middle"
+        },
+        "children": [
+            "logo#desktop"
+        ]
+    },
+    "flex-layout.col#search": {
+        "props": {
+            "blockClass": "header-col-search",
+            "verticalAlign": "middle",
+            "width": "grow"
+        },
+        "children": [
+            "search-bar"
+        ]
+    },
+    "flex-layout.col#user-actions": {
+        "props": {
+            "blockClass": "header-col-user-actions",
+            "verticalAlign": "middle"
+        },
+        "children": [
+            "login",
+            "minicart.v2"
+        ]
+    },
+    "login": {
+        "props": {
+            "iconLabel": "Bem vindo,\nFaça seu Login ou Cadastro",
+            "showIconProfile":true,
+            "labelClasses":"login-btn"
+        }
+    }
+}
