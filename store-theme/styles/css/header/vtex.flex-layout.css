@@ -354,3 +354,7 @@
         width: auto !important;
     }
 }
+
+:global(.vtex-menu-2-x-submenu--main-menu-departments) :global(.vtex-menu-2-x-styledLinkContainer) {
+    padding-block: .25rem;
+}

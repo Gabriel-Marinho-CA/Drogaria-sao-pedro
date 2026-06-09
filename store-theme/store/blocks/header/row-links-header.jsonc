@@ -11,12 +11,11 @@
       "preventVerticalStretch": false
     },
     "children": [
-      "flex-layout.col#col-departamentos", 
+      "flex-layout.col#col-departamentos",
       "flex-layout.col#col-menu-links",
       "flex-layout.col#col-extras"
     ]
   },
-
   // =============================================
   // COL DEPARTAMENTOS (1/3)
   // =============================================
@@ -24,19 +23,23 @@
     "props": {
       "blockClass": "col-departamentos"
     },
-    "children": ["vtex.menu@2.x:menu#menu-departamentos"]
+    "children": [
+      "vtex.menu@2.x:menu#menu-departamentos"
+    ]
   },
-
   "vtex.menu@2.x:menu#menu-departamentos": {
-    "children": ["menu-item#trigger-departamentos"],
+    "children": [
+      "menu-item#trigger-departamentos"
+    ],
     "props": {
       "blockClass": "menu-departamentos"
     }
   },
-
   // Item "Departamentos" é apenas um trigger (abre submenu, sem link próprio)
   "menu-item#trigger-departamentos": {
-    "blocks": ["vtex.menu@2.x:submenu#main-menu-departments"],
+    "blocks": [
+      "vtex.menu@2.x:submenu#main-menu-departments"
+    ],
     "props": {
       "type": "custom",
       "blockClass": "trigger-departamentos",
@@ -48,8 +51,10 @@
       }
     }
   },
-
   "vtex.menu@2.x:submenu#main-menu-departments": {
+    "props": {
+      "blockClass": "main-menu-departments"
+    },
     "children": [
       "menu-item#dep-infantil",
       "menu-item#dep-dermocosmeticos",
@@ -58,7 +63,6 @@
       "menu-item#dep-medicamentos"
     ]
   },
-
   "menu-item#dep-infantil": {
     "props": {
       "id": "menu-item-dep-infantil",
@@ -72,7 +76,6 @@
       }
     }
   },
-
   "menu-item#dep-dermocosmeticos": {
     "props": {
       "id": "menu-item-dep-dermocosmeticos",
@@ -86,7 +89,6 @@
       }
     }
   },
-
   "menu-item#dep-saude-bem-estar": {
     "props": {
       "id": "menu-item-dep-saude-bem-estar",
@@ -100,7 +102,6 @@
       }
     }
   },
-
   "menu-item#dep-beleza-cuidados": {
     "props": {
       "id": "menu-item-dep-beleza-cuidados",
@@ -114,10 +115,11 @@
       }
     }
   },
-
   // Medicamentos tem link próprio + submenu de subcategorias
   "menu-item#dep-medicamentos": {
-    "children": ["vtex.menu@2.x:menu#submenu--children"],
+    "blocks": [
+      "vtex.menu@2.x:submenu#submenu--children"
+    ],
     "props": {
       "id": "menu-item-dep-medicamentos",
       "blockClass": "dep-medicamentos",
@@ -130,20 +132,17 @@
       }
     }
   },
-
-  "vtex.menu@2.x:menu#submenu--children": {
+  "vtex.menu@2.x:submenu#submenu--children": {
+    "props": {
+      "blockClass":"submenu--children"
+    },
     "children": [
       "menu-item#sub-remedios-cardiologicos",
       "menu-item#sub-mais-medicamentos",
       "menu-item#sub-antigripais",
       "menu-item#sub-saude-dos-olhos"
-    ],
-    "props": {
-      "orientation": "vertical",
-      "blockClass": "submenu--children"
-    }
+    ]
   },
-
   "menu-item#sub-remedios-cardiologicos": {
     "props": {
       "id": "menu-item-sub-remedios-cardiologicos",
@@ -156,7 +155,6 @@
       }
     }
   },
-
   "menu-item#sub-mais-medicamentos": {
     "props": {
       "id": "menu-item-sub-mais-medicamentos",
@@ -169,7 +167,6 @@
       }
     }
   },
-
   "menu-item#sub-antigripais": {
     "props": {
       "id": "menu-item-sub-antigripais",
@@ -182,7 +179,6 @@
       }
     }
   },
-
   "menu-item#sub-saude-dos-olhos": {
     "props": {
       "id": "menu-item-sub-saude-dos-olhos",
@@ -195,7 +191,6 @@
       }
     }
   },
-
   // =============================================
   // COL MENU LINKS (2/3) — menu horizontal
   // =============================================
@@ -203,9 +198,10 @@
     "props": {
       "blockClass": "col-menu-links"
     },
-    "children": ["vtex.menu@2.x:menu#menu-links-row"]
+    "children": [
+      "vtex.menu@2.x:menu#menu-links-row"
+    ]
   },
-
   "vtex.menu@2.x:menu#menu-links-row": {
     "children": [
       "menu-item#link-medicamentos",
@@ -217,7 +213,6 @@
       "orientation": "horizontal"
     }
   },
-
   "menu-item#link-medicamentos": {
     "props": {
       "id": "menu-item-medicamentos",
@@ -230,7 +225,6 @@
       }
     }
   },
-
   "menu-item#link-saude": {
     "props": {
       "id": "menu-item-saude",
@@ -243,7 +237,6 @@
       }
     }
   },
-
   "menu-item#link-beleza": {
     "props": {
       "id": "menu-item-beleza",
@@ -256,7 +249,6 @@
       }
     }
   },
-
   "menu-item#link-dermocosmeticos": {
     "props": {
       "id": "menu-item-dermocosmeticos",
@@ -269,7 +261,6 @@
       }
     }
   },
-
   // =============================================
   // COL EXTRAS (3/3) — links utilitários
   // =============================================
@@ -282,7 +273,6 @@
       "rich-text#ajuda"
     ]
   },
-
   "rich-text#baixe-o-app": {
     "props": {
       "blockClass": "baixe-o-app",
@@ -291,7 +281,6 @@
       "textAlignment": "LEFT"
     }
   },
-
   "rich-text#ajuda": {
     "props": {
       "blockClass": "ajuda",
