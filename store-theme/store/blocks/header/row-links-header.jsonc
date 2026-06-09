@@ -30,14 +30,13 @@
   "vtex.menu@2.x:menu#menu-departamentos": {
     "children": ["menu-item#trigger-departamentos"],
     "props": {
-      "orientation": "vertical",
       "blockClass": "menu-departamentos"
     }
   },
 
   // Item "Departamentos" é apenas um trigger (abre submenu, sem link próprio)
   "menu-item#trigger-departamentos": {
-    "children": ["vtex.menu@2.x:menu#main-menu-departments"],
+    "blocks": ["vtex.menu@2.x:submenu#main-menu-departments"],
     "props": {
       "type": "custom",
       "blockClass": "trigger-departamentos",
@@ -50,18 +49,14 @@
     }
   },
 
-  "vtex.menu@2.x:menu#main-menu-departments": {
+  "vtex.menu@2.x:submenu#main-menu-departments": {
     "children": [
       "menu-item#dep-infantil",
       "menu-item#dep-dermocosmeticos",
       "menu-item#dep-saude-bem-estar",
       "menu-item#dep-beleza-cuidados",
       "menu-item#dep-medicamentos"
-    ],
-    "props": {
-      "orientation": "vertical",
-      "blockClass": "main-menu-departments"
-    }
+    ]
   },
 
   "menu-item#dep-infantil": {
