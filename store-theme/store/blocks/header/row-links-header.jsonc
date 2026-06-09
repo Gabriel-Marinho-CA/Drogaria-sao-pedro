@@ -1,0 +1,308 @@
+{
+  // =============================================
+  // ROW LINKS — barra abaixo do sticky header
+  // =============================================
+  "flex-layout.row#row-links": {
+    "props": {
+      "blockClass": "row-links",
+      "fullWidth": false,
+      "stretchChildrenWidth": true,
+      "horizontalAlign": "center",
+      "preventVerticalStretch": false
+    },
+    "children": [
+      "flex-layout.col#col-departamentos", 
+      "flex-layout.col#col-menu-links",
+      "flex-layout.col#col-extras"
+    ]
+  },
+
+  // =============================================
+  // COL DEPARTAMENTOS (1/3)
+  // =============================================
+  "flex-layout.col#col-departamentos": {
+    "props": {
+      "blockClass": "col-departamentos"
+    },
+    "children": ["vtex.menu@2.x:menu#menu-departamentos"]
+  },
+
+  "vtex.menu@2.x:menu#menu-departamentos": {
+    "children": ["menu-item#trigger-departamentos"],
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "menu-departamentos"
+    }
+  },
+
+  // Item "Departamentos" é apenas um trigger (abre submenu, sem link próprio)
+  "menu-item#trigger-departamentos": {
+    "children": ["vtex.menu@2.x:menu#main-menu-departments"],
+    "props": {
+      "type": "custom",
+      "blockClass": "trigger-departamentos",
+      "itemProps": {
+        "type": "internal",
+        "href": "#",
+        "text": "Departamentos",
+        "tagTitle": "Departamentos"
+      }
+    }
+  },
+
+  "vtex.menu@2.x:menu#main-menu-departments": {
+    "children": [
+      "menu-item#dep-infantil",
+      "menu-item#dep-dermocosmeticos",
+      "menu-item#dep-saude-bem-estar",
+      "menu-item#dep-beleza-cuidados",
+      "menu-item#dep-medicamentos"
+    ],
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "main-menu-departments"
+    }
+  },
+
+  "menu-item#dep-infantil": {
+    "props": {
+      "id": "menu-item-dep-infantil",
+      "blockClass": "dep-infantil",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/infantil",
+        "text": "Infantil",
+        "tagTitle": "Infantil"
+      }
+    }
+  },
+
+  "menu-item#dep-dermocosmeticos": {
+    "props": {
+      "id": "menu-item-dep-dermocosmeticos",
+      "blockClass": "dep-dermocosmeticos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/dermocosmeticos",
+        "text": "Dermocosméticos",
+        "tagTitle": "Dermocosméticos"
+      }
+    }
+  },
+
+  "menu-item#dep-saude-bem-estar": {
+    "props": {
+      "id": "menu-item-dep-saude-bem-estar",
+      "blockClass": "dep-saude-bem-estar",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/saude-e-bem-estar",
+        "text": "Saúde e Bem Estar",
+        "tagTitle": "Saúde e Bem Estar"
+      }
+    }
+  },
+
+  "menu-item#dep-beleza-cuidados": {
+    "props": {
+      "id": "menu-item-dep-beleza-cuidados",
+      "blockClass": "dep-beleza-cuidados",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/beleza-e-cuidados",
+        "text": "Beleza e Cuidados",
+        "tagTitle": "Beleza e Cuidados"
+      }
+    }
+  },
+
+  // Medicamentos tem link próprio + submenu de subcategorias
+  "menu-item#dep-medicamentos": {
+    "children": ["vtex.menu@2.x:menu#submenu--children"],
+    "props": {
+      "id": "menu-item-dep-medicamentos",
+      "blockClass": "dep-medicamentos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos",
+        "text": "Medicamentos",
+        "tagTitle": "Medicamentos"
+      }
+    }
+  },
+
+  "vtex.menu@2.x:menu#submenu--children": {
+    "children": [
+      "menu-item#sub-remedios-cardiologicos",
+      "menu-item#sub-mais-medicamentos",
+      "menu-item#sub-antigripais",
+      "menu-item#sub-saude-dos-olhos"
+    ],
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "submenu--children"
+    }
+  },
+
+  "menu-item#sub-remedios-cardiologicos": {
+    "props": {
+      "id": "menu-item-sub-remedios-cardiologicos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos/remedios-cardiologicos",
+        "text": "Remédios Cardiológicos",
+        "tagTitle": "Remédios Cardiológicos"
+      }
+    }
+  },
+
+  "menu-item#sub-mais-medicamentos": {
+    "props": {
+      "id": "menu-item-sub-mais-medicamentos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos/mais-medicamentos",
+        "text": "Mais Medicamentos",
+        "tagTitle": "Mais Medicamentos"
+      }
+    }
+  },
+
+  "menu-item#sub-antigripais": {
+    "props": {
+      "id": "menu-item-sub-antigripais",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos/antigripais",
+        "text": "Antigripais",
+        "tagTitle": "Antigripais"
+      }
+    }
+  },
+
+  "menu-item#sub-saude-dos-olhos": {
+    "props": {
+      "id": "menu-item-sub-saude-dos-olhos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos/saude-dos-olhos",
+        "text": "Saúde dos Olhos",
+        "tagTitle": "Saúde dos Olhos"
+      }
+    }
+  },
+
+  // =============================================
+  // COL MENU LINKS (2/3) — menu horizontal
+  // =============================================
+  "flex-layout.col#col-menu-links": {
+    "props": {
+      "blockClass": "col-menu-links"
+    },
+    "children": ["vtex.menu@2.x:menu#menu-links-row"]
+  },
+
+  "vtex.menu@2.x:menu#menu-links-row": {
+    "children": [
+      "menu-item#link-medicamentos",
+      "menu-item#link-saude",
+      "menu-item#link-beleza",
+      "menu-item#link-dermocosmeticos"
+    ],
+    "props": {
+      "orientation": "horizontal"
+    }
+  },
+
+  "menu-item#link-medicamentos": {
+    "props": {
+      "id": "menu-item-medicamentos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos",
+        "text": "Medicamentos",
+        "tagTitle": "Medicamentos"
+      }
+    }
+  },
+
+  "menu-item#link-saude": {
+    "props": {
+      "id": "menu-item-saude",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/saude",
+        "text": "Saúde",
+        "tagTitle": "Saúde"
+      }
+    }
+  },
+
+  "menu-item#link-beleza": {
+    "props": {
+      "id": "menu-item-beleza",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/beleza",
+        "text": "Beleza",
+        "tagTitle": "Beleza"
+      }
+    }
+  },
+
+  "menu-item#link-dermocosmeticos": {
+    "props": {
+      "id": "menu-item-dermocosmeticos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/dermocosmeticos",
+        "text": "Dermocosméticos",
+        "tagTitle": "Dermocosméticos"
+      }
+    }
+  },
+
+  // =============================================
+  // COL EXTRAS (3/3) — links utilitários
+  // =============================================
+  "flex-layout.col#col-extras": {
+    "props": {
+      "blockClass": "col-extras"
+    },
+    "children": [
+      "rich-text#baixe-o-app",
+      "rich-text#ajuda"
+    ]
+  },
+
+  "rich-text#baixe-o-app": {
+    "props": {
+      "blockClass": "baixe-o-app",
+      "text": "[Baixe o app](#)",
+      "textPosition": "LEFT",
+      "textAlignment": "LEFT"
+    }
+  },
+
+  "rich-text#ajuda": {
+    "props": {
+      "blockClass": "ajuda",
+      "text": "[Ajuda](#)",
+      "textPosition": "LEFT",
+      "textAlignment": "LEFT"
+    }
+  }
+}
