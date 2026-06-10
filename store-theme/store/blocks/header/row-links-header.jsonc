@@ -60,6 +60,11 @@
       "menu-item#dep-dermocosmeticos",
       "menu-item#dep-saude-bem-estar",
       "menu-item#dep-beleza-cuidados",
+      "menu-item#dep-medicamentos",
+      "menu-item#dep-infantil",
+      "menu-item#dep-dermocosmeticos",
+      "menu-item#dep-saude-bem-estar",
+      "menu-item#dep-beleza-cuidados",
       "menu-item#dep-medicamentos"
     ]
   },
@@ -137,6 +142,10 @@
       "blockClass":"submenu--children"
     },
     "children": [
+      "menu-item#sub-remedios-cardiologicos",
+      "menu-item#sub-mais-medicamentos",
+      "menu-item#sub-antigripais",
+      "menu-item#sub-saude-dos-olhos",
       "menu-item#sub-remedios-cardiologicos",
       "menu-item#sub-mais-medicamentos",
       "menu-item#sub-antigripais",

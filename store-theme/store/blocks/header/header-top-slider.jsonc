@@ -5,22 +5,25 @@
       "fullWidth": true,
       "blockClass": "top-slider-row"
     },
-    "children": ["list-context.info-card-list#top-desktop"]
+    "children": [
+      "list-context.info-card-list#top-desktop"
+    ]
   },
-
   "list-context.info-card-list#top-desktop": {
     "title": "Slider de avisos - Desktop",
-    "children": ["slider-layout#top-desktop"],
+    "children": [
+      "slider-layout#top-desktop"
+    ],
     "props": {
       "blockClass": "top-slider-list-desktop",
       "infoCards": [
         {
-          "image": "assets/imgs/imagem-barra-aviso.png"
+          "imageUrl": "assets/imgs/imagem-barra-aviso.png",
+          "imageActionUrl": "/"
         }
       ]
     }
   },
-
   "slider-layout#top-desktop": {
     "props": {
       "itemsPerPage": {
@@ -30,23 +33,24 @@
       },
       "showNavigationArrows": "never",
       "showPaginationDots": "never",
-
       "blockClass": "top-slider-desktop"
     }
   },
-
   "flex-layout.row#top-slider-mobile": {
     "title": "Barra de avisos - Mobile",
     "props": {
       "fullWidth": true,
       "blockClass": "top-slider-row-mobile"
     },
-    "children": ["list-context.info-card-list#top-mobile"]
+    "children": [
+      "list-context.info-card-list#top-mobile"
+    ]
   },
-
   "list-context.info-card-list#top-mobile": {
     "title": "Slider de avisos - Mobile",
-    "children": ["slider-layout#top-mobile"],
+    "children": [
+      "slider-layout#top-mobile"
+    ],
     "props": {
       "blockClass": "top-slider-list-mobile",
       "infoCards": [
@@ -56,7 +60,6 @@
       ]
     }
   },
-
   "slider-layout#top-mobile": {
     "props": {
       "itemsPerPage": {
