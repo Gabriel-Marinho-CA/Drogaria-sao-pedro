@@ -22,7 +22,7 @@
   "list-context.product-list#showcase": {
     "title": "Lista de Produtos - Destaques da Semana",
     "blocks": [
-      "product-summary.shelf#showcase"
+      "product-summary.shelf"
     ],
     "children": [
       "slider-layout#showcase-products"
