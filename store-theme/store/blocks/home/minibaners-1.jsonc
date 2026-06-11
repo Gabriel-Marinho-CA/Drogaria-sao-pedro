@@ -1,0 +1,50 @@
+{
+    "flex-layout.row#minibanners-1": {
+        "title": "Categorias de navegação",
+        "children": [
+            "list-context.info-card-list#minibanners-1"
+        ],
+        "props": {
+            "blockClass": "minibanners-1"
+        }
+    },
+    "list-context.info-card-list#minibanners-1": {
+        "children": [
+            "list-context-renderer"
+        ],
+        "props": {
+            "infoCards": [
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-1.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-2.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-1.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-2.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-1.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/mini-2.png",
+                    "imageActionUrl": "/"
+                }
+            ]
+        }
+    }
+}

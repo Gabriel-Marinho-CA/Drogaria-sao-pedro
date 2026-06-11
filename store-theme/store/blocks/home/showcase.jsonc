@@ -1,0 +1,222 @@
+{
+  // ─────────────────────────────────────────────────────────────
+  // Showcase — Destaques da Semana
+  // ─────────────────────────────────────────────────────────────
+  "rich-text#showcase-title": {
+    "title": "Título - Destaques da Semana",
+    "props": {
+      "text": "## Destaques da Semana",
+      "blockClass": "showcaseTitle"
+    }
+  },
+  "flex-layout.row#showcase": {
+    "title": "Prateleira - Destaques da Semana",
+    "props": {
+      "blockClass": "showcase"
+    },
+    "children": [
+      "rich-text#showcase-title",
+      "list-context.product-list#showcase"
+    ]
+  },
+  "list-context.product-list#showcase": {
+    "title": "Lista de Produtos - Destaques da Semana",
+    "blocks": [
+      "product-summary.shelf#showcase"
+    ],
+    "children": [
+      "slider-layout#showcase-products"
+    ],
+    "props": {
+      // Substitua pelo ID da coleção desejada no VTEX Catalog
+      "collection": ""
+    }
+  },
+  "slider-layout#showcase-products": {
+    "title": "Slider - Destaques da Semana",
+    "props": {
+      "itemsPerPage": {
+        "desktop": 5,
+        "tablet": 3,
+        "phone": 1
+      },
+      "infinite": true,
+      "showNavigationArrows": "always",
+      "blockClass": "showcaseSlider"
+    }
+  },
+  // ─────────────────────────────────────────────────────────────
+  // Product Summary — Card de Destaque
+  // ─────────────────────────────────────────────────────────────
+  "product-summary.shelf#showcase": {
+    "children": [
+      "stack-layout#showcase",
+      "product-summary-name#showcase",
+      "flex-layout.row#list-price-savings-showcase",
+      "product-selling-price#showcase",
+      "add-to-cart-button#showcase"
+    ]
+  },
+  // Imagem do produto + tags de coleção (em cima) + wishlist (canto superior)
+  "stack-layout#showcase": {
+    "children": [
+      "product-summary-image#showcase",
+      "vtex.product-highlights@2.x:product-highlights#collection-showcase",
+      "add-to-list-btn"
+    ]
+  },
+  "product-summary-image#showcase": {
+    "props": {
+      "showBadge": false,
+      "aspectRatio": "1:1",
+      "maxHeight": 300,
+      "blockClass": "showcaseImage"
+    }
+  },
+  // Tags de coleção sobrepostas à imagem (ex: "LEVE 3 PAGUE 2", "50% OFF NA 2ª UNIDADE")
+  "vtex.product-highlights@2.x:product-highlights#collection-showcase": {
+    "props": {
+      "type": "collection"
+    },
+    "children": [
+      "product-highlight-wrapper#showcase"
+    ]
+  },
+  "product-highlight-wrapper#showcase": {
+    "props": {
+      "blockClass": "collection-showcase"
+    },
+    "children": [
+      "product-highlight-text#showcase"
+    ]
+  },
+  "product-highlight-text#showcase": {
+    "props": {
+      "message": "{highlightName}",
+      "blockClass": "collection-showcase"
+    }
+  },
+  "product-summary-name#showcase": {
+    "props": {
+      "blockClass": "showcase",
+      "tag": "h3"
+    }
+  },
+  // Linha: preço de lista riscado + % de desconto
+  "flex-layout.row#list-price-savings-showcase": {
+    "props": {
+      "blockClass": "listPriceSavingsShowcase",
+      "colGap": 2,
+      "preserveLayoutOnMobile": true,
+      "preventHorizontalStretch": true,
+      "verticalAlign": "middle"
+    },
+    "children": [
+      "product-list-price#showcase",
+      "product-price-savings#showcase"
+    ]
+  },
+  "product-list-price#showcase": {
+    "props": {
+      "blockClass": "showcase"
+    }
+  },
+  // % de desconto (ex: "27% OFF")
+  "product-price-savings#showcase": {
+    "props": {
+      "markers": [
+        "discount"
+      ],
+      "blockClass": "showcase"
+    }
+  },
+  // Spot price — preço promocional em destaque
+  "product-selling-price#showcase": {
+    "props": {
+      "blockClass": "showcase"
+    }
+  },
+  "add-to-cart-button#showcase": {
+    "props": {
+      "blockClass": "showcase",
+      "showToast": true
+    }
+  },
+  
+  "flex-layout.col#showcase-confira-ofertas": {
+    "props": {
+      "blockClass": [
+        "showcase",
+        "confira-ofertas"
+      ],
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "flex-layout.col#title-confira-ofertas-1",
+      "flex-layout.col#showcase-confira"
+    ]
+  },
+  "flex-layout.col#title-confira-ofertas-1": {
+    "props": {
+      "blockClass": [
+        "title-showcase",
+        "title-confira-ofertas"
+      ]
+    },
+    "children": [
+      "rich-text#title-confira-ofertas-1"
+    ]
+  },
+  "rich-text#title-confira-ofertas-1": {
+    "props": {
+      "text": "Confira nossas ofertas",
+      "textAlignment": "CENTER",
+      "textColor": "c-on-muted-6",
+      "font": "t-heading-6",
+      "blockClass": [
+        "title-showcase",
+        "confira-title"
+      ]
+    }
+  },
+  "flex-layout.col#showcase-confira": {
+    "props": {
+      "blockClass": [
+        "showcase-col",
+        "confira-showcase"
+      ]
+    },
+    "children": [
+      "list-context.product-list#home-collection-confira-ofertas-1"
+    ]
+  },
+  "list-context.product-list#home-collection-confira-ofertas-1": {
+    "props": {
+      "collection": ""
+    },
+    "blocks": [
+      "product-summary.shelf"
+    ],
+    "children": [
+      "slider-layout#collection-slider-confira"
+    ]
+  },
+  "slider-layout#collection-slider-confira": {
+    "props": {
+      "itemsPerPage": {
+        "desktop": 2,
+        "tablet": 2,
+        "mobile": 2
+      },
+      // "infinite": true,
+      "showNavigationArrows": "never",
+      "showPaginationDots": "always",
+      "blockClass": [
+        "collection-slider",
+        "summary-showcase",
+        "slider-confira"
+      ]
+      // "fullWidth": true
+    }
+  }
+}

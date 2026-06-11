@@ -1,0 +1,121 @@
+.flexRow--deals {
+    background: none;
+    margin-block: 3rem;
+
+
+    .flexRowContent--deals {
+        .stretchChildrenWidth {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+
+    :global(.vtex-list-context-0-x-infoCardContainer) {
+        display: flex;
+        flex-direction: column-reverse;
+
+        :global(.vtex-list-context-0-x-infoCardTextContainer),
+        :global(.vtex-list-context-0-x-infoCardImageContainer) {
+            width: 100% !important;
+            align-items: center;
+        }
+
+        :global(.vtex-list-context-0-x-infoCardImageContainer) {
+            display: flex;
+            justify-content: center;
+
+            :global(.vtex-list-context-0-x-infoCardImage) {
+                @media (min-width:1240px) and (max-width:1440px) {
+                    min-width: 140px;
+                    max-width: 140px;
+                }
+
+                @media (min-width:1000px) and (max-width:1239px) {
+                    min-width: 115px;
+                    max-width: 115px;
+                }
+            }
+        }
+
+        :global(.vtex-list-context-0-x-infoCardCallActionContainer) {
+            margin: .35rem 0 0 0;
+        }
+
+        :global(.vtex-button) {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #707070;
+            font-family: 'Roboto', sans-serif;
+
+            @media (min-width:1000px) and (max-width:1239px) {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            :global(.vtex-button__label) {
+                padding: 0 !important;
+            }
+
+        }
+    }
+}
+
+:global(.vtex-slider-layout-0-x-sliderLayoutContainer--carousel) {
+    background: none;
+
+    :global(.vtex-slider-layout-0-x-sliderRightArrow) {
+        right: -25px;
+    }
+
+    :global(.vtex-slider-layout-0-x-sliderLeftArrow) {
+        left: -25px;
+    }
+
+    :global(.vtex-slider-layout-0-x-sliderRightArrow),
+    :global(.vtex-slider-layout-0-x-sliderLeftArrow) {
+        border: 1px solid #CBCBCB;
+        background: #fff !important;
+        border-radius: 50%;
+        color: #EC1F25;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        :global(.vtex-slider-layout-0-x-caretIcon) {
+            width: 15px;
+        }
+    }
+
+    :global(.vtex-slider-layout-0-x-paginationDotsContainer) {
+        bottom: -40px;
+
+        :global(.vtex-slider-layout-0-x-paginationDot) {
+            border: 1px solid #CBCBCB;
+            background: #fff;
+            width: 13px !important;
+            height: 13px !important;
+        }
+
+        :global(.vtex-slider-layout-0-x-paginationDot--isActive) {
+            background: #EC1F25;
+            background: #EC1F25;
+        }
+
+    }
+}
+
+
+
+.flexRow--minibanners-1 {
+    margin-top: 5rem;
+
+    :global(.vtex-list-context-0-x-infoCardImageContainer) {
+        width: 100% !important;
+    }
+     :global(.vtex-list-context-0-x-infoCardTextContainer) {
+        display: none !important;
+     }
+}

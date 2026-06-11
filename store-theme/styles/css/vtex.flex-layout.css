@@ -111,3 +111,8 @@
 .flexRow--addToCartRow {
   padding-bottom: 1rem;
 }
+
+
+:global(.vtex-store-components-3-x-container) {
+  padding-inline: 1.5rem;
+}
