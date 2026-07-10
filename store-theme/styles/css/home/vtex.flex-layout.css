@@ -119,3 +119,12 @@
         display: none !important;
      }
 }
+
+.flexRowContent--showcase {
+    flex-direction: column;
+    display: flex;
+
+    .stretchChildrenWidth {
+        width: 100% !important;
+    }
+}

@@ -3,6 +3,7 @@
   // ROW LINKS — barra abaixo do sticky header
   // =============================================
   "flex-layout.row#row-links": {
+    "title": "Links Header",
     "props": {
       "blockClass": "row-links",
       "fullWidth": false,

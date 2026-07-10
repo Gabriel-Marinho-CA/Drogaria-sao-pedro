@@ -3,25 +3,18 @@
     "children": [
       "stack-layout#prodsum",
       "product-summary-name",
-      "flex-layout.col#productRating",
-      "product-summary-space",
-      "product-list-price#summary",
-      "flex-layout.row#selling-price-savings",
-      "product-installments#summary",
+      "flex-layout.row#list-price-savings",
+      "product-selling-price#summary",
       "add-to-cart-button"
     ]
   },
-  "flex-layout.col#productRating": {
-    "props": {
-      "blockClass": "productRating"
-    },
-    "children": ["product-rating-inline"]
-  },
 
+  // Imagem do produto + tags de coleção (em cima) + wishlist (canto superior direito)
   "stack-layout#prodsum": {
     "children": [
       "product-summary-image#shelf",
       "vtex.product-highlights@2.x:product-highlights#collection",
+      "add-to-list-btn",
       "modal-trigger#quickview" // Check quickview.jsonc
     ]
   },
@@ -30,10 +23,12 @@
     "props": {
       "showBadge": false,
       "aspectRatio": "1:1",
-      "maxHeight": 300
+      "maxHeight": 300,
+      "blockClass": "shelf"
     }
   },
 
+  // Tags de coleção sobrepostas à imagem
   "vtex.product-highlights@2.x:product-highlights#collection": {
     "props": {
       "type": "collection"
@@ -48,42 +43,70 @@
   },
   "product-highlight-text": {
     "props": {
-      "message": "{highlightName}"
+      "message": "{highlightName}",
+      "blockClass": "collection"
     }
   },
 
+  "product-summary-name": {
+    "props": {
+      "blockClass": "shelf",
+      "tag": "h3"
+    }
+  },
+
+  // Linha: preço de lista riscado + % de desconto (ex: "R$29,69" + "27% OFF")
+  "flex-layout.row#list-price-savings": {
+    "props": {
+      "blockClass": "listPriceSavings",
+      "colGap": 2,
+      "preserveLayoutOnMobile": true,
+      "preventHorizontalStretch": true,
+      "verticalAlign": "middle"
+    },
+    "children": [
+      "product-list-price#summary",
+      "product-price-savings#summary"
+    ]
+  },
   "product-list-price#summary": {
     "props": {
       "blockClass": "summary"
     }
   },
-  "flex-layout.row#selling-price-savings": {
+  // % de desconto (ex: "27% OFF")
+  "product-price-savings#summary": {
     "props": {
-      "colGap": 2,
-      "preserveLayoutOnMobile": true,
-      "preventHorizontalStretch": true,
-      "marginBottom": 4
-    },
-    "children": [
-      "product-selling-price#summary",
-      "product-price-savings#summary"
-    ]
-  },
-  "product-installments#summary": {
-    "props": {
+      "message": "{savingsPercentage} OFF",
+      "markers": ["discount"],
       "blockClass": "summary"
     }
   },
+
+  // Preço promocional em destaque (ex: "R$ 103,89")
   "product-selling-price#summary": {
     "props": {
       "blockClass": "summary"
     }
   },
-  "product-price-savings#summary": {
+
+  "add-to-cart-button": {
     "props": {
-      "markers": [
-        "discount"
-      ],
+      "text": "Comprar",
+      "blockClass": "summary",
+      "showToast": true
+    }
+  },
+
+  // Definições usadas por product-summary-list.jsonc (não fazem parte do card do shelf)
+  "flex-layout.col#productRating": {
+    "props": {
+      "blockClass": "productRating"
+    },
+    "children": ["product-rating-inline"]
+  },
+  "product-installments#summary": {
+    "props": {
       "blockClass": "summary"
     }
   }

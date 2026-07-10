@@ -1,0 +1,197 @@
+/* ───────────────────────────────────────────────────────────────
+   Product Summary — Card do Shelf
+   Ref. Figma node 1-3080.
+
+   Layout: coração (canto sup. direito) sobre a imagem, imagem
+   centralizada, nome (3 linhas, cinza), linha [preço riscado + badge
+   "% OFF"], preço promocional em destaque (azul-marinho) e botão
+   "Adicionar" full-width (azul-marinho com ícone de cesta).
+
+   Handles próprios do app (flex-layout) usam seletor local
+   (.flexRow--*); handles de outros apps usam :global(...).
+   ─────────────────────────────────────────────────────────────── */
+
+/* ─── Container do card ─────────────────────────────────────────── */
+:global(.vtex-product-summary-2-x-element) {
+  background-color: #fff;
+  border: 1px solid #E7E7E7;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+:global(.vtex-product-summary-2-x-clearLink):hover :global(.vtex-product-summary-2-x-element) {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: #DADADA;
+}
+
+/* ─── Nome do produto (cinza, alinhado à esquerda, 3 linhas) ────── */
+:global(.vtex-product-summary-2-x-nameContainer--shelf) {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.75rem 0 0.5rem;
+  min-height: 4.1em; /* reserva ~3 linhas para alinhar preços entre cards */
+}
+
+:global(.vtex-product-summary-2-x-brandName--shelf) {
+  color: #6B7280;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Linha: preço de lista riscado + badge "% OFF" ─────────────── */
+.flexRow--listPriceSavings {
+  margin-top: 0.25rem;
+
+  .flexRowContent--listPriceSavings {
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+    width: 100%;
+  }
+}
+
+/* Preço de lista riscado (cinza claro) */
+:global(.vtex-product-price-1-x-listPrice--summary) {
+  color: #9EA3AE;
+}
+
+:global(.vtex-product-price-1-x-listPrice--summary) :global(.vtex-product-price-1-x-listPriceValue--summary) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* Badge "27% OFF" (fundo bege, texto marrom) */
+:global(.vtex-product-price-1-x-savings--summary) {
+  display: inline-block;
+  background-color: #FBE9C9;
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: .45rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* ─── Preço promocional em destaque (azul-marinho) ──────────────── */
+:global(.vtex-product-price-1-x-sellingPrice--summary) {
+  display: block;
+  color: #14294F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  margin: 0 0 0.85rem;
+}
+
+:global(.vtex-product-price-1-x-sellingPrice--summary) :global(.vtex-product-price-1-x-currencyCode--summary) {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+:global(.vtex-product-price-1-x-sellingPrice--summary) :global(.vtex-product-price-1-x-currencyInteger--summary) {
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+:global(.vtex-product-price-1-x-sellingPrice--summary) :global(.vtex-product-price-1-x-currencyDecimal--summary),
+:global(.vtex-product-price-1-x-sellingPrice--summary) :global(.vtex-product-price-1-x-currencyFraction--summary) {
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+/* ─── Botão "Adicionar" (full-width, azul-marinho + ícone cesta) ── */
+
+:global(.vtex-add-to-cart-button-0-x-buttonText--summary) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color:#fff;
+}
+
+/* Ícone de cesta antes do texto (SVG branco embutido) */
+:global(.vtex-add-to-cart-button-0-x-buttonDataContainer--summary) {
+  align-items: center;
+}
+
+
+
+:global(.vtex-add-to-cart-button-0-x-buttonDataContainer--summary)::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNSAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNzMwMDQgOC4zOTI3MkMzLjczMDA0IDcuODc3NyA0LjE0NzU0IDcuNDYwMjEgNC42NjI1NSA3LjQ2MDIxQzUuMTc3NTYgNy40NjAyMSA1LjU5NTA2IDcuODc3NyA1LjU5NTA2IDguMzkyNzJWMTAuMjU3N0M1LjU5NTA2IDEwLjc3MjggNS4xNzc1NiAxMS4xOTAyIDQuNjYyNTUgMTEuMTkwMkM0LjE0NzU0IDExLjE5MDIgMy43MzAwNCAxMC43NzI4IDMuNzMwMDQgMTAuMjU3N1Y4LjM5MjcyWk02LjUyNzU3IDguMzkyNzJDNi41Mjc1NyA3Ljg3NzcgNi45NDUwNyA3LjQ2MDIxIDcuNDYwMDggNy40NjAyMUM3Ljk3NTEgNy40NjAyMSA4LjM5MjU5IDcuODc3NyA4LjM5MjU5IDguMzkyNzJWMTAuMjU3N0M4LjM5MjU5IDEwLjc3MjggNy45NzUxIDExLjE5MDIgNy40NjAwOCAxMS4xOTAyQzYuOTQ1MDcgMTEuMTkwMiA2LjUyNzU3IDEwLjc3MjggNi41Mjc1NyAxMC4yNTc3VjguMzkyNzJaTTkuMzI1MSA4LjM5MjcyQzkuMzI1MSA3Ljg3NzcgOS43NDI2IDcuNDYwMjEgMTAuMjU3NiA3LjQ2MDIxQzEwLjc3MjYgNy40NjAyMSAxMS4xOTAxIDcuODc3NyAxMS4xOTAxIDguMzkyNzJWMTAuMjU3N0MxMS4xOTAxIDEwLjc3MjggMTAuNzcyNiAxMS4xOTAyIDEwLjI1NzYgMTEuMTkwMkM5Ljc0MjYgMTEuMTkwMiA5LjMyNTEgMTAuNzcyOCA5LjMyNTEgMTAuMjU3N1Y4LjM5MjcyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUuMzY4NDYgMC4wNjYzOTM3QzUuNTg5NDQgMC4xOTg3MjMgNS42NjEyNiAwLjQ4NTE2NCA1LjUyODg1IDAuNzA2MDk2TDMuMTU0NjggNC42NjI3NEgxMS43NjU1TDkuMzkwMzggMC43MDYwOTZDOS4yNTgwMiAwLjQ4NTE1NyA5LjMyOTgzIDAuMTk4NzUxIDkuNTUwNzcgMC4wNjYzOTM3QzkuNzcxNzEgLTAuMDY1OTYzOSAxMC4wNTgxIDAuMDA1ODQ1ODQgMTAuMTkwNSAwLjIyNjc4NkwxMi44NTI4IDQuNjYyNzRIMTQuNDUzOUMxNC43MTE0IDQuNjYyNzQgMTQuOTIwMiA0Ljg3MTQ5IDE0LjkyMDIgNS4xMjg5OVY2LjA2MTVDMTQuOTIwMiA2LjMxOTAxIDE0LjcxMTQgNi41Mjc3NiAxNC40NTM5IDYuNTI3NzZIMTMuODczTDEyLjE1MzQgMTIuNTQ4QzEyLjA2NzYgMTIuODQ4NiAxMS43OTI3IDEzLjA1NTcgMTEuNDgwMSAxMy4wNTUzTDMuNDQwOTYgMTMuMDU1M0MzLjEyODQgMTMuMDU1NyAyLjg1MzU0IDEyLjg0ODYgMi43Njc2OSAxMi41NDhMMS4wNDcyMSA2LjUyNzc2SDAuNDY2MjU1QzAuMjA4NzUgNi41Mjc3NiAwIDYuMzE5MDEgMCA2LjA2MTVWNS4xMjg5OUMwIDQuODcxNDkgMC4yMDg3NSA0LjY2Mjc0IDAuNDY2MjU1IDQuNjYyNzRIMi4wNjczOEw0LjcyNzgzIDAuMjI2Nzg1QzQuODYwMTYgMC4wMDU4MDU3OSA1LjE0NzUzIC0wLjA2NjAxNDUgNS4zNjg0NiAwLjA2NjM5MzdaTTIuMDE3MDIgNi41Mjc3NkwzLjYxNTM0IDEyLjEyMjhIMTEuMzA0OEwxMi45MDMxIDYuNTI3NzZIMi4wMTcwMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=") no-repeat center center;
+  background-size: contain;
+}
+
+/* ─── Overlays sobre a imagem (dentro do stack-layout) ──────────── */
+
+/* Tag de coleção: canto superior esquerdo */
+:global(.vtex-stack-layout-0-x-stackItem) :global(.vtex-product-highlights-2-x-productHighlightWrapper--collection) {
+  top: 0.5rem;
+  left: 0.5rem;
+  right: auto;
+
+  background: #EC1F25;
+  border-radius: 5px;
+  padding: .35rem 0;
+}
+
+/* Wishlist (coração): canto superior direito */
+:global(.vtex-stack-layout-0-x-stackItem) :global(.vtex-wish-list-1-x-wishlistIconContainer) {
+  top: 0.5rem;
+  left: auto;
+  right: 0.5rem;
+
+  :global(.vtex-button) {
+    background: none;
+    border-radius: none;
+  }
+}
+
+:global(.vtex-product-highlights-2-x-productHighlightText) {
+    background: none !important;
+  padding: 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+}
+
+:global(.vtex-wish-list-1-x-wishlistIconContainer) :global(.vtex-button) {
+  padding: 0;
+  min-height: auto;
+}
+
+:global(.vtex-wish-list-1-x-wishlistIconContainer) :global(.vtex-button__label) {
+  padding: 0 !important;
+}
+
+/* Quickview (lupa): canto superior direito, abaixo do coração */
+:global(.vtex-stack-layout-0-x-stackItem--quickview) {
+  top: 3rem;
+  left: auto;
+  right: 0.5rem;
+}
+
+
+:global(.vtex-product-summary-2-x-element) {
+    :global(.vtex-button) {
+        background: #025789;
+  border: none;
+  border-radius: 100px;
+    }
+
+}

@@ -1,0 +1,4 @@
+:global(.vtex-stack-layout-0-x-stackItem):has(:global(.vtex-wish-list-1-x-wishlistIconContainer)) {
+    left: auto;
+    right: 0.5rem;
+}

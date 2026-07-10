@@ -1,5 +1,6 @@
 {
     "sticky-layout#row-desktop": {
+        "title":"Sticky Header",
         "props": {
             "blockClass": "sticky-header"
         },
@@ -8,6 +9,7 @@
         ]
     },
     "flex-layout.row#main-row": {
+        "title":"Header",
         "props": {
             "blockClass": "main-header-row",
             "fullWidth": false,
