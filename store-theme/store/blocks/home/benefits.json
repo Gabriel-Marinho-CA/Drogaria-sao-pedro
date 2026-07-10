@@ -1,0 +1,60 @@
+{
+  "flex-layout.row#benefits": {
+    "title": "Benefícios",
+    "children": [
+      "list-context.info-card-list#benefits"
+    ],
+    "props": {
+      "blockClass": "benefits"
+    }
+  },
+  "list-context.info-card-list#benefits": {
+    "children": [
+      "list-context-renderer"
+    ],
+    "props": {
+      "infoCards": [
+        {
+          "textMode": "rich-text",
+          "imageUrl": "assets/imgs/benefit-frete.svg",
+          "imageActionUrl": "/",
+          "callToActionText": "**Frete Grátis**\n\nAcima de R$199",
+          "callToActionUrl": "/",
+          "blockClass": "benefit"
+        },
+        {
+          "textMode": "rich-text",
+          "imageUrl": "assets/imgs/benefit-entrega.svg",
+          "imageActionUrl": "/",
+          "callToActionText": "**Entrega**\n\nEm até 2 horas",
+          "callToActionUrl": "/",
+          "blockClass": "benefit"
+        },
+        {
+          "textMode": "rich-text",
+          "imageUrl": "assets/imgs/benefit-parcele.svg",
+          "imageActionUrl": "/",
+          "callToActionText": "**Parcele**\n\nAté 3x Sem Juros",
+          "callToActionUrl": "/",
+          "blockClass": "benefit"
+        },
+        {
+          "textMode": "rich-text",
+          "imageUrl": "assets/imgs/benefit-retire.svg",
+          "imageActionUrl": "/",
+          "callToActionText": "**Retire na Loja**\n\nMais perto de você",
+          "callToActionUrl": "/",
+          "blockClass": "benefit"
+        },
+        {
+          "textMode": "rich-text",
+          "imageUrl": "assets/imgs/benefit-whatsapp.svg",
+          "imageActionUrl": "/",
+          "callToActionText": "**WhatsApp**\n\nTelevenda e Fale Conosco",
+          "callToActionUrl": "/",
+          "blockClass": "benefit"
+        }
+      ]
+    }
+  }
+}
