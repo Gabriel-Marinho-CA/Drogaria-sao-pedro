@@ -1,0 +1,55 @@
+{
+    "flex-layout.row#minibanners-2": {
+        "title": "Minibanners 2",
+        "children": [
+            "list-context.info-card-list#minibanners-2"
+        ],
+        "props": {
+            "blockClass": "minibanners-2"
+        }
+    },
+    "list-context.info-card-list#minibanners-2": {
+        "children": [
+            "slider-layout#minibanners-2"
+        ],
+        "props": {
+            "infoCards": [
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/banner-1.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/banner-2.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/banner-1.png",
+                    "imageActionUrl": "/"
+                },
+                {
+                    "callToActionUrl": "/",
+                    "imageUrl": "assets/imgs/banner-2.png",
+                    "imageActionUrl": "/"
+                }
+            ]
+        }
+    },
+    "slider-layout#minibanners-2": {
+        "title": "Carrossel - Minibanners 2",
+        "props": {
+            "itemsPerPage": {
+                "desktop": 2,
+                "tablet": 2,
+                "phone": 1.15
+            },
+            "infinite": false,
+            "fullWidth": false,
+            "showNavigationArrows": "never",
+            "showPaginationDots": "always",
+            "blockClass": "minibanners-2"
+        }
+    }
+}

@@ -17,41 +17,41 @@
         {
           "textMode": "rich-text",
           "imageUrl": "assets/imgs/benefit-frete.svg",
-          "imageActionUrl": "/",
-          "callToActionText": "**Frete Grátis**\n\nAcima de R$199",
-          "callToActionUrl": "/",
+          "headline": "Frete Grátis",
+          "subhead": "**Acima de R$199**",
+          "callToActionMode": "none",
           "blockClass": "benefit"
         },
         {
           "textMode": "rich-text",
           "imageUrl": "assets/imgs/benefit-entrega.svg",
-          "imageActionUrl": "/",
-          "callToActionText": "**Entrega**\n\nEm até 2 horas",
-          "callToActionUrl": "/",
+          "headline": "Entrega",
+          "subhead": "Em até 2 horas",
+          "callToActionMode": "none",
           "blockClass": "benefit"
         },
         {
           "textMode": "rich-text",
           "imageUrl": "assets/imgs/benefit-parcele.svg",
-          "imageActionUrl": "/",
-          "callToActionText": "**Parcele**\n\nAté 3x Sem Juros",
-          "callToActionUrl": "/",
+          "headline": "Parcele",
+          "subhead": "Até 3x Sem Juros",
+          "callToActionMode": "none",
           "blockClass": "benefit"
         },
         {
           "textMode": "rich-text",
           "imageUrl": "assets/imgs/benefit-retire.svg",
-          "imageActionUrl": "/",
-          "callToActionText": "**Retire na Loja**\n\nMais perto de você",
-          "callToActionUrl": "/",
+          "headline": "Retire na Loja",
+          "subhead": "Mais perto de você",
+          "callToActionMode": "none",
           "blockClass": "benefit"
         },
         {
           "textMode": "rich-text",
           "imageUrl": "assets/imgs/benefit-whatsapp.svg",
-          "imageActionUrl": "/",
-          "callToActionText": "**WhatsApp**\n\nTelevenda e Fale Conosco",
-          "callToActionUrl": "/",
+          "headline": "WhatsApp",
+          "subhead": "Televenda e Fale Conosco",
+          "callToActionMode": "none",
           "blockClass": "benefit"
         }
       ]

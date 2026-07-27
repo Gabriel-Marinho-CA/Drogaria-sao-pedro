@@ -2,3 +2,25 @@
     left: auto;
     right: 0.5rem;
 }
+
+@media (max-width:547px) {
+    :global(.vtex-render__container-id-minibanners-1) {
+         overflow-x:hidden ;
+        :global(.vtex-store-components-3-x-container) {
+            padding-right: 0;
+            overflow-x: auto;
+
+            :global(.vtex-flex-layout-0-x-flexRowContent--minibanners-1) > :global(.vtex-flex-layout-0-x-stretchChildrenWidth) {
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+
+                >div {
+                    min-width: 33vw;
+                }
+            }
+
+        }
+    }
+
+}

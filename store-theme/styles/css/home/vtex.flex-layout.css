@@ -115,9 +115,12 @@
     :global(.vtex-list-context-0-x-infoCardImageContainer) {
         width: 100% !important;
     }
-     :global(.vtex-list-context-0-x-infoCardTextContainer) {
+
+    :global(.vtex-list-context-0-x-infoCardTextContainer) {
         display: none !important;
-     }
+    }
+
+
 }
 
 .flexRowContent--showcase {
@@ -126,5 +129,100 @@
 
     .stretchChildrenWidth {
         width: 100% !important;
+    }
+}
+
+
+.flexRow--benefits {
+    margin-block: 3rem;
+
+    :global(.vtex-list-context-0-x-infoCardContainer) {
+        display: flex;
+        flex-direction: column-reverse;
+        border-radius: 10px;
+        border: 1px solid #F3F3F3;
+        padding: 2rem;
+        text-align: center;
+        height: 100%;
+
+        :global(.vtex-list-context-0-x-infoCardTextContainer),
+        :global(.vtex-list-context-0-x-infoCardImageContainer) {
+            width: 100% !important;
+            padding: 0;
+        }
+    }
+
+    :global(.vtex-list-context-0-x-infoCardImageContainer) {
+        padding-bottom: 1.65rem !important;
+
+         @media (max-width:1000px) {
+            padding-bottom: 1rem !important;
+            :global(.vtex-list-context-0-x-infoCardImage) {
+                max-width: 40px;
+                height: auto;
+            }
+         }
+    }
+
+    :global(.vtex-list-context-0-x-container) {
+        width: 100%;
+
+        :global(.vtex-list-context-0-x-wrapper) {
+            width: 100%;
+        }
+    }
+
+    :global(.vtex-list-context-0-x-container):nth-child(0n+2) {
+
+        :global(.vtex-list-context-0-x-paragraph) {
+            color: #707070;
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.1;
+            /* 388.889% */
+            letter-spacing: -0.45px;
+            text-align: center;
+            padding-top: .75rem;
+
+
+        }
+    }
+
+    :global(.vtex-list-context-0-x-paragraph) {
+        margin: 0;
+
+        color: #025789;
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.1;
+        /* 388.889% */
+        letter-spacing: -0.45px;
+        text-align: center;
+
+        :global(.vtex-list-context-0-x-strong) {
+            color: #EC1F25;
+            font-weight: normal;
+        }
+    }
+
+    .flexRowContent--benefits {
+        .stretchChildrenWidth {
+            gap: 1rem;
+
+            @media (max-width:1000px) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                >* {
+                    flex: 0 0 calc((100% - 2rem) / 3);
+                    max-width: calc((100% - 2rem) / 3);
+                }
+            }
+        }
     }
 }
