@@ -24,3 +24,13 @@
     }
 
 }
+
+:global(.vtex-flex-layout-0-x-flexRowContent--footer-brand) {
+   > :global(.flex):nth-child(2) {
+        flex:1;
+
+       > :global(.vtex-flex-layout-0-x-flexRow--footer-seals) {
+            width: 100%;
+        }
+    }
+}

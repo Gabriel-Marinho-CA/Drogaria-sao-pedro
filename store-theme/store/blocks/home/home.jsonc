@@ -9,7 +9,8 @@
       "__fold__",
 
       "flex-layout.row#showcase",
-      "flex-layout.row#benefits"
+      "flex-layout.row#benefits",
+      "flex-layout.row#minibanners-2"
     ]
   },
   "flex-layout.row#main-banners": {

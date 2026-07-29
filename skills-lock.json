@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "vtex-io-render-runtime-and-blocks": {
+      "source": "vtex/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vtex-io-render-runtime-and-blocks/SKILL.md",
+      "computedHash": "73ed97ad0d04b3a21d31676f2e70ea1ef2a1813d6941507bf3145baceec99002"
+    },
+    "vtex-io-storefront-theme-app": {
+      "source": "vtex/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vtex-io-storefront-theme-app/SKILL.md",
+      "computedHash": "cc066b7a25c9b0b7a8ef30467fb83b6831c7b271dec27f203ed7268839a8d7c7"
+    },
+    "vtex-io-storefront-theme-versioning": {
+      "source": "vtex/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vtex-io-storefront-theme-versioning/SKILL.md",
+      "computedHash": "f02b408a9a5469d76dc60bd2e6015b9aa6ec8f1e2e1a5af3347ca5914877c45f"
+    }
+  }
+}

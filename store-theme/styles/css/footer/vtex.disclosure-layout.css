@@ -1,0 +1,39 @@
+/* ─── SANFONAS DO RODAPÉ (MOBILE) ─────────────────────────────────── */
+
+.trigger--footer-accordion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 22px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.trigger--footer-accordion :global(.vtex-store-icons-0-x-caretIcon) {
+  flex: 0 0 auto;
+  color: #025789;
+}
+
+/* Conteúdo com a mesma transição usada no FAQ do tema */
+.content--footer-accordion {
+  transition: opacity 250ms ease-in-out, height 250ms ease-in-out,
+    transform 250ms ease-in-out;
+  opacity: 0;
+  height: 0;
+  transform: translate3d(0, -10%, 0);
+}
+
+.content--footer-accordion[data-enter] {
+  opacity: 1;
+  height: fit-content;
+  transform: translate3d(0, 0, 0);
+  padding: 8px 0 12px;
+}
+
+.content--footer-accordion[data-leave] {
+  height: 0;
+  overflow: hidden;
+}

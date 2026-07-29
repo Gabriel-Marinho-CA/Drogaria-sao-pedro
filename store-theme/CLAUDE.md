@@ -1,4 +1,4 @@
-# CLAUDE.md
+<!-- # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -316,4 +316,4 @@ See `manifest.json` for full dependency list. Critical ones:
 
 - [VTEX IO Documentation](https://developers.vtex.com/docs/guides)
 - [Store Framework Blocks](https://developers.vtex.com/docs/guides/vtex-io-documentation-blocks)
-- [CSS Handles](https://developers.vtex.com/docs/guides/vtex-io-documentation-styling)
+- [CSS Handles](https://developers.vtex.com/docs/guides/vtex-io-documentation-styling) -->

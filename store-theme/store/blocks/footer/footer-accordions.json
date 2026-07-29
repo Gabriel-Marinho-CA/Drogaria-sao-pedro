@@ -1,0 +1,95 @@
+{
+  "flex-layout.col#footer-accordions": {
+    "props": {
+      "title": "Rodapé - Sanfonas (Mobile)",
+      "blockClass": "footer-accordions",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "disclosure-layout#footer-institucional",
+      "disclosure-layout#footer-servicos",
+      "disclosure-layout#footer-atendimento",
+      "disclosure-layout#footer-privacidade"
+    ]
+  },
+
+  "disclosure-layout#footer-institucional": {
+    "props": { "title": "Rodapé - Sanfona Institucional", "animated": true },
+    "children": [
+      "disclosure-trigger#footer-institucional",
+      "disclosure-content#footer-institucional"
+    ]
+  },
+  "disclosure-trigger#footer-institucional": {
+    "props": { "blockClass": "footer-accordion", "as": "div" },
+    "children": [
+      "rich-text#footer-menu-institucional-title",
+      "disclosure-state-indicator#footer"
+    ]
+  },
+  "disclosure-content#footer-institucional": {
+    "props": { "blockClass": "footer-accordion" },
+    "children": ["vtex.menu@2.x:menu#footer-institucional"]
+  },
+
+  "disclosure-layout#footer-servicos": {
+    "props": { "title": "Rodapé - Sanfona Nossos Serviços", "animated": true },
+    "children": [
+      "disclosure-trigger#footer-servicos",
+      "disclosure-content#footer-servicos"
+    ]
+  },
+  "disclosure-trigger#footer-servicos": {
+    "props": { "blockClass": "footer-accordion", "as": "div" },
+    "children": [
+      "rich-text#footer-menu-servicos-title",
+      "disclosure-state-indicator#footer"
+    ]
+  },
+  "disclosure-content#footer-servicos": {
+    "props": { "blockClass": "footer-accordion" },
+    "children": ["vtex.menu@2.x:menu#footer-servicos"]
+  },
+
+  "disclosure-layout#footer-atendimento": {
+    "props": { "title": "Rodapé - Sanfona Atendimento", "animated": true },
+    "children": [
+      "disclosure-trigger#footer-atendimento",
+      "disclosure-content#footer-atendimento"
+    ]
+  },
+  "disclosure-trigger#footer-atendimento": {
+    "props": { "blockClass": "footer-accordion", "as": "div" },
+    "children": [
+      "rich-text#footer-menu-atendimento-title",
+      "disclosure-state-indicator#footer"
+    ]
+  },
+  "disclosure-content#footer-atendimento": {
+    "props": { "blockClass": "footer-accordion" },
+    "children": ["vtex.menu@2.x:menu#footer-atendimento"]
+  },
+
+  "disclosure-layout#footer-privacidade": {
+    "props": { "title": "Rodapé - Sanfona Segurança e Privacidade", "animated": true },
+    "children": [
+      "disclosure-trigger#footer-privacidade",
+      "disclosure-content#footer-privacidade"
+    ]
+  },
+  "disclosure-trigger#footer-privacidade": {
+    "props": { "blockClass": "footer-accordion", "as": "div" },
+    "children": [
+      "rich-text#footer-menu-privacidade-title",
+      "disclosure-state-indicator#footer"
+    ]
+  },
+  "disclosure-content#footer-privacidade": {
+    "props": { "blockClass": "footer-accordion" },
+    "children": ["vtex.menu@2.x:menu#footer-privacidade"]
+  },
+
+  "disclosure-state-indicator#footer": {
+    "props": { "blockClass": "footer-accordion" }
+  }
+}

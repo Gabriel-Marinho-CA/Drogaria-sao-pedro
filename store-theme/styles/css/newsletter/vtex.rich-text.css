@@ -1,0 +1,38 @@
+/* ─── NEWSLETTER — TÍTULO ─────────────────────────────────────────── */
+
+.container--newsletter-title {
+  justify-content: flex-start;
+}
+
+.paragraph--newsletter-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 34px;
+  color: #025789;
+  margin: 0;
+}
+
+/* ─── NEWSLETTER — SUBTÍTULO ──────────────────────────────────────── */
+
+.container--newsletter-subtitle {
+  justify-content: flex-start;
+}
+
+.paragraph--newsletter-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #707070;
+  /* força a quebra em 2 linhas conforme o layout */
+  max-width: 270px;
+}
+
+/* ─── MOBILE / TABLET ─────────────────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  .paragraph--newsletter-subtitle {
+    max-width: 100%;
+  }
+}

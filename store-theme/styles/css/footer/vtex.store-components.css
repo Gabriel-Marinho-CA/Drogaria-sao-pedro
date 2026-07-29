@@ -1,0 +1,68 @@
+/* ─── LOGO DO RODAPÉ ──────────────────────────────────────────────── */
+
+.logoImage--footer {
+  width: 278px;
+  height: auto;
+}
+
+/* ─── SELO DE SEGURANÇA ───────────────────────────────────────────── */
+
+.imageElement--footer-seal-badge {
+  width: 66px;
+  height: 41px;
+  object-fit: contain;
+}
+
+/* ─── BANDEIRAS DE PAGAMENTO ──────────────────────────────────────── */
+
+.imageElement--footer-pay-icon {
+  width: 100%;
+  max-width: 42px;
+  max-height: 42px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─── BOTÕES GOOGLE PLAY / APP STORE ──────────────────────────────── */
+
+.imageElementLink--footer-app-button {
+  display: block;
+  line-height: 0;
+}
+
+.imageElement--footer-app-button {
+  width: 112px;
+  height: 37px;
+}
+
+/* ─── ÍCONES DE REDES SOCIAIS ─────────────────────────────────────── */
+
+/* O ícone exportado é só o glifo — a caixa arredondada vem daqui */
+.imageElementLink--footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  border: 1px solid #025789;
+  border-radius: 11px;
+}
+
+.imageElement--footer-social-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+/* ─── MOBILE ──────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  .logoImage--footer {
+    width: 204px;
+  }
+
+  .imageElement--footer-pay-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+}

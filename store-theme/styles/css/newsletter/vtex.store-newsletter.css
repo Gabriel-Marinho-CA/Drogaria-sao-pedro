@@ -1,0 +1,174 @@
+/* ─── NEWSLETTER — FORMULÁRIO ─────────────────────────────────────── */
+
+.newsletterForm--newsletter {
+  width: 100%;
+}
+
+/* ─── INPUTS (E-MAIL / NOME) ──────────────────────────────────────── */
+
+.emailInputContainer--newsletter,
+.nameInputContainer--newsletter {
+  width: 100%;
+}
+
+.emailInputContainer--newsletter :global(.vtex-input),
+.nameInputContainer--newsletter :global(.vtex-input) {
+  width: 100%;
+}
+
+.emailInputContainer--newsletter :global(.vtex-input-prefix__group),
+.nameInputContainer--newsletter :global(.vtex-input-prefix__group) {
+  height: 51px;
+  padding: 0 20px;
+  background-color: #ffffff;
+  border: 1px solid #025789;
+  border-radius: 28px;
+}
+
+.emailInputContainer--newsletter :global(.vtex-input__inner),
+.nameInputContainer--newsletter :global(.vtex-input__inner) {
+  height: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #707070;
+}
+
+.emailInputContainer--newsletter :global(.vtex-input__inner)::placeholder,
+.nameInputContainer--newsletter :global(.vtex-input__inner)::placeholder {
+  color: #cbcbcb;
+  opacity: 1;
+}
+
+/* Estado inválido */
+.emailInputContainer--invalid :global(.vtex-input-prefix__group),
+.nameInputContainer--invalid :global(.vtex-input-prefix__group) {
+  border-color: #d8442d;
+}
+
+.emailInputContainer--newsletter :global(.vtex-input__error),
+.nameInputContainer--newsletter :global(.vtex-input__error) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  padding-left: 20px;
+}
+
+/* ─── BOTÃO "CADASTRE-SE" ─────────────────────────────────────────── */
+
+.formSubmitContainer--newsletter {
+  width: 100%;
+}
+
+.formSubmitContainer--newsletter :global(.vtex-button) {
+  width: 100%;
+  min-width: 100%;
+  height: 51px;
+  min-height: 51px;
+  background-color: #025789;
+  border: none;
+  border-radius: 28px;
+}
+
+.formSubmitContainer--newsletter :global(.vtex-button__label) {
+  padding: 0 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 19px;
+  text-transform: none;
+  color: #ffffff;
+}
+
+/* ─── ACEITE (CHECKBOX) ───────────────────────────────────────────── */
+
+.confirmationCheckboxContainer--newsletter {
+  display: flex;
+  align-items: center;
+}
+
+/* Alinha o círculo com o texto */
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__line-container) {
+  align-items: center;
+}
+
+/* Caixa do checkbox reduzida para 14px */
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__container) {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+}
+
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__inner-container),
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__box-wrapper),
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__input) {
+  width: 14px;
+  height: 14px;
+}
+
+/* Círculo azul vazado — vale para marcado e desmarcado.
+   O styleguide troca as classes de cor (b--muted-4 / bg-action-primary),
+   mas estas regras têm especificidade maior e mantêm o visual do layout. */
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__inner-container) {
+  border: 1px solid #025789;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+/* Estado marcado: o styleguide revela o check (o-0 -> o-100).
+   Como o círculo continua branco, o check precisa ser azul. */
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__box) {
+  transform: scale(0.75);
+  color: #025789;
+}
+
+.confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__label) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #707070;
+  cursor: pointer;
+}
+
+.labelLink--newsletter {
+  color: #025789;
+  text-decoration: underline;
+}
+
+/* ─── MENSAGENS DE RETORNO ────────────────────────────────────────── */
+
+.defaultSuccessMessage--newsletter,
+.defaultErrorMessage--newsletter {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.defaultSuccessMessage--newsletter {
+  color: #025789;
+}
+
+.defaultErrorMessage--newsletter {
+  color: #d8442d;
+}
+
+/* ─── MOBILE / TABLET ─────────────────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  .confirmationCheckboxContainer--newsletter :global(.vtex-checkbox__label) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .defaultSuccessMessage--newsletter,
+  .defaultErrorMessage--newsletter {
+    font-size: 15px;
+  }
+}

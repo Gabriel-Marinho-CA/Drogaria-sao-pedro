@@ -1,0 +1,308 @@
+{
+  "flex-layout.col#footer-menu-institucional": {
+    "props": {
+      "title": "Rodapé - Coluna Institucional",
+      "blockClass": "footer-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "rich-text#footer-menu-institucional-title",
+      "vtex.menu@2.x:menu#footer-institucional"
+    ]
+  },
+  "flex-layout.col#footer-menu-servicos": {
+    "props": {
+      "title": "Rodapé - Coluna Nossos Serviços",
+      "blockClass": "footer-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "rich-text#footer-menu-servicos-title",
+      "vtex.menu@2.x:menu#footer-servicos"
+    ]
+  },
+  "flex-layout.col#footer-menu-atendimento": {
+    "props": {
+      "title": "Rodapé - Coluna Atendimento",
+      "blockClass": "footer-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "rich-text#footer-menu-atendimento-title",
+      "vtex.menu@2.x:menu#footer-atendimento"
+    ]
+  },
+  "flex-layout.col#footer-menu-privacidade": {
+    "props": {
+      "title": "Rodapé - Coluna Segurança e Privacidade",
+      "blockClass": "footer-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "rich-text#footer-menu-privacidade-title",
+      "vtex.menu@2.x:menu#footer-privacidade"
+    ]
+  },
+
+  "rich-text#footer-menu-institucional-title": {
+    "props": {
+      "title": "Rodapé - Título Institucional",
+      "text": "Institucional",
+      "blockClass": "footer-menu-title"
+    }
+  },
+  "rich-text#footer-menu-servicos-title": {
+    "props": {
+      "title": "Rodapé - Título Nossos Serviços",
+      "text": "Nossos Serviços",
+      "blockClass": "footer-menu-title"
+    }
+  },
+  "rich-text#footer-menu-atendimento-title": {
+    "props": {
+      "title": "Rodapé - Título Atendimento",
+      "text": "Atendimento",
+      "blockClass": "footer-menu-title"
+    }
+  },
+  "rich-text#footer-menu-privacidade-title": {
+    "props": {
+      "title": "Rodapé - Título Segurança e Privacidade",
+      "text": "Segurança e Privacidade",
+      "blockClass": "footer-menu-title"
+    }
+  },
+
+  "vtex.menu@2.x:menu#footer-institucional": {
+    "props": {
+      "title": "Rodapé - Links Institucional",
+      "orientation": "vertical",
+      "blockClass": "footer-menu"
+    },
+    "children": [
+      "menu-item#footer-trabalhe-conosco",
+      "menu-item#footer-ouvidoria",
+      "menu-item#footer-nossas-lojas"
+    ]
+  },
+  "vtex.menu@2.x:menu#footer-servicos": {
+    "props": {
+      "title": "Rodapé - Links Nossos Serviços",
+      "orientation": "vertical",
+      "blockClass": "footer-menu"
+    },
+    "children": [
+      "menu-item#footer-vacinas",
+      "menu-item#footer-exames",
+      "menu-item#footer-servicos-farmaceuticos"
+    ]
+  },
+  "vtex.menu@2.x:menu#footer-atendimento": {
+    "props": {
+      "title": "Rodapé - Links Atendimento",
+      "orientation": "vertical",
+      "blockClass": "footer-menu"
+    },
+    "children": [
+      "menu-item#footer-como-comprar",
+      "menu-item#footer-formas-pagamento",
+      "menu-item#footer-prazos-entrega"
+    ]
+  },
+  "vtex.menu@2.x:menu#footer-privacidade": {
+    "props": {
+      "title": "Rodapé - Links Segurança e Privacidade",
+      "orientation": "vertical",
+      "blockClass": "footer-menu"
+    },
+    "children": [
+      "menu-item#footer-politica-privacidade",
+      "menu-item#footer-protecao-dados",
+      "menu-item#footer-cookies"
+    ]
+  },
+
+  "menu-item#footer-trabalhe-conosco": {
+    "props": {
+      "id": "footer-trabalhe-conosco",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/institucional/trabalhe-conosco",
+        "noFollow": false,
+        "tagTitle": "Trabalhe Conosco",
+        "text": "Trabalhe Conosco"
+      }
+    }
+  },
+  "menu-item#footer-ouvidoria": {
+    "props": {
+      "id": "footer-ouvidoria",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/institucional/ouvidoria",
+        "noFollow": false,
+        "tagTitle": "Ouvidoria",
+        "text": "Ouvidoria"
+      }
+    }
+  },
+  "menu-item#footer-nossas-lojas": {
+    "props": {
+      "id": "footer-nossas-lojas",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/nossas-lojas",
+        "noFollow": false,
+        "tagTitle": "Nossas Lojas",
+        "text": "Nossas Lojas"
+      }
+    }
+  },
+
+  "menu-item#footer-vacinas": {
+    "props": {
+      "id": "footer-vacinas",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/servicos/vacinas",
+        "noFollow": false,
+        "tagTitle": "Vacinas",
+        "text": "Vacinas"
+      }
+    }
+  },
+  "menu-item#footer-exames": {
+    "props": {
+      "id": "footer-exames",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/servicos/exames-e-testes",
+        "noFollow": false,
+        "tagTitle": "Exames e Testes",
+        "text": "Exames e Testes"
+      }
+    }
+  },
+  "menu-item#footer-servicos-farmaceuticos": {
+    "props": {
+      "id": "footer-servicos-farmaceuticos",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/servicos/farmaceuticos",
+        "noFollow": false,
+        "tagTitle": "Serviços Farmacêuticos",
+        "text": "Serviços Farmacêuticos"
+      }
+    }
+  },
+
+  "menu-item#footer-como-comprar": {
+    "props": {
+      "id": "footer-como-comprar",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/atendimento/como-comprar",
+        "noFollow": false,
+        "tagTitle": "Como comprar no site",
+        "text": "Como comprar no site"
+      }
+    }
+  },
+  "menu-item#footer-formas-pagamento": {
+    "props": {
+      "id": "footer-formas-pagamento",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/atendimento/formas-de-pagamento",
+        "noFollow": false,
+        "tagTitle": "Formas de pagamento",
+        "text": "Formas de pagamento"
+      }
+    }
+  },
+  "menu-item#footer-prazos-entrega": {
+    "props": {
+      "id": "footer-prazos-entrega",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/atendimento/prazos-de-entrega",
+        "noFollow": false,
+        "tagTitle": "Prazos de entrega",
+        "text": "Prazos de entrega"
+      }
+    }
+  },
+
+  "menu-item#footer-politica-privacidade": {
+    "props": {
+      "id": "footer-politica-privacidade",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/politica-de-privacidade",
+        "noFollow": false,
+        "tagTitle": "Política de privacidade",
+        "text": "Política de privacidade"
+      }
+    }
+  },
+  "menu-item#footer-protecao-dados": {
+    "props": {
+      "id": "footer-protecao-dados",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/como-protegemos-seus-dados",
+        "noFollow": false,
+        "tagTitle": "Como protegemos os seus dados",
+        "text": "Como protegemos os seus dados"
+      }
+    }
+  },
+  "menu-item#footer-cookies": {
+    "props": {
+      "id": "footer-cookies",
+      "type": "custom",
+      "iconId": null,
+      "highlight": false,
+      "itemProps": {
+        "type": "internal",
+        "href": "/configuracoes-de-cookies",
+        "noFollow": false,
+        "tagTitle": "Configurações de Cookies",
+        "text": "Configurações de Cookies"
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "flex-layout.row#newsletter": {
+    "props": {
+      "title": "Newsletter - Cadastre-se",
+      "blockClass": "newsletter",
+      "fullWidth": true
+    },
+    "children": ["newsletter-form#footer"]
+  },
+
+  "newsletter-form#footer": {
+    "props": {
+      "title": "Newsletter - Formulário",
+      "blockClass": "newsletter"
+    },
+    "children": ["flex-layout.row#newsletter-content"]
+  },
+
+  "flex-layout.row#newsletter-content": {
+    "props": {
+      "title": "Newsletter - Conteúdo",
+      "blockClass": "newsletter-content",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "flex-layout.col#newsletter-text",
+      "flex-layout.col#newsletter-fields"
+    ]
+  },
+
+  "flex-layout.col#newsletter-text": {
+    "props": {
+      "title": "Newsletter - Textos",
+      "blockClass": "newsletter-text"
+    },
+    "children": ["rich-text#newsletter-title", "rich-text#newsletter-subtitle"]
+  },
+
+  "rich-text#newsletter-title": {
+    "props": {
+      "title": "Newsletter - Título",
+      "text": "Cadastre-se",
+      "blockClass": "newsletter-title"
+    }
+  },
+
+  "rich-text#newsletter-subtitle": {
+    "props": {
+      "title": "Newsletter - Subtítulo",
+      "text": "Para receber as melhores ofertas e super descontos!",
+      "blockClass": "newsletter-subtitle"
+    }
+  },
+
+  "flex-layout.col#newsletter-fields": {
+    "props": {
+      "title": "Newsletter - Campos",
+      "blockClass": "newsletter-fields"
+    },
+    "children": [
+      "flex-layout.row#newsletter-inputs",
+      "newsletter-checkbox-confirmation#footer"
+    ]
+  },
+
+  "flex-layout.row#newsletter-inputs": {
+    "props": {
+      "title": "Newsletter - Linha de Campos",
+      "blockClass": "newsletter-inputs",
+      "preventHorizontalStretch": true,
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "newsletter-input-email#footer",
+      "newsletter-input-name#footer",
+      "newsletter-submit#footer"
+    ]
+  },
+
+  "newsletter-input-email#footer": {
+    "props": {
+      "title": "Newsletter - Campo E-mail",
+      "placeholderText": "Seu e-mail",
+      "inputLabel": "",
+      "errorMessage": "Insira um e-mail válido.",
+      "blockClass": "newsletter"
+    }
+  },
+
+  "newsletter-input-name#footer": {
+    "props": {
+      "title": "Newsletter - Campo Nome",
+      "placeholderText": "Seu nome",
+      "inputLabel": "",
+      "errorMessage": "Insira um nome válido.",
+      "blockClass": "newsletter"
+    }
+  },
+
+  "newsletter-submit#footer": {
+    "props": {
+      "title": "Newsletter - Botão Cadastre-se",
+      "submitButtonLabel": "Cadastre-se",
+      "blockClass": "newsletter"
+    }
+  },
+
+  "newsletter-checkbox-confirmation#footer": {
+    "props": {
+      "title": "Newsletter - Aceite de Comunicações",
+      "checkboxLabel": "Ao assinar, aceito receber e-mails com promoções e ofertas da loja.",
+      "blockClass": "newsletter"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+/* ─── TÍTULOS DOS SELOS E DOS MENUS ───────────────────────────────── */
+
+.paragraph--footer-seal-title,
+.paragraph--footer-menu-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #025789;
+  margin: 0;
+}
+
+/* ─── TEXTO LEGAL ─────────────────────────────────────────────────── */
+
+.paragraph--footer-copyright,
+.paragraph--footer-tech {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #707070;
+  margin: 0;
+}
+
+.paragraph--footer-copyright {
+  max-width: 572px;
+}
+
+.strong--footer-tech {
+  font-weight: 700;
+  color: #707070;
+}
+
+/* ─── MOBILE ──────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  /* Títulos das faixas e das sanfonas */
+  .paragraph--footer-seal-title,
+  .paragraph--footer-menu-title {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: -0.325px;
+  }
+
+  .paragraph--footer-copyright,
+  .paragraph--footer-tech {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .paragraph--footer-copyright {
+    max-width: 100%;
+  }
+}

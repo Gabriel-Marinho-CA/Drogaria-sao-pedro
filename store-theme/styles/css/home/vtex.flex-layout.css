@@ -153,7 +153,7 @@
     }
 
     :global(.vtex-list-context-0-x-infoCardImageContainer) {
-        padding-bottom: 1.65rem !important;
+        padding-bottom: 1.35rem !important;
 
          @media (max-width:1000px) {
             padding-bottom: 1rem !important;
@@ -224,5 +224,17 @@
                 }
             }
         }
+    }
+}
+
+.flexRow--minibanners-2 {
+        margin-top: 5rem;
+
+    :global(.vtex-list-context-0-x-infoCardImageContainer) {
+        width: 100% !important;
+    }
+
+    :global(.vtex-list-context-0-x-infoCardTextContainer) {
+        display: none !important;
     }
 }

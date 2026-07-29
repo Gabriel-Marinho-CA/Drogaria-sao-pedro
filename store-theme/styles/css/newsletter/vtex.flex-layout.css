@@ -1,0 +1,94 @@
+/* ─── NEWSLETTER — FAIXA / CONTAINER ──────────────────────────────── */
+
+.flexRow--newsletter {
+  background-color: #f6f6f6;
+  border-top: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.flexRowContent--newsletter {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 24px 42px 32px;
+}
+
+/* ─── LINHA INTERNA: TEXTOS + CAMPOS ──────────────────────────────── */
+
+.flexRowContent--newsletter-content {
+  align-items: center;
+  column-gap: 39px;
+}
+
+/* Coluna dos textos (largura fixa, conforme layout) */
+.flexRowContent--newsletter-content .stretchChildrenWidth:first-child {
+  flex: 0 0 300px;
+}
+
+/* Coluna dos campos (ocupa o restante) */
+.flexRowContent--newsletter-content .stretchChildrenWidth:last-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.flexCol--newsletter-text {
+  row-gap: 4px;
+}
+
+.flexCol--newsletter-fields {
+  row-gap: 18px;
+}
+
+/* ─── LINHA DOS INPUTS + BOTÃO ────────────────────────────────────── */
+
+.flexRowContent--newsletter-inputs {
+  align-items: center;
+  column-gap: 11px;
+}
+
+/* E-mail e Nome dividem o espaço disponível.
+   O width:auto !important anula o width inline que o flex-layout
+   aplica em cada .stretchChildrenWidth (100% / nº de filhos). */
+.flexRowContent--newsletter-inputs .stretchChildrenWidth {
+  width: auto !important;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Botão (último filho) com largura fixa */
+.flexRowContent--newsletter-inputs .stretchChildrenWidth:last-child {
+  flex: 0 0 217px;
+}
+
+/* ─── MOBILE / TABLET ─────────────────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  .flexRowContent--newsletter {
+    padding: 32px 27px;
+  }
+
+  .flexRowContent--newsletter-content {
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 18px;
+    column-gap: 0;
+  }
+
+  .flexRowContent--newsletter-content .stretchChildrenWidth:first-child,
+  .flexRowContent--newsletter-content .stretchChildrenWidth:last-child {
+    flex: 1 1 auto;
+    width: 100% !important;
+  }
+
+  .flexRowContent--newsletter-inputs {
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 18px;
+    column-gap: 0;
+  }
+
+  .flexRowContent--newsletter-inputs .stretchChildrenWidth,
+  .flexRowContent--newsletter-inputs .stretchChildrenWidth:last-child {
+    flex: 1 1 auto;
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,56 @@
+/* ─── LISTAS DE LINKS DO RODAPÉ ───────────────────────────────────── */
+
+.menuContainer--footer-menu {
+  padding: 0;
+}
+
+.menuContainer--footer-menu .menuContainerNav {
+  align-items: flex-start;
+}
+
+.menuContainer--footer-menu .menuItem {
+  margin: 0 0 13px;
+  padding: 0;
+}
+
+/* header/vtex.flex-layout.css:129 define :global(.vtex-menu-2-x-styledLinkContent)
+   sem escopo (18px / #707070). Estilizamos também o styledLinkContent aqui,
+   com especificidade maior, senão o mobile ignora o tamanho de 13px. */
+.menuContainer--footer-menu .styledLink,
+.menuContainer--footer-menu .styledLinkContent {
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #707070;
+  text-align: left;
+}
+
+.menuContainer--footer-menu .styledLink:hover,
+.menuContainer--footer-menu .styledLink:hover .styledLinkContent {
+  color: #025789;
+}
+
+/* ─── MOBILE (dentro das sanfonas) ────────────────────────────────── */
+
+@media screen and (max-width: 1024px) {
+  .menuContainer--footer-menu .menuContainerNav {
+    align-items: stretch;
+  }
+
+  .menuContainer--footer-menu .menuItem {
+    margin: 0;
+  }
+
+  .menuContainer--footer-menu .styledLink {
+    display: block;
+    padding: 10px 22px;
+  }
+
+  .menuContainer--footer-menu .styledLink,
+  .menuContainer--footer-menu .styledLinkContent {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}

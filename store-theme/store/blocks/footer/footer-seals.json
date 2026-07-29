@@ -1,0 +1,282 @@
+{
+  "flex-layout.col#footer-security": {
+    "props": {
+      "title": "Rodapé - Segurança",
+      "blockClass": "footer-seal-group",
+      "preventVerticalStretch": true
+    },
+    "children": ["rich-text#footer-security-title", "image#footer-selo-seguranca"]
+  },
+
+  "rich-text#footer-security-title": {
+    "props": {
+      "title": "Rodapé - Título Segurança",
+      "text": "Segurança",
+      "blockClass": "footer-seal-title"
+    }
+  },
+
+  "image#footer-selo-seguranca": {
+    "props": {
+      "title": "Rodapé - Selo VTEX / PCI",
+      "src": "assets/imgs/footer/selo-seguranca.png",
+      "alt": "Site seguro — VTEX e PCI Certified",
+      "width": "66",
+      "height": "41",
+      "blockClass": "footer-seal-badge"
+    }
+  },
+
+  "flex-layout.col#footer-payment": {
+    "props": {
+      "title": "Rodapé - Formas de Pagamento",
+      "blockClass": "footer-seal-group",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "rich-text#footer-payment-title",
+      "flex-layout.row#footer-payment-icons"
+    ]
+  },
+
+  "rich-text#footer-payment-title": {
+    "props": {
+      "title": "Rodapé - Título Formas de Pagamento",
+      "text": "Formas de Pagamento",
+      "blockClass": "footer-seal-title"
+    }
+  },
+
+  "flex-layout.row#footer-payment-icons": {
+    "props": {
+      "title": "Rodapé - Bandeiras",
+      "blockClass": "footer-payment-icons",
+      "preventHorizontalStretch": true,
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "image#footer-pay-visa",
+      "image#footer-pay-mastercard",
+      "image#footer-pay-amex",
+      "image#footer-pay-hipercard",
+      "image#footer-pay-diners",
+      "image#footer-pay-pix",
+      "image#footer-pay-elo",
+      "image#footer-pay-gpay"
+    ]
+  },
+
+  "image#footer-pay-visa": {
+    "props": {
+      "title": "Rodapé - Visa",
+      "src": "assets/imgs/footer/pay-visa.png",
+      "alt": "Visa",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-mastercard": {
+    "props": {
+      "title": "Rodapé - Mastercard",
+      "src": "assets/imgs/footer/pay-mastercard.png",
+      "alt": "Mastercard",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-amex": {
+    "props": {
+      "title": "Rodapé - American Express",
+      "src": "assets/imgs/footer/pay-amex.png",
+      "alt": "American Express",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-hipercard": {
+    "props": {
+      "title": "Rodapé - Hipercard",
+      "src": "assets/imgs/footer/pay-hipercard.png",
+      "alt": "Hipercard",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-diners": {
+    "props": {
+      "title": "Rodapé - Diners Club",
+      "src": "assets/imgs/footer/pay-diners.png",
+      "alt": "Diners Club",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-pix": {
+    "props": {
+      "title": "Rodapé - Pix",
+      "src": "assets/imgs/footer/pay-pix.png",
+      "alt": "Pix",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-elo": {
+    "props": {
+      "title": "Rodapé - Elo",
+      "src": "assets/imgs/footer/pay-elo.png",
+      "alt": "Elo",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+  "image#footer-pay-gpay": {
+    "props": {
+      "title": "Rodapé - Google Pay",
+      "src": "assets/imgs/footer/pay-gpay.png",
+      "alt": "Google Pay",
+      "blockClass": "footer-pay-icon"
+    }
+  },
+
+  "flex-layout.col#footer-app": {
+    "props": {
+      "title": "Rodapé - Download App",
+      "blockClass": "footer-seal-group",
+      "preventVerticalStretch": true
+    },
+    "children": ["rich-text#footer-app-title", "flex-layout.row#footer-app-buttons"]
+  },
+
+  "rich-text#footer-app-title": {
+    "props": {
+      "title": "Rodapé - Título Download App",
+      "text": "Download App",
+      "blockClass": "footer-seal-title"
+    }
+  },
+
+  "flex-layout.row#footer-app-buttons": {
+    "props": {
+      "title": "Rodapé - Botões das Lojas",
+      "blockClass": "footer-app-buttons",
+      "preventHorizontalStretch": true,
+      "preventVerticalStretch": true
+    },
+    "children": ["image#footer-google-play", "image#footer-app-store"]
+  },
+
+  "image#footer-google-play": {
+    "props": {
+      "title": "Rodapé - Google Play",
+      "src": "assets/imgs/footer/btn-google-play.svg",
+      "alt": "Baixe na Google Play",
+      "width": "112",
+      "height": "37",
+      "blockClass": "footer-app-button",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "Baixe o app na Google Play"
+      }
+    }
+  },
+  "image#footer-app-store": {
+    "props": {
+      "title": "Rodapé - App Store",
+      "src": "assets/imgs/footer/btn-app-store.svg",
+      "alt": "Baixe na App Store",
+      "width": "112",
+      "height": "37",
+      "blockClass": "footer-app-button",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "Baixe o app na App Store"
+      }
+    }
+  },
+
+  "flex-layout.col#footer-social": {
+    "props": {
+      "title": "Rodapé - Redes Sociais",
+      "blockClass": "footer-seal-group",
+      "preventVerticalStretch": true
+    },
+    "children": ["rich-text#footer-social-title", "flex-layout.row#footer-social-icons"]
+  },
+
+  "rich-text#footer-social-title": {
+    "props": {
+      "title": "Rodapé - Título Redes Sociais",
+      "text": "Redes Sociais",
+      "blockClass": "footer-seal-title"
+    }
+  },
+
+  "flex-layout.row#footer-social-icons": {
+    "props": {
+      "title": "Rodapé - Ícones Sociais",
+      "blockClass": "footer-social-icons",
+      "preventHorizontalStretch": true,
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "image#footer-instagram",
+      "image#footer-facebook",
+      "image#footer-youtube",
+      "image#footer-linkedin"
+    ]
+  },
+
+  "image#footer-instagram": {
+    "props": {
+      "title": "Rodapé - Instagram",
+      "src": "assets/imgs/footer/social-instagram.svg",
+      "alt": "Instagram",
+      "blockClass": "footer-social-icon",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "Instagram"
+      }
+    }
+  },
+  "image#footer-facebook": {
+    "props": {
+      "title": "Rodapé - Facebook",
+      "src": "assets/imgs/footer/social-facebook.svg",
+      "alt": "Facebook",
+      "blockClass": "footer-social-icon",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "Facebook"
+      }
+    }
+  },
+  "image#footer-youtube": {
+    "props": {
+      "title": "Rodapé - YouTube",
+      "src": "assets/imgs/footer/social-youtube.svg",
+      "alt": "YouTube",
+      "blockClass": "footer-social-icon",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "YouTube"
+      }
+    }
+  },
+  "image#footer-linkedin": {
+    "props": {
+      "title": "Rodapé - LinkedIn",
+      "src": "assets/imgs/footer/social-linkedin.svg",
+      "alt": "LinkedIn",
+      "blockClass": "footer-social-icon",
+      "link": {
+        "url": "#",
+        "openNewTab": true,
+        "noFollow": true,
+        "title": "LinkedIn"
+      }
+    }
+  }
+}
