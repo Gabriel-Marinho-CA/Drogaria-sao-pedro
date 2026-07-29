@@ -43,6 +43,7 @@
 .flexRowContent--newsletter-inputs {
   align-items: center;
   column-gap: 11px;
+  display: flex;
 }
 
 /* E-mail e Nome dividem o espaço disponível.

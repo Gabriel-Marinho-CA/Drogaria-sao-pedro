@@ -34,6 +34,7 @@
 /* ─── MOBILE ──────────────────────────────────────────────────────── */
 
 @media screen and (max-width: 1024px) {
+
   /* Títulos das faixas e das sanfonas */
   .paragraph--footer-seal-title,
   .paragraph--footer-menu-title {
@@ -47,9 +48,19 @@
   .paragraph--footer-tech {
     font-size: 13px;
     line-height: 16px;
+    text-align: center;
+  }
+
+  .paragraph--footer-copyright {
+    padding-bottom: 2rem;
   }
 
   .paragraph--footer-copyright {
     max-width: 100%;
+  }
+
+  .container--footer-tech,
+  .wrapper--footer-tech {
+    width: 100%;
   }
 }
