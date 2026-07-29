@@ -1,69 +1,77 @@
 {
-    "flex-layout.row#minibanners-2": {
-        "title": "Minibanners 2",
+    "flex-layout.row#minibanners-3": {
+        "title": "Minibanners 3",
         "children": [
-            "list-context.info-card-list#minibanners-2-v1"
+            "list-context.info-card-list#minibanners-3-v1"
         ],
         "props": {
-            "blockClass": "minibanners-2"
+            "blockClass": [
+                "minibanners-2",
+                "minibanners-3"
+            ]
         }
     },
-    "list-context.info-card-list#minibanners-2-v1": {
+    "list-context.info-card-list#minibanners-3-v1": {
         "children": [
-            "slider-layout#minibanners-2"
+            "slider-layout#minibanners-3"
         ],
         "props": {
             "infoCards": [
                 {
                     "isFullModeStyle": false,
                     "callToActionUrl": "/",
-                    "imageUrl": "assets/imgs/minibanners-2-1.png",
-                    "mobileImageUrl": "assets/imgs/minibanners-2-1.png",
+                    "imageUrl": "assets/imgs/minibanners-3-1.png",
+                    "mobileImageUrl": "assets/imgs/minibanners-3-1-mob.png",
                     "imageActionUrl": "/"
                 },
                 {
                     "isFullModeStyle": false,
                     "callToActionUrl": "/",
-                    "imageUrl": "assets/imgs/minibanners-2-2.png",
-                    "mobileImageUrl": "assets/imgs/minibanners-2-2.png",
+                    "imageUrl": "assets/imgs/minibanners-3-2.png",
+                    "mobileImageUrl": "assets/imgs/minibanners-3-2-mob.png",
                     "imageActionUrl": "/"
                 },
                 {
                     "isFullModeStyle": false,
                     "callToActionUrl": "/",
-                    "imageUrl": "assets/imgs/minibanners-2-1.png",
-                    "mobileImageUrl": "assets/imgs/minibanners-2-1.png",
+                    "imageUrl": "assets/imgs/minibanners-3-1.png",
+                    "mobileImageUrl": "assets/imgs/minibanners-3-1-mob.png",
                     "imageActionUrl": "/"
                 },
                 {
                     "isFullModeStyle": false,
                     "callToActionUrl": "/",
-                    "imageUrl": "assets/imgs/minibanners-2-2.png",
-                    "mobileImageUrl": "assets/imgs/minibanners-2-2.png",
+                    "imageUrl": "assets/imgs/minibanners-3-2.png",
+                    "mobileImageUrl": "assets/imgs/minibanners-3-2-mob.png",
                     "imageActionUrl": "/"
                 }
             ]
         }
     },
-    "slider-layout#minibanners-2": {
-        "title": "Carrossel - Minibanners 2",
+    "slider-layout#minibanners-3": {
+        "title": "Carrossel - Minibanners 3",
         "props": {
             "itemsPerPage": {
                 "desktop": 2,
                 "tablet": 2,
                 "phone": 1
             },
+            // "center" deixa o slide ativo no meio, com pedaço do anterior e do
+            // proximo aparecendo dos dois lados.
             "centerMode": {
                 "desktop": "disabled",
                 "tablet": "disabled",
-                "phone": "to-the-left"
+                "phone": "center"
             },
             "centerModeSlidesGap": 4,
             "infinite": false,
             "fullWidth": false,
             "showNavigationArrows": "never",
             "showPaginationDots": "always",
-            "blockClass": "minibanners-2"
+            "blockClass": [
+                "minibanners-2",
+                "minibanners-3"
+            ]
         }
     }
 }

@@ -10,9 +10,12 @@
 
       "flex-layout.row#showcase",
       "flex-layout.row#benefits",
-      "flex-layout.row#minibanners-2"
+      "flex-layout.row#minibanners-2",
+      "flex-layout.row#showcase-2",
+      "flex-layout.row#showcase-3",
+      "flex-layout.row#minibanners-3"
     ]
-  },
+  }, 
   "flex-layout.row#main-banners": {
     "title": "Banners rotativos",
     "props": {

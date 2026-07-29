@@ -9,6 +9,14 @@
         :global(.vtex-store-components-3-x-container) {
             padding-right: 0;
             overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+                width: 0;
+                height: 0;
+            }
 
             :global(.vtex-flex-layout-0-x-flexRowContent--minibanners-1) > :global(.vtex-flex-layout-0-x-stretchChildrenWidth) {
                 display: flex;

@@ -2,6 +2,39 @@
     background: none;
     margin-block: 3rem;
 
+    @media (max-width:750px) {
+        margin-block: 1rem;
+
+        :global(.vtex-store-components-3-x-container) {
+            padding-right: 0;
+
+            .stretchChildrenWidth {
+                display: flex;
+                gap: 2rem;
+                justify-content: flex-start;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
+
+                > :global(div) {
+                    min-width: 25vw;
+                }
+
+            }
+
+            :global(.vtex-button__label) {
+                text-transform: initial;
+                font-size: 14px;
+            }
+        }
+    }
+
 
     .flexRowContent--deals {
         .stretchChildrenWidth {
@@ -34,6 +67,11 @@
                     min-width: 115px;
                     max-width: 115px;
                 }
+
+                @media (max-width:1000px) {
+                    min-width: 90px;
+                    max-width: 90px;
+                }
             }
         }
 
@@ -44,14 +82,20 @@
         :global(.vtex-button) {
             background: none;
             border: none;
-            font-size: 18px;
-            color: #707070;
-            font-family: 'Roboto', sans-serif;
 
-            @media (min-width:1000px) and (max-width:1239px) {
-                font-size: 14px;
-                font-weight: bold;
+            :global(.vtex-button__label) {
+                font-size: 18px;
+                color: #707070;
+                font-family: 'Roboto', sans-serif;
+                text-transform: initial;
+
+                @media (min-width:1000px) and (max-width:1239px) {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
             }
+
 
             :global(.vtex-button__label) {
                 padding: 0 !important;
@@ -126,9 +170,45 @@
 .flexRowContent--showcase {
     flex-direction: column;
     display: flex;
+    margin-top: 2rem;
 
     .stretchChildrenWidth {
         width: 100% !important;
+    }
+
+    :global(.vtex-rich-text-0-x-wrapper--showcaseTitle) {
+        :global(.vtex-rich-text-0-x-heading) {
+            color: #242424;
+            font-family: "Roboto", sans-serif;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 70px;
+            /* 280% */
+            letter-spacing: -0.625px;
+            margin: 0;
+
+            @media (max-width:750px) {
+                font-size: 20px;
+            }
+        }
+    }
+
+    :global(.vtex-slider-layout-0-x-paginationDotsContainer) {
+        bottom: -40px;
+
+        :global(.vtex-slider-layout-0-x-paginationDot) {
+            border: 1px solid #CBCBCB;
+            background: #fff;
+            width: 13px !important;
+            height: 13px !important;
+        }
+
+        :global(.vtex-slider-layout-0-x-paginationDot--isActive) {
+            background: #EC1F25;
+            background: #EC1F25;
+        }
+
     }
 }
 
@@ -145,6 +225,10 @@
         text-align: center;
         height: 100%;
 
+        @media (max-width:1000px) {
+            padding: 1rem;
+        }
+
         :global(.vtex-list-context-0-x-infoCardTextContainer),
         :global(.vtex-list-context-0-x-infoCardImageContainer) {
             width: 100% !important;
@@ -152,16 +236,23 @@
         }
     }
 
+    @media (max-width:1000px) {
+        .stretchChildrenWidth    {
+            gap: .25rem;
+        }
+    }
+
     :global(.vtex-list-context-0-x-infoCardImageContainer) {
         padding-bottom: 1.35rem !important;
 
-         @media (max-width:1000px) {
+        @media (max-width:1000px) {
             padding-bottom: 1rem !important;
+
             :global(.vtex-list-context-0-x-infoCardImage) {
                 max-width: 40px;
                 height: auto;
             }
-         }
+        }
     }
 
     :global(.vtex-list-context-0-x-container) {
@@ -186,6 +277,10 @@
             text-align: center;
             padding-top: .75rem;
 
+            @media (max-width:1000px) {
+                font-size: 13px;
+            }
+
 
         }
     }
@@ -202,6 +297,10 @@
         /* 388.889% */
         letter-spacing: -0.45px;
         text-align: center;
+
+        @media (max-width:1000px) {
+            font-size: 13px;
+        }
 
         :global(.vtex-list-context-0-x-strong) {
             color: #EC1F25;
@@ -228,13 +327,82 @@
 }
 
 .flexRow--minibanners-2 {
-        margin-top: 5rem;
+    margin-top: 2rem;
+
+    :global(.vtex-list-context-0-x-infoCardContainer) {
+        width: 100%;
+        min-height: 0;
+    }
 
     :global(.vtex-list-context-0-x-infoCardImageContainer) {
         width: 100% !important;
+        max-width: 100% !important;
+        padding: 0;
+        display: block;
     }
 
+    :global(.vtex-list-context-0-x-infoCardImage) {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    :global(.vtex-slider-layout-0-x-infoCardTextContainer) {
+        display: none !important;
+    }
     :global(.vtex-list-context-0-x-infoCardTextContainer) {
         display: none !important;
     }
+
+    :global(.vtex-slider-layout-0-x-sliderLayoutContainer--minibanners-2) {
+        padding-inline: 0 !important;
+    }
+
+    @media (max-width:547px) {
+        :global(.vtex-store-components-3-x-container) {
+            padding-right: 0;
+        }
+    }
+
+    :global(.vtex-slider-layout-0-x-paginationDotsContainer) {
+        bottom: -40px;
+
+        :global(.vtex-slider-layout-0-x-paginationDot) {
+            border: 1px solid #CBCBCB;
+            background: #fff;
+            width: 13px !important;
+            height: 13px !important;
+        }
+
+        :global(.vtex-slider-layout-0-x-paginationDot--isActive) {
+            background: #EC1F25;
+            background: #EC1F25;
+        }
+
+    }
+
+    :global(.vtex-slider-layout-0-x-infoCardImageContainer),
+    :global(.vtex-slider-layout-0-x-infoCardImage) {
+        width: 100% !important;
+        height: auto;
+    }
+
+    :global(.vtex-slider-layout-0-x-slideChildrenContainer--minibanners-2) {
+        > :global(div) {
+            width: 100%;
+
+            :global(a) {
+                display: block;
+
+                :global(.vtex-list-context-0-x-infoCardImage) {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+.flexRow--minibanners-3 {
+    margin-block: 3rem;
 }

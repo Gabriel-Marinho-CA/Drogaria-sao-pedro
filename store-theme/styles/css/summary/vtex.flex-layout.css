@@ -30,7 +30,8 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding: 0.75rem 0 0.5rem;
-  min-height: 4.1em; /* reserva ~3 linhas para alinhar preços entre cards */
+  min-height: 4.1em;
+  /* reserva ~3 linhas para alinhar preços entre cards */
 }
 
 :global(.vtex-product-summary-2-x-brandName--shelf) {
@@ -115,7 +116,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color:#fff;
+  color: #fff;
 }
 
 /* Ícone de cesta antes do texto (SVG branco embutido) */
@@ -135,6 +136,12 @@
   background-size: contain;
 }
 
+@media (max-width:750px) {
+  :global(.vtex-add-to-cart-button-0-x-buttonDataContainer--summary)::before {
+    margin-right: 4px;
+  }
+}
+
 /* ─── Overlays sobre a imagem (dentro do stack-layout) ──────────── */
 
 /* Tag de coleção: canto superior esquerdo */
@@ -146,6 +153,10 @@
   background: #EC1F25;
   border-radius: 5px;
   padding: .35rem 0;
+  @media (max-width:750px) {
+    width: 100px;
+    padding-inline: .35rem;
+  }
 }
 
 /* Wishlist (coração): canto superior direito */
@@ -161,13 +172,17 @@
 }
 
 :global(.vtex-product-highlights-2-x-productHighlightText) {
-    background: none !important;
+  background: none !important;
   padding: 0;
   width: 100%;
   display: block;
   text-align: center;
   font-size: 15px;
   color: #fff;
+
+  @media (max-width:750px) {
+    font-size: 10px;
+  }
 }
 
 :global(.vtex-wish-list-1-x-wishlistIconContainer) :global(.vtex-button) {
@@ -188,15 +203,15 @@
 
 
 :global(.vtex-product-summary-2-x-container) {
-    margin:.25rem;
+  margin: .25rem;
 }
 
 :global(.vtex-product-summary-2-x-element) {
-    :global(.vtex-button) {
-        background: #025789;
-  border: none;
-  border-radius: 100px;
-  margin-top: auto;
-    }
+  :global(.vtex-button) {
+    background: #025789;
+    border: none;
+    border-radius: 100px;
+    margin-top: auto;
+  }
 
 }

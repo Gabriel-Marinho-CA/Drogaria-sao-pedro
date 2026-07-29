@@ -1,0 +1,51 @@
+{
+    "sticky-layout#row-mobile": {
+        "title": "Sticky Header Mobile",
+        "props": {
+            "blockClass": "sticky-header"
+        },
+        "children": [
+            "flex-layout.row#main-row-mobile",
+            "flex-layout.row#search-row-mobile"
+        ]
+    },
+
+    /* linha 1: hamburguer | logo (centralizada) | minicart */
+    "flex-layout.row#main-row-mobile": {
+        "props": {
+            "blockClass": "main-header-row-mobile",
+            "fullWidth": true,
+            "verticalAlign": "middle",
+            "preserveLayoutOnMobile": true,
+            "preventHorizontalStretch": true,
+            "preventVerticalStretch": true
+        },
+        "children": [
+            "drawer",
+            "logo#mobile",
+            "minicart.v2"
+        ]
+    },
+
+    /* linha 2: busca */
+    "flex-layout.row#search-row-mobile": {
+        "props": {
+            "blockClass": "search-row-mobile",
+            "fullWidth": true,
+            "preserveLayoutOnMobile": true
+        },
+        "children": [
+            "search-bar"
+        ]
+    },
+
+    "logo#mobile": {
+        "props": {
+            "title": "Drogaria São Pedro",
+            "href": "/",
+            "url": "assets/imgs/logo-mobile.svg",
+            "width": "165",
+            "height": "37"
+        }
+    }
+}
