@@ -12,6 +12,210 @@
    (.flexCol--.flexRow--*); handles de outros apps usam :global(...).
    ─────────────────────────────────────────────────────────────── */
 
+/* ═══════════════════════════════════════════════════════════════
+   PDP — Galeria de imagens — ref. Figma node 2033-380
+
+   Empilhamento: [imagem 671x600 com borda] › [dots] › [régua de
+   miniaturas 95x95 com setas circulares nas pontas].
+
+   O bloco roda com `thumbnailsOrientation: "horizontal"`, então o
+   store-components já monta o swiper das miniaturas deitado; aqui
+   desfazemos o posicionamento absoluto herdado do modo vertical,
+   empilhamos tudo em coluna e vestimos dots e setas.
+
+   Escopo pelo `flexRow--productImage`: o `blockClass` do próprio
+   product-images não desce até os handles internos do carrossel.
+   ═══════════════════════════════════════════════════════════════ */
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesContainer) {
+  max-width: 671px;
+  width: 100%;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-carouselContainer) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+/* ─── Imagem principal ──────────────────────────────────────────── */
+/* Os 33px de padding embaixo são a faixa dos dots, que ficam fora da
+   caixa com borda (a borda mora no slide). */
+.flexRow--productImage :global(.vtex-store-components-3-x-carouselGaleryCursor) {
+  order: 1;
+  position: relative;
+  box-sizing: border-box;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 33px !important;
+}
+
+/* `static` aqui faz os dots — que são absolutos — se posicionarem
+   contra o `carouselGaleryCursor`; com o bloco contêiner fora do
+   swiper, eles deixam de ser recortados pelo `overflow: hidden`
+   que segura os slides. */
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesGallerySwiperContainer) {
+  position: static !important;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesGallerySlide) {
+  box-sizing: border-box;
+  height: 600px;
+  padding: 60px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+/* O componente escreve width/height inline no <img>; sem `auto` nos
+   dois eixos os dois `max-*` não conseguem preservar a proporção. */
+.flexRow--productImage :global(.vtex-store-components-3-x-productImageTag--main) {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 480px !important;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* ─── Dots ──────────────────────────────────────────────────────── */
+.flexRow--productImage :global(.vtex-store-components-3-x-swiper-pagination) {
+  position: absolute !important;
+  top: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: auto !important;
+  line-height: 0;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-swiperBullet) {
+  box-sizing: border-box;
+  width: 13px !important;
+  height: 13px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  border: 1px solid #cbcbcb;
+  border-radius: 50%;
+  opacity: 1 !important;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-swiperBullet--active) {
+  background: #ec1f25 !important;
+  border-color: #ec1f25;
+}
+
+/* ─── Régua de miniaturas ───────────────────────────────────────── */
+/* `relative` (em vez de `static`) desfaz o `absolute` do modo vertical
+   e ainda serve de referência para as setas. Os 40px de padding
+   lateral são a calha onde elas ficam. */
+.flexRow--productImage :global(.vtex-store-components-3-x-carouselGaleryThumbs) {
+  position: relative !important;
+  order: 2;
+  box-sizing: border-box;
+  width: 100% !important;
+  height: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin-top: 30px;
+  padding: 0 40px;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumbsSwiperContainer) {
+  height: auto !important;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumb) {
+  box-sizing: border-box;
+  height: 95px !important;
+  max-height: 95px !important;
+  margin-bottom: 0 !important;
+}
+
+/* A borda vai na `figure`, e não no overlay `carouselThumbBorder`,
+   porque o overlay preenche o slide inteiro — e o swiper cola um
+   slide no outro. A margem lateral abre os 24px de respiro do
+   design sem mexer na largura que o swiper calculou. */
+.flexRow--productImage :global(.vtex-store-components-3-x-carouselThumbBorder) {
+  display: none;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumb) :global(.vtex-store-components-3-x-figure) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 95px;
+  margin: 0 12px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumbActive) :global(.vtex-store-components-3-x-figure) {
+  padding: 7px;
+  border: 2px solid #ec1f25;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-thumbImg) {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ─── Setas das miniaturas ──────────────────────────────────────── */
+/* O `left`/`right` de cada seta fica por conta do próprio componente,
+   que no modo horizontal já as joga para as pontas — só vestimos a
+   aparência e centralizamos na vertical. Encostar em `.o-0` ou nas
+   classes `swiper-thumbnails-caret-*` traria de volta o aviso de
+   seletor depreciado do builder (bit.ly/io-css-selectors), então a
+   seta da ponta segue escondida pelo componente em vez de esmaecida
+   como no Figma. */
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumbCaret) {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fff !important;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  color: #ec1f25;
+  z-index: 2;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumbCaret) :global(.vtex-store-components-3-x-caretIcon) {
+  width: 9px !important;
+  height: 12px !important;
+}
+
+.flexRow--productImage :global(.vtex-store-components-3-x-productImagesThumbCaret):hover {
+  border-color: #ec1f25;
+}
+
+/* Os degradês de topo/base existem para a régua vertical. */
+.flexRow--productImage :global(.vtex-store-components-3-x-gradientBaseTop),
+.flexRow--productImage :global(.vtex-store-components-3-x-gradientBaseBottom) {
+  background: #fff !important;
+}
+
 /* ─── Card ──────────────────────────────────────────────────────── */
 .flexCol--productInfo {
   background: #fff;
@@ -567,6 +771,17 @@
 
 /* ─── Mobile ────────────────────────────────────────────────────── */
 @media screen and (max-width: 40em) {
+  /* No mobile o componente já esconde a régua (`dn`/`db-ns`) e a
+     navegação fica por conta dos dots. */
+  .flexRow--productImage :global(.vtex-store-components-3-x-productImagesGallerySlide) {
+    height: auto;
+    padding: 20px;
+  }
+
+  .flexRow--productImage :global(.vtex-store-components-3-x-productImageTag--main) {
+    max-height: 320px !important;
+  }
+
   .flexCol--shippingCard {
     padding: 20px;
     max-width: 100%;
