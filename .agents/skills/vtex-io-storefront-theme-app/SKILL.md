@@ -40,6 +40,10 @@ Do not use this skill for:
 
 ## Hard constraints
 
+### CSS Constrains: Invalid CSS
+Usage of deprecated CSS selectors detected.
+Read more about this change: http://bit.ly/io-css-selectors
+
 ### Constraint: Theme apps must declare the `store` builder and a base theme
 
 A storefront theme app MUST declare `"store"` in `manifest.json#builders` and MUST depend on a base theme (typically `vtex.store-theme`) unless it explicitly takes ownership of every native page template, block, and route.

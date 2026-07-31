@@ -1,0 +1,68 @@
+/* ─────────────────────────────────────────────────────────────
+   PDP — Card "Calcular Frete" — ref. Figma node 2033-374
+
+   [título + ícone de caminhão na mesma linha] › [texto de apoio] ›
+   [input de CEP com botão azul + link "Não sei o meu CEP" ao lado].
+   Estilos em styles/css/pdp/vtex.flex-layout.css
+   ───────────────────────────────────────────────────────────── */
+{
+  "flex-layout.col#shipping-card": {
+    "props": {
+      "blockClass": "shippingCard",
+      "preventVerticalStretch": true,
+      "rowGap": 0
+    },
+    "children": [
+      "flex-layout.row#shipping-header",
+      "rich-text#shipping-subtitle",
+      "flex-layout.row#shipping-form"
+    ]
+  },
+
+  "flex-layout.row#shipping-header": {
+    "props": {
+      "blockClass": "shippingHeader",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": true
+    },
+    "children": ["rich-text#shipping-title", "image#shipping-truck"]
+  },
+  "rich-text#shipping-title": {
+    "props": {
+      "blockClass": "shippingTitle",
+      "text": "**Calcular Frete**"
+    }
+  },
+  "image#shipping-truck": {
+    "props": {
+      "blockClass": "shippingTruck",
+      "src": "assets/imgs/pdp/shipping-truck-ico.svg",
+      "alt": "Entrega",
+      "title": "Calcular frete",
+      "width": "36",
+      "height": "21"
+    }
+  },
+
+  "rich-text#shipping-subtitle": {
+    "props": {
+      "blockClass": "shippingSubtitle",
+      "text": "Consulte prazo e valores das suas entregas."
+    }
+  },
+
+  "flex-layout.row#shipping-form": {
+    "props": {
+      "blockClass": "shippingForm",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": true
+    },
+    "children": ["shipping-simulator", "rich-text#shipping-zipcode-help"]
+  },
+  "rich-text#shipping-zipcode-help": {
+    "props": {
+      "blockClass": "shippingZipcodeHelp",
+      "text": "[Não sei o meu CEP](https://buscacepinter.correios.com.br/app/endereco/index.php)"
+    }
+  }
+}

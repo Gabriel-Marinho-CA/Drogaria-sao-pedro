@@ -46,3 +46,8 @@
 :global(.vtex-store-drawer-0-x-childrenContainer) {
     padding-left: 1rem;
 }
+
+:global(.vtex-dropdown__container) :global(select) {
+    height: 62px;
+  border: none;
+}

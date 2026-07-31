@@ -1,0 +1,634 @@
+/* ───────────────────────────────────────────────────────────────
+   PDP — Card de informações do produto
+   Ref. Figma node 2030-366.
+
+   Layout: card branco com borda (546x600) e 40px de padding, com
+   [categoria + Cod:SKU] › [título 40px] › [label + select de
+   variações] › [preço de lista riscado, preço spot destacado +
+   tag "% OFF" à direita, parcelamento] › [stepper de quantidade
+   + botão "Adicionar"].
+
+   Handles próprios do app (flex-layout) usam seletor local
+   (.flexCol--.flexRow--*); handles de outros apps usam :global(...).
+   ─────────────────────────────────────────────────────────────── */
+
+/* ─── Card ──────────────────────────────────────────────────────── */
+.flexCol--productInfo {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 40px;
+  max-width: 546px;
+  width: 100%;
+}
+
+.flexCol--productInfo .flexColChild {
+  width: 100%;
+}
+
+/* ─── Linha 1: categoria + código do SKU ────────────────────────── */
+.flexRow--categorySku .flexRowContent--categorySku {
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  width: 100%;
+}
+
+.flexRow--categorySku .stretchChildrenWidth {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+:global(.vtex-product-identifier-0-x-product-identifier--itemId) {
+  text-align: end;
+}
+
+/* Do breadcrumb ficam só as categorias: escondemos o ícone da home e
+   o nome do produto (`term`). Isolar apenas a categoria folha exigiria
+   `:nth-last-child`, que o builder da VTEX não aceita — cada nível vem
+   embrulhado num `arrow` indexado (`arrow--1`, `arrow--2`, …), então
+   para esconder o departamento basta descomentar a regra abaixo. */
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-homeLink),
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-termArrow),
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-term) {
+  display: none;
+}
+
+/*
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-arrow--1) {
+  display: none;
+}
+*/
+
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-arrow) {
+  color: #707070;
+}
+
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-container) {
+  padding: 0;
+  margin: 0;
+}
+
+.flexRow--categorySku :global(.vtex-breadcrumb-1-x-link) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.45px;
+  color: #025789;
+  text-transform: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* "Cod:1234" */
+.flexRow--categorySku :global(.vtex-product-identifier-0-x-product-identifier--pdp) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #707070;
+  opacity: 0.5;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ─── Linha 2: título do produto ────────────────────────────────── */
+.flexRow--productName {
+  margin-top: 22px;
+}
+
+.flexRow--productName :global(.vtex-store-components-3-x-productNameContainer) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: -1px;
+  color: #242424;
+}
+
+/* ─── Linha 3: variações do produto (select) ────────────────────── */
+.flexCol--variations {
+  margin-top: 17px;
+}
+
+.flexCol--variations :global(.vtex-rich-text-0-x-paragraph--variationsLabel) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #242424;
+  margin: 0 0 8px;
+}
+
+.flexCol--variations :global(.vtex-store-components-3-x-skuSelectorContainer--pdp) {
+  margin: 0;
+}
+
+.flexCol--variations :global(.vtex-store-components-3-x-skuSelectorSubcontainer--pdp) {
+  margin: 0;
+}
+
+/* O displayMode "select" monta um Dropdown do vtex.styleguide dentro
+   de `skuSelectorSelectContainer`; os handles abaixo são dele. */
+.flexCol--variations :global(.vtex-store-components-3-x-skuSelectorNameContainer),
+.flexCol--variations :global(.vtex-store-components-3-x-skuSelectorOptionsList),
+.flexCol--variations :global(.vtex-store-components-3-x-skuSelectorSelectContainer) {
+  width: 100%;
+  margin: 0;
+}
+
+.flexCol--variations :global(.vtex-dropdown__container) {
+  border-radius: 9px;
+  background-color: #fff;
+  border: none;
+}
+
+.flexColChild--variations {
+  height: auto !important;
+}
+
+/* A caixa fica no próprio botão: o <select> real é um overlay
+   invisível, então `:focus` no container não seria disparado. */
+.flexCol--variations :global(.vtex-dropdown__button) {
+  box-sizing: border-box;
+  height: 62px;
+  padding: 0 28px;
+  border: 1px solid #e0e0e0;
+  border-radius: 9px;
+  background-color: #fff;
+}
+
+.flexCol--variations :global(.vtex-dropdown__caption) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #242424;
+}
+
+.flexCol--variations :global(.vtex-dropdown__arrow) {
+  color: #025789;
+}
+
+/* ─── Linha 4: preços ───────────────────────────────────────────── */
+.flexCol--price {
+  margin-top: 40px;
+}
+
+/* Preço de lista riscado */
+.flexCol--price :global(.vtex-product-price-1-x-listPrice--pdp) {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #707070;
+  opacity: 0.5;
+  text-decoration: line-through;
+  margin: 0 0 12px;
+}
+
+.flexRow--sellingPriceSavings .flexRowContent--sellingPriceSavings {
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  width: 100%;
+}
+
+.flexRow--sellingPriceSavings .stretchChildrenWidth {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+/* Preço spot: "R$" e centavos menores, inteiro em destaque */
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-sellingPrice--pdp) {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 65px;
+  letter-spacing: -0.72px;
+  color: #242424;
+}
+
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyCode--pdp),
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyLiteral--pdp),
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyDecimal--pdp),
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyFraction--pdp) {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyInteger--pdp),
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyGroup--pdp) {
+  font-size: 57px;
+  font-weight: 700;
+  letter-spacing: -1.71px;
+}
+
+/* Tag de desconto "27% OFF".
+   `inline-block` em vez de `inline-flex`: com flex os text nodes viram
+   itens e o espaço antes de "OFF" some ("11%OFF"). */
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-savings--pdp) {
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 106px;
+  height: 41px;
+  padding: 0 12px;
+  background-color: #fcebc9;
+  border-radius: 10px;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 106px;
+  margin-left: auto;
+}
+
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-savings--pdp),
+.flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-savings-discount--pdp) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 39px;
+  color: #242424;
+}
+
+/* Parcelamento */
+.flexCol--price :global(.vtex-product-price-1-x-installments--pdp) {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #242424;
+  margin: 0;
+}
+
+/* ─── Linha 5: quantidade + adicionar ao carrinho ───────────────── */
+.flexRow--quantityBuy {
+  margin-top: 38px;
+}
+
+.flexRow--quantityBuy .flexRowContent--quantityBuy {
+  align-items: center;
+  column-gap: 9px;
+  width: 100%;
+}
+
+.flexRow--quantityBuy .stretchChildrenWidth:first-child {
+  flex: 0 0 134px;
+  width: 134px;
+  padding-right: 0 !important;
+}
+
+.flexRow--quantityBuy .stretchChildrenWidth:last-child {
+  flex: 1 1 auto;
+  width: auto;
+}
+
+/* Stepper de quantidade */
+.flexRow--quantityBuy :global(.vtex-product-quantity-1-x-quantitySelectorContainer--pdp) {
+  margin: 0;
+  width: 134px;
+}
+
+/* O stepper do styleguide dá largura fixa ao input; sem forçar o
+   layout flex o botão "+" estoura os 134px e some. */
+.flexRow--quantityBuy :global(.vtex-numeric-stepper-container) {
+  width: 100%;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper-wrapper) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #e0e0e0;
+  border-radius: 30px;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__input),
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__minus-button),
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__plus-button) {
+  height: 58px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  width: fit-content !important;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__minus-button),
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__plus-button) {
+  flex: 0 0 38px;
+  width: 38px;
+  min-width: 38px;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__input) {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  color: #242424;
+  text-align: center;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__minus-button) {
+  color: #707070;
+}
+
+.flexRow--quantityBuy :global(.vtex-numeric-stepper__plus-button) {
+  color: #242424;
+}
+
+/* Botão "Adicionar" */
+.flexRow--quantityBuy :global(.vtex-add-to-cart-button-0-x-buttonDataContainer--pdp) {
+  align-items: center;
+  justify-content: center;
+}
+
+.flexRow--quantityBuy :global(.vtex-button) {
+  width: 100%;
+  height: 60px;
+  min-height: 60px;
+  background: #025789;
+  border: none;
+  border-radius: 30px;
+}
+
+.flexRow--quantityBuy :global(.vtex-button__label) {
+  padding: 0;
+  text-transform: none;
+}
+
+.flexRow--quantityBuy :global(.vtex-button):hover {
+  background: #01456d;
+}
+
+/* `text-transform: none` desfaz o uppercase que o styleguide aplica
+   via `t-action` no label do botão. */
+.flexRow--quantityBuy :global(.vtex-add-to-cart-button-0-x-buttonText--pdp) {
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  text-transform: none;
+  color: #fff;
+}
+
+/* Ícone de cesta antes do texto (mesmo SVG usado no card do shelf) */
+.flexRow--quantityBuy :global(.vtex-add-to-cart-button-0-x-buttonDataContainer--pdp)::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 22px;
+  height: 20px;
+  margin-right: 17px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNSAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNzMwMDQgOC4zOTI3MkMzLjczMDA0IDcuODc3NyA0LjE0NzU0IDcuNDYwMjEgNC42NjI1NSA3LjQ2MDIxQzUuMTc3NTYgNy40NjAyMSA1LjU5NTA2IDcuODc3NyA1LjU5NTA2IDguMzkyNzJWMTAuMjU3N0M1LjU5NTA2IDEwLjc3MjggNS4xNzc1NiAxMS4xOTAyIDQuNjYyNTUgMTEuMTkwMkM0LjE0NzU0IDExLjE5MDIgMy43MzAwNCAxMC43NzI4IDMuNzMwMDQgMTAuMjU3N1Y4LjM5MjcyWk02LjUyNzU3IDguMzkyNzJDNi41Mjc1NyA3Ljg3NzcgNi45NDUwNyA3LjQ2MDIxIDcuNDYwMDggNy40NjAyMUM3Ljk3NTEgNy40NjAyMSA4LjM5MjU5IDcuODc3NyA4LjM5MjU5IDguMzkyNzJWMTAuMjU3N0M4LjM5MjU5IDEwLjc3MjggNy45NzUxIDExLjE5MDIgNy40NjAwOCAxMS4xOTAyQzYuOTQ1MDcgMTEuMTkwMiA2LjUyNzU3IDEwLjc3MjggNi41Mjc1NyAxMC4yNTc3VjguMzkyNzJaTTkuMzI1MSA4LjM5MjcyQzkuMzI1MSA3Ljg3NzcgOS43NDI2IDcuNDYwMjEgMTAuMjU3NiA3LjQ2MDIxQzEwLjc3MjYgNy40NjAyMSAxMS4xOTAxIDcuODc3NyAxMS4xOTAxIDguMzkyNzJWMTAuMjU3N0MxMS4xOTAxIDEwLjc3MjggMTAuNzcyNiAxMS4xOTAyIDEwLjI1NzYgMTEuMTkwMkM5Ljc0MjYgMTEuMTkwMiA5LjMyNTEgMTAuNzcyOCA5LjMyNTEgMTAuMjU3N1Y4LjM5MjcyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUuMzY4NDYgMC4wNjYzOTM3QzUuNTg5NDQgMC4xOTg3MjMgNS42NjEyNiAwLjQ4NTE2NCA1LjUyODg1IDAuNzA2MDk2TDMuMTU0NjggNC42NjI3NEgxMS43NjU1TDkuMzkwMzggMC43MDYwOTZDOS4yNTgwMiAwLjQ4NTE1NyA5LjMyOTgzIDAuMTk4NzUxIDkuNTUwNzcgMC4wNjYzOTM3QzkuNzcxNzEgLTAuMDY1OTYzOSAxMC4wNTgxIDAuMDA1ODQ1ODQgMTAuMTkwNSAwLjIyNjc4NkwxMi44NTI4IDQuNjYyNzRIMTQuNDUzOUMxNC43MTE0IDQuNjYyNzQgMTQuOTIwMiA0Ljg3MTQ5IDE0LjkyMDIgNS4xMjg5OVY2LjA2MTVDMTQuOTIwMiA2LjMxOTAxIDE0LjcxMTQgNi41Mjc3NiAxNC40NTM5IDYuNTI3NzZIMTMuODczTDEyLjE1MzQgMTIuNTQ4QzEyLjA2NzYgMTIuODQ4NiAxMS43OTI3IDEzLjA1NTcgMTEuNDgwMSAxMy4wNTUzTDMuNDQwOTYgMTMuMDU1M0MzLjEyODQgMTMuMDU1NyAyLjg1MzU0IDEyLjg0ODYgMi43Njc2OSAxMi41NDhMMS4wNDcyMSA2LjUyNzc2SDAuNDY2MjU1QzAuMjA4NzUgNi41Mjc3NiAwIDYuMzE5MDEgMCA2LjA2MTVWNS4xMjg5OUMwIDQuODcxNDkgMC4yMDg3NSA0LjY2Mjc0IDAuNDY2MjU1IDQuNjYyNzRIMi4wNjczOEw0LjcyNzgzIDAuMjI2Nzg1QzQuODYwMTYgMC4wMDU4MDU3OSA1LjE0NzUzIC0wLjA2NjAxNDUgNS4zNjg0NiAwLjA2NjM5MzdaTTIuMDE3MDIgNi41Mjc3NkwzLjYxNTM0IDEyLjEyMjhIMTEuMzA0OEwxMi45MDMxIDYuNTI3NzZIMi4wMTcwMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=") no-repeat center center;
+  background-size: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Card "Calcular Frete" — ref. Figma node 2033-374 (546x156)
+   ═══════════════════════════════════════════════════════════════ */
+.flexCol--shippingCard {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 22px 33px 26px 38px;
+  max-width: 546px;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.flexCol--shippingCard .flexColChild {
+  width: 100%;
+}
+
+/* ─── Título + ícone de caminhão na mesma linha ─────────────────── */
+.flexRow--shippingHeader .flexRowContent--shippingHeader {
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  width: 100%;
+}
+
+.flexRow--shippingHeader .stretchChildrenWidth {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.flexRow--shippingHeader :global(.vtex-rich-text-0-x-paragraph--shippingTitle) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #242424;
+  margin: 0;
+}
+
+.flexRow--shippingHeader :global(.vtex-store-components-3-x-imageElement--shippingTruck) {
+  display: block;
+  width: 36px;
+  height: 21px;
+  margin-left: auto;
+}
+
+/* ─── Texto de apoio ────────────────────────────────────────────── */
+.flexCol--shippingCard :global(.vtex-rich-text-0-x-paragraph--shippingSubtitle) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #242424;
+  margin: 6px 0 0;
+}
+
+/* ─── Input de CEP + link "Não sei o meu CEP" ───────────────────── */
+.flexRow--shippingForm {
+  margin-top: 15px;
+}
+
+.flexRow--shippingForm .flexRowContent--shippingForm {
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* O flex-layout escreve `style="width:50%"` inline em cada filho, que
+   vence qualquer `width` de classe — mas em contexto flex um
+   `flex-basis` explícito prevalece sobre o width. O gap de 28px vem
+   do `pr7` que o próprio flex-layout já aplica no primeiro filho. */
+.flexRow--shippingForm .stretchChildrenWidth:first-child {
+  flex: 0 0 311px;
+  flex-direction: column;
+  display: flex;
+}
+
+.flexRow--shippingForm .stretchChildrenWidth:last-child {
+  flex: 0 1 auto;
+}
+
+/* O botão fica logo abaixo do <form>, em largura total; posicionamos
+   ele por cima da ponta direita do input, como no design. */
+.flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) {
+  position: relative;
+  width: 311px;
+  margin: 0;
+}
+
+/* Saem: o label "CEP", o link nativo "Não sei meu CEP" (temos o nosso
+   ao lado) e o sufixo vazio do input. */
+.flexRow--shippingForm :global(.vtex-input__label),
+.flexRow--shippingForm :global(.vtex-address-form__postalCode-forgottenURL),
+.flexRow--shippingForm :global(.vtex-input__suffix) {
+  display: none;
+}
+
+.flexRow--shippingForm :global(.vtex-address-form__postalCode) {
+  padding-bottom: 0;
+  margin: 0;
+}
+
+.flexRow--shippingForm :global(.vtex-input-prefix__group) {
+  box-sizing: border-box;
+  height: 43px;
+  padding: 0 60px 0 28px;
+  border: 1px solid #e0e0e0;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.flexRow--shippingForm :global(.vtex-address-form-4-x-input) {
+  height: 41px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #242424;
+}
+
+.flexRow--shippingForm :global(.vtex-address-form-4-x-input)::placeholder {
+  color: #e0e0e0;
+}
+
+.flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) :global(.vtex-button) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 51px;
+  min-width: 51px;
+  height: 43px;
+  min-height: 43px;
+  padding: 0;
+  background-color: #025789;
+  border: none;
+  border-radius: 22px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjUuNzYxMTgiIGhlaWdodD0iMTAuMDE3NyIgdmlld0JveD0iMCAwIDUuNzYxMTggMTAuMDE3NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImFycm93LXJpZ2h0LWJvbGQiPgo8cGF0aCBpZD0iQ2FtaW5obyA1IiBkPSJNMC4yMjA0NTIgMC4yMjAzMDJDLTAuMDczMjc5NCAwLjUxNDEyNSAtMC4wNzMyNzk0IDAuOTkwNDExIDAuMjIwNDUyIDEuMjg0MjRMMy45NDQ5NyA1LjAwODc2TDAuMjIwNDUyIDguNzMzMjhDLTAuMDczNDcwMSA5LjAyNzA0IC0wLjA3MzQ3MDEgOS41MDM0NiAwLjIyMDM2OCA5Ljc5NzNDMC41MTQyMTUgMTAuMDkxMSAwLjk5MDYyNCAxMC4wOTExIDEuMjg0NDYgOS43OTczTDUuNTQwODcgNS41NDA3M0M1LjgzNDYxIDUuMjQ2OSA1LjgzNDYxIDQuNzcwNjIgNS41NDA4NyA0LjQ3Njc5TDEuMjg0MzkgMC4yMjAzMDJDMC45OTA1NjMgLTAuMDczNDMzOSAwLjUxNDI3NiAtMC4wNzM0MzM5IDAuMjIwNDUyIDAuMjIwMzAyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 6px 10px;
+}
+
+.flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) :global(.vtex-button):hover {
+  background-color: #01456d;
+}
+
+/* O rótulo "Calcular o frete" dá lugar à seta */
+.flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) :global(.vtex-button__label) {
+  padding: 0;
+  font-size: 0;
+  color: transparent;
+}
+
+.flexRow--shippingForm :global(.vtex-rich-text-0-x-paragraph--shippingZipcodeHelp) {
+  margin: 0;
+}
+
+.flexRow--shippingForm :global(.vtex-rich-text-0-x-link--shippingZipcodeHelp) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #025789;
+  text-decoration: underline;
+}
+
+/* Tabela de resultados: fica abaixo, ocupando a largura do card */
+.flexCol--shippingCard :global(.vtex-store-components-3-x-shippingTable) {
+  width: 100%;
+  margin-top: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #242424;
+}
+
+/* ─── Mobile ────────────────────────────────────────────────────── */
+@media screen and (max-width: 40em) {
+  .flexCol--shippingCard {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .flexRow--shippingForm .flexRowContent--shippingForm {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .flexRow--shippingForm .stretchChildrenWidth:first-child {
+    flex: 0 0 100%;
+  }
+
+  .flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) {
+    width: 100%;
+  }
+
+  .flexCol--productInfo {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .flexRow--productName :global(.vtex-store-components-3-x-productNameContainer) {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  .flexCol--price {
+    margin-top: 24px;
+  }
+
+  .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-sellingPrice--pdp) {
+    line-height: 48px;
+  }
+
+  .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyInteger--pdp),
+  .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyGroup--pdp) {
+    font-size: 40px;
+    letter-spacing: -1.2px;
+  }
+
+  .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-savings--pdp) {
+    min-width: 88px;
+    height: 34px;
+  }
+
+  .flexRow--quantityBuy {
+    margin-top: 24px;
+  }
+
+  .flexRow--quantityBuy .flexRowContent--quantityBuy {
+    flex-wrap: nowrap;
+  }
+
+  .flexRow--quantityBuy .stretchChildrenWidth:first-child {
+    flex: 0 0 110px;
+    width: 110px;
+  }
+
+  .flexRow--quantityBuy :global(.vtex-product-quantity-1-x-quantitySelectorContainer--pdp) {
+    width: 110px;
+  }
+}

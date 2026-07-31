@@ -1,7 +1,6 @@
 {
   "store.product": {
     "children": [
-      "flex-layout.row#product-breadcrumb",
       "condition-layout.product#availability",
       "flex-layout.row#description",
       "flex-layout.row#specifications-title",
@@ -18,12 +17,6 @@
     "props": {
       "text": "##### Product Specifications"
     }
-  },
-  "flex-layout.row#product-breadcrumb": {
-    "props": {
-      "marginTop": 4
-    },
-    "children": ["breadcrumb"]
   },
   "flex-layout.row#description": {
     "props": {
@@ -82,15 +75,36 @@
     }
   },
   "flex-layout.row#product-image": {
+    "props": {
+      "blockClass": "productImage"
+    },
     "children": ["product-images"]
   },
+
+  /* ─────────────────────────────────────────────────────────────
+     Galeria do produto (PDP) — ref. Figma node 2033-380
+
+     Miniaturas na horizontal, abaixo da imagem principal, com setas
+     circulares nas pontas da régua. A imagem principal não tem setas
+     por cima: a navegação fica nos dots (entre imagem e miniaturas)
+     e nas próprias miniaturas.
+     Estilos em styles/css/pdp/vtex.flex-layout.css (escopados pelo
+     blockClass da linha acima — o `blockClass` do próprio
+     product-images não chega até os handles do carrossel).
+     ───────────────────────────────────────────────────────────── */
   "product-images": {
     "props": {
       "aspectRatio": {
         "desktop": "auto",
-        "phone": "16:9"
+        "phone": "1:1"
       },
-      "displayThumbnailsArrows": true
+      "maxHeight": 600,
+      "thumbnailsOrientation": "horizontal",
+      "thumbnailAspectRatio": "1:1",
+      "thumbnailMaxHeight": 95,
+      "displayThumbnailsArrows": true,
+      "showNavigationArrows": false,
+      "showPaginationDots": true
     }
   },
   "flex-layout.col#right-col": {
@@ -99,44 +113,162 @@
       "rowGap": 0
     },
     "children": [
-      "flex-layout.row#product-name",
-      "product-rating-summary",
-      "flex-layout.row#list-price-savings",
-      "flex-layout.row#selling-price",
-      "product-installments",
-      "product-separator",
-      "product-identifier.product",
-      "sku-selector",
-      "product-quantity",
-      "product-assembly-options",
-      "product-gifts",
-      "flex-layout.row#buy-button",
-      "availability-subscriber",
-      "shipping-simulator",
-      "share#default"
+      "flex-layout.col#product-info",
+      "flex-layout.col#shipping-card"
     ]
   },
 
+  /* ─────────────────────────────────────────────────────────────
+     Card de informações do produto (PDP) — ref. Figma node 2030-366
+
+     Ordem: [categoria + código do SKU] › [título] › [variações em
+     select] › [preço de lista + preço spot + desconto + parcelas] ›
+     [seletor de quantidade + botão adicionar].
+     Estilos em styles/css/pdp/vtex.flex-layout.css
+     ───────────────────────────────────────────────────────────── */
+  "flex-layout.col#product-info": {
+    "props": {
+      "blockClass": "productInfo",
+      "preventVerticalStretch": true,
+      "rowGap": 0
+    },
+    "children": [
+      "flex-layout.row#product-category-sku",
+      "flex-layout.row#product-name",
+      "flex-layout.col#product-variations",
+      "flex-layout.col#product-price",
+      "product-assembly-options",
+      "product-gifts",
+      "flex-layout.row#product-quantity-buy",
+      "availability-subscriber"
+    ]
+  },
+
+  /* Linha 1: categoria (esquerda) + "Cod:1234" (direita) */
+  "flex-layout.row#product-category-sku": {
+    "props": {
+      "blockClass": "categorySku",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": true
+    },
+    "children": ["breadcrumb#product-category", "product-identifier.product"]
+  },
+  "breadcrumb#product-category": {
+    "props": {
+      "showOnMobile": true,
+      "caretIconSize": 0
+    }
+  },
+  "product-identifier.product": {
+    "props": {
+      "blockClass": "pdp",
+      "idField": "itemId",
+      "label": "custom",
+      "customLabel": "Cod"
+    }
+  },
+
+  /* Linha 2: título do produto */
   "flex-layout.row#product-name": {
     "props": {
-      "marginBottom": 3
+      "blockClass": "productName"
     },
     "children": ["vtex.store-components:product-name"]
   },
 
-  "sku-selector": {
+  /* Linha 3: label + variações do produto em select */
+  "flex-layout.col#product-variations": {
     "props": {
-      "variationsSpacing": 3,
-      "showValueNameForImageVariation": true
+      "blockClass": "variations",
+      "rowGap": 0
+    },
+    "children": ["rich-text#variations-label", "sku-selector#pdp"]
+  },
+  "rich-text#variations-label": {
+    "props": {
+      "blockClass": "variationsLabel",
+      "text": "Variações do produto"
+    }
+  },
+  "sku-selector#pdp": {
+    "props": {
+      "blockClass": "pdp",
+      "displayMode": "select",
+      "showVariationsLabels": "none",
+      "showValueForVariation": "none",
+      "showVariationsErrorMessage": false,
+      "variationsSpacing": 3
     }
   },
 
-  "flex-layout.row#buy-button": {
+  /* Linha 4: preço de lista, preço spot + tag de desconto e parcelamento */
+  "flex-layout.col#product-price": {
     "props": {
-      "marginTop": 4,
-      "marginBottom": 7
+      "blockClass": "price",
+      "rowGap": 0
     },
-    "children": ["add-to-cart-button"]
+    "children": [
+      "product-list-price#pdp",
+      "flex-layout.row#selling-price-savings",
+      "product-installments#pdp"
+    ]
+  },
+  "product-list-price#pdp": {
+    "props": {
+      "blockClass": "pdp"
+    }
+  },
+  "flex-layout.row#selling-price-savings": {
+    "props": {
+      "blockClass": "sellingPriceSavings",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": true
+    },
+    "children": ["product-selling-price#pdp", "product-price-savings#pdp"]
+  },
+  "product-selling-price#pdp": {
+    "props": {
+      "blockClass": "pdp"
+    }
+  },
+  "product-price-savings#pdp": {
+    "props": {
+      "blockClass": "pdp",
+      "message": "{savingsPercentage} OFF",
+      "markers": ["discount"]
+    }
+  },
+  "product-installments#pdp": {
+    "props": {
+      "blockClass": "pdp",
+      "installmentsCriteria": "max-quantity-without-interest",
+      "message": "Ou em até {installmentsNumber}x de {installmentValue} sem juros"
+    }
+  },
+
+  /* Linha 5: seletor de quantidade + botão adicionar ao carrinho */
+  "flex-layout.row#product-quantity-buy": {
+    "props": {
+      "blockClass": "quantityBuy",
+      "verticalAlign": "middle",
+      "preserveLayoutOnMobile": true
+    },
+    "children": ["product-quantity#pdp", "add-to-cart-button#pdp"]
+  },
+  "product-quantity#pdp": {
+    "props": {
+      "blockClass": "pdp",
+      "selectorType": "stepper",
+      "showLabel": false,
+      "showUnit": false
+    }
+  },
+  "add-to-cart-button#pdp": {
+    "props": {
+      "blockClass": "pdp",
+      "text": "Adicionar",
+      "showToast": true
+    }
   },
 
   "flex-layout.row#product-availability": {
@@ -160,7 +292,7 @@
     "children": [
       "flex-layout.row#product-name",
       "product-identifier.product",
-      "sku-selector",
+      "sku-selector#pdp",
       "flex-layout.row#availability"
     ]
   },
