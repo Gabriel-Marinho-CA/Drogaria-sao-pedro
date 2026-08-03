@@ -1,0 +1,118 @@
+{
+  /* ─────────────────────────────────────────────────────────────
+     PDP — Sanfonas de conteúdo do produto — ref. Figma node 2045-374
+
+     Três pílulas cinza (#f6f6f6, raio 41px, 84px de altura) empilhadas
+     abaixo da parte principal do produto: [Descrição] › [Especificações]
+     › [Guia de uso]. Cada uma abre com o disclosure-layout.
+
+     O que entra em cada uma:
+     - Descrição      → product-description (o título próprio do bloco é
+                        escondido via CSS, quem nomeia a seção é o gatilho)
+     - Especificações → todos os grupos de especificação, MENOS
+                        "Características Produto" e "Guia de uso"
+     - Guia de uso    → só o grupo "Guia de uso"
+
+     "Características Produto" fica fora da vitrine porque é grupo de
+     configuração: guarda as URLs consumidas pelo product-spec-banner
+     (ver product.jsonc), não é informação para o cliente.
+
+     A coluna precisa vir dentro de uma `flex-layout.row`: na raiz de
+     um template de página (store.product) uma `flex-layout.col` solta
+     não é renderizada.
+
+     Estilos em styles/css/pdp/vtex.disclosure-layout.css
+     ───────────────────────────────────────────────────────────── */
+  "flex-layout.row#product-accordions": {
+    "props": {
+      "blockClass": "productAccordions",
+      "marginBottom": 7
+    },
+    "children": ["flex-layout.col#product-accordions"]
+  },
+  "flex-layout.col#product-accordions": {
+    "props": {
+      "blockClass": "productAccordions",
+      "preventVerticalStretch": true,
+      "rowGap": 0
+    },
+    "children": [
+      "disclosure-layout#pdp-description",
+      "disclosure-layout#pdp-specifications",
+      "disclosure-layout#pdp-usage"
+    ]
+  },
+
+  /* ── Descrição ─────────────────────────────────────────────── */
+  "disclosure-layout#pdp-description": {
+    "props": { "title": "PDP - Sanfona Descrição", "animated": true },
+    "children": [
+      "disclosure-trigger#pdp-description",
+      "disclosure-content#pdp-description"
+    ]
+  },
+  "disclosure-trigger#pdp-description": {
+    "props": { "blockClass": "pdpAccordion", "as": "div" },
+    "children": ["rich-text#pdp-accordion-description", "disclosure-state-indicator#pdp"]
+  },
+  "rich-text#pdp-accordion-description": {
+    "props": { "blockClass": "pdpAccordionTitle", "text": "Descrição" }
+  },
+  "disclosure-content#pdp-description": {
+    "props": { "blockClass": "pdpAccordion" },
+    "children": ["product-description"]
+  },
+
+  /* ── Especificações ────────────────────────────────────────── */
+  "disclosure-layout#pdp-specifications": {
+    "props": { "title": "PDP - Sanfona Especificações", "animated": true },
+    "children": [
+      "disclosure-trigger#pdp-specifications",
+      "disclosure-content#pdp-specifications"
+    ]
+  },
+  "disclosure-trigger#pdp-specifications": {
+    "props": { "blockClass": "pdpAccordion", "as": "div" },
+    "children": ["rich-text#pdp-accordion-specifications", "disclosure-state-indicator#pdp"]
+  },
+  "rich-text#pdp-accordion-specifications": {
+    "props": { "blockClass": "pdpAccordionTitle", "text": "Especificações" }
+  },
+  "disclosure-content#pdp-specifications": {
+    "props": { "blockClass": "pdpAccordion" },
+    "children": ["product-specification-group#specs"]
+  },
+
+  /* ── Guia de uso ───────────────────────────────────────────── */
+  "disclosure-layout#pdp-usage": {
+    "props": { "title": "PDP - Sanfona Guia de uso", "animated": true },
+    "children": ["disclosure-trigger#pdp-usage", "disclosure-content#pdp-usage"]
+  },
+  "disclosure-trigger#pdp-usage": {
+    "props": { "blockClass": "pdpAccordion", "as": "div" },
+    "children": ["rich-text#pdp-accordion-usage", "disclosure-state-indicator#pdp"]
+  },
+  "rich-text#pdp-accordion-usage": {
+    "props": { "blockClass": "pdpAccordionTitle", "text": "Guia de uso" }
+  },
+  "disclosure-content#pdp-usage": {
+    "props": { "blockClass": "pdpAccordion" },
+    "children": ["product-specification-group#usage"]
+  },
+
+  /* O disclosure-state-indicator não desenha nada por conta própria:
+     ele só troca entre os blocos `Show` (sanfona fechada, seta para
+     baixo) e `Hide` (sanfona aberta, seta para cima). */
+  "disclosure-state-indicator#pdp": {
+    "props": {
+      "Show": "icon-caret#pdp-accordion-down",
+      "Hide": "icon-caret#pdp-accordion-up"
+    }
+  },
+  "icon-caret#pdp-accordion-down": {
+    "props": { "orientation": "down", "size": 14 }
+  },
+  "icon-caret#pdp-accordion-up": {
+    "props": { "orientation": "up", "size": 14 }
+  }
+}

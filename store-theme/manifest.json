@@ -79,7 +79,8 @@
     "vtex.product-context": "0.x",
     "vtex.pixel-manager": "1.x",
     "vtex.similar-products-variants": "0.x",
-    "vtex.store-media": "0.x"
+    "vtex.store-media": "0.x",
+    "drogariasaopedro.custom-components": "0.x"
   },
   "peerDependencies": {
     "vtex.mega-menu": "2.x",

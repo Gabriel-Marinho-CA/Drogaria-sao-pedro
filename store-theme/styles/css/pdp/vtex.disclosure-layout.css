@@ -1,0 +1,92 @@
+/* ═══════════════════════════════════════════════════════════════
+   PDP — Sanfonas de conteúdo do produto — ref. Figma node 2045-374
+
+   Pílula cinza (#f6f6f6) de 64px com raio total, rótulo azul
+   (#025789, 18/24) à esquerda e caret à direita, com 10px entre uma
+   sanfona e outra.
+
+   A seta vem do disclosure-state-indicator, que alterna entre os
+   icon-caret `Show`/`Hide` (ver product-accordions.jsonc) — por isso
+   não há rotação por CSS aqui.
+
+   Blocos em store/blocks/pdp/product-accordions.jsonc.
+   ═══════════════════════════════════════════════════════════════ */
+
+.trigger--pdpAccordion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  padding: 0 40px;
+  background-color: #f6f6f6;
+  border-radius: 32px;
+  cursor: pointer;
+  outline: none;
+}
+
+.trigger--pdpAccordion :global(.vtex-store-icons-0-x-caretIcon) {
+  flex: 0 0 auto;
+  color: #025789;
+}
+
+/* ─── Conteúdo ──────────────────────────────────────────────────
+   Mesma transição das sanfonas do rodapé e do FAQ do tema. O
+   padding só entra em [data-enter] para não ocupar altura enquanto
+   a sanfona está fechada; o recuo lateral acompanha o do gatilho,
+   para o texto nascer alinhado com o rótulo.
+   ─────────────────────────────────────────────────────────────── */
+.content--pdpAccordion {
+  transition: opacity 250ms ease-in-out, height 250ms ease-in-out,
+    transform 250ms ease-in-out;
+  opacity: 0;
+  height: 0;
+  transform: translate3d(0, -10%, 0);
+}
+
+.content--pdpAccordion[data-enter] {
+  opacity: 1;
+  height: fit-content;
+  transform: translate3d(0, 0, 0);
+  padding: 12px 40px 20px;
+}
+
+.content--pdpAccordion[data-leave] {
+  height: 0;
+  overflow: hidden;
+}
+
+/* O product-description traz o próprio título ("Descrição do
+   produto"); dentro da sanfona quem nomeia a seção é o gatilho. */
+.content--pdpAccordion
+  :global(.vtex-store-components-3-x-productDescriptionTitle) {
+  display: none;
+}
+
+
+:global(.vtex-store-components-3-x-productDescriptionText) :global(.vtex-store-components-3-x-container) {
+  padding: 0 !important;
+}
+
+.content--pdpAccordion
+  :global(.vtex-store-components-3-x-productDescriptionText) {
+  color: #4a4a4a;
+  font-size: 16px;
+  line-height: 24px;
+}
+:global(.vtex-disclosure-layout-1-x-content--pdpAccordion) {
+  padding: 0 12px;
+}
+
+/* ─── Mobile ────────────────────────────────────────────────── */
+@media screen and (max-width: 40rem) {
+  .trigger--pdpAccordion {
+    min-height: 56px;
+    padding: 12px 24px;
+    border-radius: 28px;
+  }
+
+  .content--pdpAccordion[data-enter] {
+    padding: 12px 23px 6px;
+  }
+}

@@ -1,7 +1,48 @@
 {
-  "product-specification-group#table": {
+  /* ─────────────────────────────────────────────────────────────
+     Tabela de especificações do produto (PDP)
+
+     Renderizada dentro das sanfonas de product-accordions.jsonc, em
+     duas variantes do mesmo grupo:
+
+     - #specs → tudo, menos "Características Produto" (grupo de
+       configuração, guarda as URLs do product-spec-banner) e
+       "Guia de uso" (tem sanfona própria).
+     - #usage → só "Guia de uso", e sem repetir o nome do grupo no
+       conteúdo, já que o gatilho da sanfona já diz isso.
+
+     Se algum grupo novo de configuração for criado no admin, é só
+     acrescentar o nome no `filter` de #specs para ele não vazar
+     para a vitrine.
+     ───────────────────────────────────────────────────────────── */
+  "product-specification-group#specs": {
+    "props": {
+      "filter": {
+        "type": "hide",
+        "specificationGroups": ["Características Produto", "Guia de uso"]
+      }
+    },
     "children": [
       "flex-layout.row#spec-group"
+    ]
+  },
+  "product-specification-group#usage": {
+    "props": {
+      "filter": {
+        "type": "show",
+        "specificationGroups": ["Guia de uso"]
+      }
+    },
+    "children": [
+      "flex-layout.row#spec-group-usage"
+    ]
+  },
+  "flex-layout.row#spec-group-usage": {
+    "props": {
+      "blockClass": "productSpecificationGroup"
+    },
+    "children": [
+      "product-specification"
     ]
   },
   "flex-layout.row#spec-group": {

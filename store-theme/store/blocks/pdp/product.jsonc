@@ -2,28 +2,37 @@
   "store.product": {
     "children": [
       "condition-layout.product#availability",
-      "flex-layout.row#description",
-      "flex-layout.row#specifications-title",
-      "product-specification-group#table",
+      "flex-layout.row#spec-banner",
+      "flex-layout.row#product-accordions",
       "shelf.relatedProducts",
       "product-reviews",
       "product-questions-and-answers"
-    ]
+    ] 
   },
-  "flex-layout.row#specifications-title": {
-    "children": ["rich-text#specifications"]
-  },
-  "rich-text#specifications": {
+  /* ─────────────────────────────────────────────────────────────
+     Banner personalizado do produto (PDP)
+
+     As URLs vêm das especificações "Banner" e "Banner mobile" cadastradas
+     no produto (campo do tipo "Texto grande" no admin), então o comercial
+     troca o banner sem deploy. Se o produto não tiver a especificação
+     preenchida, o bloco não renderiza nada.
+     Bloco de drogariasaopedro.custom-components.
+     ───────────────────────────────────────────────────────────── */
+  "flex-layout.row#spec-banner": {
     "props": {
-      "text": "##### Product Specifications"
-    }
-  },
-  "flex-layout.row#description": {
-    "props": {
+      "blockClass": "specBanner",
       "marginBottom": 7
     },
-    "children": ["product-description"]
+    "children": ["product-spec-banner"]
   },
+  "product-spec-banner": {
+    "props": {
+      "blockClass": "pdp",
+      "specificationName": "Banner",
+      "mobileSpecificationName": "Banner mobile"
+    }
+  },
+
   "condition-layout.product#availability": {
     "props": {
       "conditions": [
