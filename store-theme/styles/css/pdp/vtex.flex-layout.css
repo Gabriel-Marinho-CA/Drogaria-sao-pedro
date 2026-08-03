@@ -91,6 +91,10 @@
   gap: 5px;
   width: auto !important;
   line-height: 0;
+
+  @media (max-width:750px) {
+    bottom: -6px !important;
+  }
 }
 
 .flexRow--productImage :global(.vtex-store-components-3-x-swiperBullet) {
