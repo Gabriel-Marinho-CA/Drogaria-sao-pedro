@@ -4,9 +4,10 @@
       "condition-layout.product#availability",
       "flex-layout.row#spec-banner",
       "flex-layout.row#product-accordions",
-      "shelf.relatedProducts",
-      "product-reviews",
-      "product-questions-and-answers"
+      "flex-layout.row#related-similars",
+      "flex-layout.row#related-view-bought"
+      // "product-reviews",
+      // "product-questions-and-answers"
     ] 
   },
   /* ─────────────────────────────────────────────────────────────

@@ -1,0 +1,45 @@
+/* ═══════════════════════════════════════════════════════════════
+   PDP — Prateleiras de recomendação (shelf.relatedProducts)
+
+   As linhas usam blockClass ["showcase", "pdpRelated"], então já
+   herdam da home o empilhamento em coluna e a tipografia do título
+   (styles/css/home/vtex.flex-layout.css). O que sobra para cá é o
+   carrossel: o shelf.relatedProducts monta o carrossel legado do
+   vtex.shelf (handles `vtex-shelf-1-x-*`), e não o slider-layout,
+   então os dots precisam ser vestidos para bater com os da home.
+
+   Blocos em store/blocks/pdp/product-related.jsonc.
+   ═══════════════════════════════════════════════════════════════ */
+
+.relatedProducts {
+  width: 100%;
+  padding: 0;
+}
+
+/* O carrossel legado desenha os dots dentro do próprio fluxo; a home
+   os joga 40px abaixo do slider. Mesmo respiro aqui. */
+.dot {
+  box-sizing: border-box;
+  width: 13px;
+  height: 13px;
+  margin: 0 3px;
+  background: #fff;
+  border: 1px solid #cbcbcb;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.dot--isActive {
+  background: #ec1f25;
+  border-color: #ec1f25;
+}
+
+.sliderContainer {
+  padding-bottom: 40px;
+}
+
+/* As setas saem via prop (`productList.arrows: false`); a regra abaixo
+   é só a garantia de que nenhuma sobre em algum breakpoint. */
+.arrow {
+  display: none;
+}

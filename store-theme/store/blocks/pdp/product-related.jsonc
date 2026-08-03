@@ -1,0 +1,101 @@
+{
+  /* ─────────────────────────────────────────────────────────────
+     PDP — Prateleiras de recomendação
+
+     Duas vitrines alimentadas pelo backend de crossselling da VTEX:
+
+     - "Produtos relacionados"  → recommendation: "similars"
+       (produtos similares cadastrados no catálogo)
+     - "Quem viu, comprou"      → recommendation: "viewAndBought"
+       (comportamento de navegação/compra, o QVQC)
+
+     O envelope é o mesmo da home: `flex-layout.row` com blockClass
+     `showcase` (que já empilha título + carrossel em coluna e veste
+     o título — ver styles/css/home/vtex.flex-layout.css) mais o
+     blockClass `pdpRelated`, que é onde ficam os ajustes de PDP em
+     styles/css/pdp/vtex.shelf.css.
+
+     O card é o mesmo `product-summary.shelf` da home, então os
+     produtos ficam idênticos aos das prateleiras da home. O que
+     muda é o carrossel: shelf.relatedProducts usa o carrossel
+     legado do vtex.shelf, e não o slider-layout — por isso as setas
+     saem via prop e os dots são vestidos no CSS.
+
+     O título vem de um rich-text nosso (showTitle: false na shelf),
+     para casar com o tratamento tipográfico da home.
+     ───────────────────────────────────────────────────────────── */
+
+  /* ── Produtos relacionados (similares) ─────────────────────── */
+  "flex-layout.row#related-similars": {
+    "title": "PDP - Prateleira Produtos relacionados",
+    "props": {
+      "blockClass": ["showcase", "pdpRelated"]
+    },
+    "children": [
+      "rich-text#related-similars-title",
+      "shelf.relatedProducts#similars"
+    ]
+  },
+  "rich-text#related-similars-title": {
+    "title": "Título - Produtos relacionados",
+    "props": {
+      "text": "## Produtos relacionados",
+      "blockClass": "showcaseTitle"
+    }
+  },
+  "shelf.relatedProducts#similars": {
+    "blocks": ["product-summary.shelf"],
+    "props": {
+      "recommendation": "similars",
+      "groupBy": "PRODUCT",
+      "hideOutOfStockItems": true,
+      "productList": {
+        "showTitle": false,
+        "arrows": false,
+        "scroll": "BY_PAGE",
+        "infinite": false,
+        "maxItems": 10,
+        "itemsPerPage": 5,
+        "minItemsPerPage": 2,
+        "gap": "ph3"
+      }
+    }
+  },
+
+  /* ── Quem viu, comprou ─────────────────────────────────────── */
+  "flex-layout.row#related-view-bought": {
+    "title": "PDP - Prateleira Quem viu, comprou",
+    "props": {
+      "blockClass": ["showcase", "pdpRelated"]
+    },
+    "children": [
+      "rich-text#related-view-bought-title",
+      "shelf.relatedProducts#viewAndBought"
+    ]
+  },
+  "rich-text#related-view-bought-title": {
+    "title": "Título - Quem viu, comprou",
+    "props": {
+      "text": "## Quem viu, comprou",
+      "blockClass": "showcaseTitle"
+    }
+  },
+  "shelf.relatedProducts#viewAndBought": {
+    "blocks": ["product-summary.shelf"],
+    "props": {
+      "recommendation": "viewAndBought",
+      "groupBy": "PRODUCT",
+      "hideOutOfStockItems": true,
+      "productList": {
+        "showTitle": false,
+        "arrows": false,
+        "scroll": "BY_PAGE",
+        "infinite": false,
+        "maxItems": 10,
+        "itemsPerPage": 5,
+        "minItemsPerPage": 2,
+        "gap": "ph3"
+      }
+    }
+  }
+}
