@@ -959,3 +959,13 @@
     width: 110px;
   }
 }
+
+:global(.vtex-shelf-1-x-shelfContentContainer) {
+  :global(.vtex-shelf-1-x-slide) {
+    padding: 0;
+
+    :global(.vtex-product-summary-2-x-element) {
+      margin-bottom: 1rem;
+    }
+  }
+}
