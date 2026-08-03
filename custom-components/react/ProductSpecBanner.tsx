@@ -39,6 +39,8 @@ interface Props {
   alt?: string
   /** Largura máxima (px) em que a imagem mobile é usada */
   mobileBreakpoint?: number
+  /** Prefixo usado quando a especificação traz só o nome do arquivo */
+  assetsPath?: string
   /** Abre o link em nova aba */
   openLinkInNewTab?: boolean
   /** Sufixo de CSS handle aplicado automaticamente pelo runtime */
@@ -109,7 +111,7 @@ const IMAGE_FILE_REGEX = /\.(png|jpe?g|gif|webp|avif|svg)$/i
  */
 function sanitizeUrl(
   rawValue: string | null,
-  assetsPath: string
+  assetsPath: string | null
 ): string | null {
   if (!rawValue) {
     return null
@@ -140,7 +142,7 @@ function sanitizeUrl(
   // conhecida para não transformar texto qualquer em um `src` quebrado.
   const fileName = value.replace(/^\/+/, '')
 
-  if (!IMAGE_FILE_REGEX.test(fileName)) {
+  if (assetsPath == null || !IMAGE_FILE_REGEX.test(fileName)) {
     return null
   }
 
@@ -156,6 +158,7 @@ function ProductSpecBanner({
   altSpecificationName,
   alt,
   mobileBreakpoint = 1024,
+  assetsPath = '/arquivos',
   openLinkInNewTab = false,
 }: Props) {
   const handles = useCssHandles(CSS_HANDLES)
@@ -163,10 +166,12 @@ function ProductSpecBanner({
   const product = productContext?.product as ProductWithSpecs | undefined
 
   const desktopUrl = sanitizeUrl(
-    getSpecificationValue(product, specificationName)
+    getSpecificationValue(product, specificationName),
+    assetsPath
   )
   const mobileUrl = sanitizeUrl(
-    getSpecificationValue(product, mobileSpecificationName)
+    getSpecificationValue(product, mobileSpecificationName),
+    assetsPath
   )
 
   const imageUrl = desktopUrl ?? mobileUrl
@@ -175,8 +180,11 @@ function ProductSpecBanner({
     return null
   }
 
+  // `null` desliga o fallback de `assetsPath`: nome de arquivo solto seria um
+  // destino inválido, então só URL absoluta ou caminho do site valem aqui.
   const linkUrl = sanitizeUrl(
-    getSpecificationValue(product, linkSpecificationName)
+    getSpecificationValue(product, linkSpecificationName),
+    null
   )
 
   const altText =

@@ -18,8 +18,18 @@ sem passar por deploy de tema.
    - Tipo do campo: **Texto grande** (Text Area)
    - Nome: `Banner` (e `Banner mobile` para a versão mobile)
    - Marque o campo como **ativo**
-3. No produto, preencha o campo com a URL completa da imagem
-   (`https://...`). URLs sem `http(s)://` ou `//` são ignoradas.
+3. No produto, preencha o campo. São aceitos três formatos:
+
+   | O que colar | Vira |
+   | --- | --- |
+   | `https://cdn.../banner.png` | usado como está |
+   | `/arquivos/banner.png` | usado como está |
+   | `banner-desk-pdp.png` | `/arquivos/banner-desk-pdp.png` |
+
+   O terceiro formato é o caminho normal: sobe a imagem em
+   **Catálogo > Arquivos** e cola só o nome do arquivo. Exige extensão de
+   imagem conhecida (`png`, `jpg`, `jpeg`, `gif`, `webp`, `avif`, `svg`);
+   qualquer outro texto é ignorado e o banner não renderiza.
 
 > A leitura é feita pelo `vtex.product-context`, que se alimenta da API de
 > busca. Especificação recém-criada ou recém-preenchida pode demorar alguns
@@ -35,6 +45,7 @@ sem passar por deploy de tema.
 | `altSpecificationName` | `string` | — | Especificação com o texto alternativo. |
 | `alt` | `string` | nome do produto | Texto alternativo fixo, usado se não houver `altSpecificationName`. |
 | `mobileBreakpoint` | `number` | `1024` | Largura máxima (px) em que a imagem mobile é usada. |
+| `assetsPath` | `string` | `/arquivos` | Prefixo aplicado quando a especificação traz só o nome do arquivo. |
 | `openLinkInNewTab` | `boolean` | `false` | Abre o link em nova aba. |
 | `blockClass` | `string` | — | Sufixo de CSS handle. |
 
