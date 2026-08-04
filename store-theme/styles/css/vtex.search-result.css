@@ -331,11 +331,17 @@
  * Ancorado no `.sidebar` porque o `pa5` nativo está no mesmo elemento e
  * empataria em especificidade com um handle sozinho.
  */
-.sidebar .closeIconButton {
+.sidebar .closeIconButton,
+.closeIconButton {
+  display: block;
   top: 32px;
   right: 27px;
+  z-index: 20;
   padding: 0;
+  border: none;
+  background-color: transparent;
   color: #ec1f25;
+  cursor: pointer;
 }
 
 /* ─── MOBILE: BOTÕES LIMPAR / APLICAR ─────────────────────────────── */

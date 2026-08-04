@@ -208,7 +208,9 @@
 
     :global(.vtex-product-price-1-x-listPriceValue--summary),
     :global(.vtex-product-price-1-x-currencyCode--summary),
-    :global(.vtex-product-price-1-x-currencyDecimals--summary) {
+    :global(.vtex-product-price-1-x-currencyDecimals--summary),
+    :global(.vtex-product-price-1-x-listPriceValue) :global(.vtex-product-price-1-x-currencyInteger--summary),
+     :global(.vtex-product-price-1-x-listPriceValue) :global(.vtex-product-price-1-x-currencyFraction){
       font-size: 10px;
     }
 
