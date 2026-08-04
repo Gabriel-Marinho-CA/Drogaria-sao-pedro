@@ -146,6 +146,16 @@
       "blockClass": "filterCol"
     }
   },
+  /* No layout todos os filtros aparecem fechados, como caixas de 52px.
+   * `initiallyCollapsed` é prop do bloco — sem ele o padrão é abrir todos e
+   * nenhum CSS resolve, porque o estado vem do React. */
+  "filter-navigator.v3": {
+    "props": {
+      "title": "Filtros",
+      "initiallyCollapsed": true,
+      "openFiltersMode": "many"
+    }
+  },
   "flex-layout.col#content": {
     "children": [
       "flex-layout.row#searchinfo",

@@ -24,6 +24,141 @@
   letter-spacing: -0.625px;
 }
 
+/* ─── FILTROS ─────────────────────────────────────────────────────── */
+
+/*
+ * Estrutura real renderizada pelo `filter-navigator.v3` no desktop:
+ *
+ *   .filters--layout
+ *     .filtersWrapper
+ *       .filter__container.filter__container--title   -> h5.filterMessage "Filtros"
+ *       .filter__container.filter__container--<map>   -> um por filtro
+ *         .filter.filterAvailable[.filterIsOpen]      (pv5)
+ *           div[role=button].pointer
+ *             .filterTitle (f5 flex items-center justify-between)
+ *               span.filterTitleSpan                  -> rótulo
+ *               span.filterIcon (ph5 c-muted-3)       -> <svg> do IconCaret
+ *         .filterTemplateOverflow                     -> lista de facets
+ *
+ * As classes tachyons (`pv5`, `ph5`, `f5`, `bb b--muted-4`) ficam no mesmo
+ * elemento dos handles e têm a mesma especificidade, então tudo o que elas
+ * definem precisa ser redeclarado aqui.
+ */
+
+/* Painel branco que envolve o conjunto (Retângulo 23 do Figma). */
+.filtersWrapper {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 0 19px 24px;
+}
+
+/* Título "Filtros" — alinhado com o rótulo dos filtros, não com a borda. */
+.filter__container--title {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.filterMessage {
+  margin: 0;
+  padding: 31px 0 30px 23.25px;
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+/* Cada filtro vira uma caixa arredondada de 52px (fechado). */
+.filter__container {
+  margin-bottom: 15px;
+  border: 1px solid #cbcbcb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.filter {
+  padding: 0;
+}
+
+.filterTitle {
+  min-height: 52px;
+  padding: 0 16px 0 23.25px;
+}
+
+.filterTitleSpan {
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.45px;
+  line-height: 1.2;
+}
+
+.filterTemplateOverflow {
+  padding-left: 23.25px;
+  padding-right: 16px;
+}
+
+/*
+ * A seta vermelha do layout não é o glifo do IconCaret nativo, então o <svg>
+ * original é escondido e o desenho exportado do Figma é pintado num
+ * pseudo-elemento via mask — mesma técnica usada nos ícones do "Organizar".
+ * O SVG é a seta apontando para a DIREITA; a rotação de 90° deixa ela para
+ * baixo (fechado) e -90° para cima (aberto), controlada pelo handle
+ * `filterIsOpen` que o FilterOptionTemplate aplica em `.filter`.
+ */
+.filterIcon {
+  padding: 0;
+  color: #ec1f25;
+}
+
+/*
+ * O builder recusa seletor de tag (`.filterIcon > svg`), então o <svg> é
+ * alcançado pela classe dele. O IconCaret monta `<Icon handle="caretIcon">`,
+ * e o Svg só recebe esse handle — sem classe global `vtex__icon-*` e sem
+ * variação por orientação, então `caretIcon` serve para aberto e fechado.
+ */
+.filterIcon :global(.vtex-store-icons-0-x-caretIcon) {
+  display: none;
+}
+
+/* .filterIcon::after {
+  content: '';
+  display: block;
+  width: 5.761px;
+  height: 10.018px;
+  background-color: currentColor;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5.76118 10.0177'%3E%3Cpath d='M0.220452 0.220302C-0.0732794 0.514125 -0.0732794 0.990411 0.220452 1.28424L3.94497 5.00876L0.220452 8.73328C-0.0734701 9.02704 -0.0734701 9.50346 0.220368 9.7973C0.514215 10.0911 0.990624 10.0911 1.28446 9.7973L5.54087 5.54073C5.83461 5.2469 5.83461 4.77062 5.54087 4.47679L1.28439 0.220302C0.990563 -0.0734339 0.514276 -0.0734339 0.220452 0.220302Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5.76118 10.0177'%3E%3Cpath d='M0.220452 0.220302C-0.0732794 0.514125 -0.0732794 0.990411 0.220452 1.28424L3.94497 5.00876L0.220452 8.73328C-0.0734701 9.02704 -0.0734701 9.50346 0.220368 9.7973C0.514215 10.0911 0.990624 10.0911 1.28446 9.7973L5.54087 5.54073C5.83461 5.2469 5.83461 4.77062 5.54087 4.47679L1.28439 0.220302C0.990563 -0.0734339 0.514276 -0.0734339 0.220452 0.220302Z' fill='%23000'/%3E%3C/svg%3E");
+} */
+
+.filterIsOpen .filterIcon::after {
+  transform: rotate(-90deg);
+}
+
+/*
+ * `PriceRange` monta o FilterOptionTemplate com `collapsable={false}`, então
+ * esse filtro não renderiza `.filterIcon` nem responde a clique — a caixa fica
+ * igual às outras, mas sem seta. Ver observação na entrega.
+ */
+
+/* Blocos que reusam `filter__container` mas não são um filtro. */
+.filter__container--selectedFilters,
+.filter__container--clearAllFilters {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 15px;
+}
+
 /* ─── ORDENAR POR ─────────────────────────────────────────────────── */
 
 .orderByDropdown {

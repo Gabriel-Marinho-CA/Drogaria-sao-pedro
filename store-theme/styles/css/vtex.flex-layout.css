@@ -73,7 +73,7 @@
 /* Search page filters */
 .flexCol--filterCol {
   max-width: 500px;
-  min-width: 230px;
+  min-width: 330px;
 }
 
 /* Linha "Ordenar Por" + "Organizar" (topo dos resultados de busca) */

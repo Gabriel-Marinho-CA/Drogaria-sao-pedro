@@ -135,5 +135,28 @@
   padding-top: 4rem;
 }
 .flexCol--filterCol {
-  margin-top: 70px;
+  margin-top: 66px;
+}
+
+:global(.vtex-search-result-3-x-filter__container--title) {
+  border: none;
+}
+
+:global(.vtex-search-result-3-x-gallery) {
+  padding-left: .85rem !important;
+}
+
+:global(.vtex-search-result-3-x-galleryItem) {
+  padding: 0;
+  border: 1px solid #E0E0E0;
+
+  :global(.vtex-product-summary-2-x-container) {
+    max-width: 100% !important;
+    margin: 0 !important;
+
+    :global(.vtex-product-summary-2-x-element) {
+      border-radius: 0;
+      border: none !important;
+    }
+  }
 }
