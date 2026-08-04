@@ -1,0 +1,18 @@
+{
+  "rich-text#category-description": {
+    "title": "Texto - Descrição da Categoria",
+    "description": "Texto exclusivo desta categoria/coleção, exibido logo abaixo do título da página. Configure página a página: cada categoria guarda o seu próprio texto. Deixe em branco para não exibir nada.",
+    "type": "object",
+    "properties": {
+      "text": {
+        "title": "Texto da descrição",
+        "description": "Aceita Markdown: **negrito**, *itálico* e [texto do link](https://exemplo.com).",
+        "type": "string",
+        "default": "",
+        "widget": {
+          "ui:widget": "textarea"
+        }
+      }
+    }
+  }
+}

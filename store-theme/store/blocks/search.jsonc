@@ -1,6 +1,8 @@
 {
   "store.search": {
-    "blocks": ["search-result-layout"],
+    "blocks": [
+      "search-result-layout"
+    ],
     "props": {
       "context": {
         "skusFilter": "ALL",
@@ -8,9 +10,10 @@
       }
     }
   },
-
   "store.search#brand": {
-    "blocks": ["search-result-layout"],
+    "blocks": [
+      "search-result-layout"
+    ],
     "props": {
       "context": {
         "orderByField": "OrderByReleaseDateDESC",
@@ -21,9 +24,10 @@
       }
     }
   },
-
   "store.search#department": {
-    "blocks": ["search-result-layout"],
+    "blocks": [
+      "search-result-layout"
+    ],
     "props": {
       "context": {
         "skusFilter": "ALL",
@@ -31,9 +35,10 @@
       }
     }
   },
-
   "store.search#category": {
-    "blocks": ["search-result-layout"],
+    "blocks": [
+      "search-result-layout"
+    ],
     "props": {
       "context": {
         "skusFilter": "ALL",
@@ -41,9 +46,10 @@
       }
     }
   },
-
   "store.search#subcategory": {
-    "blocks": ["search-result-layout"],
+    "blocks": [
+      "search-result-layout"
+    ],
     "props": {
       "context": {
         "skusFilter": "ALL",
@@ -51,7 +57,6 @@
       }
     }
   },
-
   "search-result-layout": {
     "blocks": [
       "search-result-layout.desktop",
@@ -59,7 +64,6 @@
       "search-not-found-layout"
     ]
   },
-
   "search-result-layout.desktop": {
     "children": [
       "flex-layout.row#searchbread",
@@ -74,9 +78,11 @@
     }
   },
   "flex-layout.row#searchbread": {
-    "children": ["breadcrumb.search"],
+    "title": "Linha - Breadcrumb",
+    "children": [
+      "breadcrumb.search"
+    ],
     "props": {
-      "title": "Linha - Breadcrumb",
       "blockClass": "searchBread",
       "preserveLayoutOnMobile": true,
       "fullWidth": true
@@ -86,9 +92,10 @@
     "props": {
       "blockClass": "searchTitleRow"
     },
-    "children": ["search-title.v2"]
+    "children": [
+      "search-title.v2"
+    ]
   },
-
   /* Texto descritivo exclusivo de cada categoria/coleção.
    * O bloco fica vazio no tema de propósito: o conteúdo é preenchido pelo
    * Site Editor página a página (Categoria > escolher a página > este bloco),
@@ -96,11 +103,17 @@
    * Como desktop e mobile apontam para o mesmo `rich-text#category-description`,
    * o texto é editado uma única vez e aparece nos dois layouts.
    * Estilo (Roboto 18px/24px, #242424, espaçamentos) fica por conta do dev
-   * através do handle gerado por `blockClass: "categoryDescription"`. */
+   * através do handle gerado por `blockClass: "categoryDescription"`.
+   *
+   * O rótulo e o formulário que o admin vê no Site Editor vêm de
+   * `store/contentSchemas.json` — sem ele o bloco aparece como "rich-text"
+   * genérico e não dá para saber que é a descrição da categoria. */
   "flex-layout.row#searchdescription": {
-    "children": ["rich-text#category-description"],
+    "title": "Linha - Descrição da Categoria",
+    "children": [
+      "rich-text#category-description"
+    ],
     "props": {
-      "title": "Linha - Descrição da Categoria",
       "blockClass": "categoryDescriptionRow",
       "preserveLayoutOnMobile": true
     }
@@ -114,16 +127,21 @@
       "blockClass": "categoryDescription"
     }
   },
-
   "flex-layout.row#result": {
-    "children": ["flex-layout.col#filter", "flex-layout.col#content"],
+    "children": [
+      "flex-layout.col#filter",
+      "flex-layout.col#content"
+    ],
     "props": {
       "preventHorizontalStretch": true,
-      "fullWidth": true
+      "fullWidth": true,
+          "blockClass":"search--info--wrapper"
     }
   },
   "flex-layout.col#filter": {
-    "children": ["filter-navigator.v3"],
+    "children": [
+      "filter-navigator.v3"
+    ],
     "props": {
       "blockClass": "filterCol"
     }
@@ -137,27 +155,36 @@
     ],
     "props": {
       "width": "grow",
-      "preventVerticalStretch": true
+      "preventVerticalStretch": true,
+      "blockClass":"search--info"
     }
   },
   "flex-layout.row#searchinfo": {
-    "children": ["flex-layout.col#orderBy", "flex-layout.row#organizar"],
+    "title": "Linha - Ordenar e Organizar",
+    "children": [
+      "flex-layout.col#orderBy",
+      "flex-layout.row#organizar"
+    ],
     "props": {
-      "title": "Linha - Ordenar e Organizar",
       "blockClass": "searchInfo",
       "verticalAlign": "middle"
     }
   },
   "flex-layout.col#orderBy": {
-    "children": ["order-by.v2"],
+    "children": [
+      "order-by.v2"
+    ],
     "props": {
       "blockClass": "orderByCol"
     }
   },
   "flex-layout.row#organizar": {
-    "children": ["rich-text#organizar", "gallery-layout-switcher"],
+    "title": "Grupo - Organizar",
+    "children": [
+      "rich-text#organizar",
+      "gallery-layout-switcher"
+    ],
     "props": {
-      "title": "Grupo - Organizar",
       "blockClass": "organizar",
       "preventHorizontalStretch": true,
       "horizontalAlign": "right",
@@ -176,13 +203,17 @@
     "props": {
       "marginBottom": 3
     },
-    "children": ["search-fetch-previous"]
+    "children": [
+      "search-fetch-previous"
+    ]
   },
   "flex-layout.row#fetchmore": {
     "props": {
       "marginTop": 3
     },
-    "children": ["search-fetch-more"]
+    "children": [
+      "search-fetch-more"
+    ]
   },
   "search-fetch-previous": {
     "props": {
@@ -195,12 +226,16 @@
     }
   },
   "flex-layout.row#products": {
-    "children": ["search-content"]
+    "children": [
+      "search-content"
+    ]
   },
   "search-content": {
-    "blocks": ["gallery", "not-found"]
+    "blocks": [
+      "gallery",
+      "not-found"
+    ]
   },
-
   "search-result-layout.mobile": {
     "children": [
       "flex-layout.row#searchinfomobile",
@@ -220,12 +255,13 @@
     }
   },
   "flex-layout.row#contentmobile": {
-    "children": ["search-content"],
+    "children": [
+      "search-content"
+    ],
     "props": {
       "preserveLayoutOnMobile": true
     }
   },
-
   "flex-layout.row#searchinfomobile": {
     "children": [
       "flex-layout.col#orderByMobile",
@@ -238,43 +274,49 @@
       "colJustify": "around"
     }
   },
-
   "flex-layout.col#orderByMobile": {
-    "children": ["order-by.v2"],
+    "children": [
+      "order-by.v2"
+    ],
     "props": {
       "blockClass": "orderByMobileCol"
     }
   },
-
   "flex-layout.col#filterMobile": {
-    "children": ["filter-navigator.v3"],
+    "children": [
+      "filter-navigator.v3"
+    ],
     "props": {
       "blockClass": "filterMobileCol"
     }
   },
   "flex-layout.col#switcherMobile": {
-    "children": ["gallery-layout-switcher"],
+    "children": [
+      "gallery-layout-switcher"
+    ],
     "props": {
       "verticalAlign": "middle"
     }
   },
   "search-not-found-layout": {
-    "children": ["flex-layout.row#searchbread", "flex-layout.row#notfound"]
+    "children": [
+      "flex-layout.row#searchbread",
+      "flex-layout.row#notfound"
+    ]
   },
-
   "flex-layout.row#notfound": {
-    "children": ["not-found"],
+    "children": [
+      "not-found"
+    ],
     "props": {
       "fullWidth": true
     }
   },
-
   "breadcrumb": {
     "props": {
       "showOnMobile": true
     }
   },
-
   "gallery": {
     "props": {
       "layouts": [
@@ -312,12 +354,16 @@
     "props": {
       "name": "grid"
     },
-    "children": ["icon-grid"]
+    "children": [
+      "icon-grid"
+    ]
   },
   "gallery-layout-option#list": {
     "props": {
       "name": "list"
     },
-    "children": ["icon-inline-grid"]
+    "children": [
+      "icon-inline-grid"
+    ]
   }
 }

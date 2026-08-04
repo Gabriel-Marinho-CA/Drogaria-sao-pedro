@@ -8,13 +8,13 @@
 
 .flexRow--buyNowButton :global(.vtex-button) {
   background: #eef3f7;
-  border-color:#eef3f7;
+  border-color: #eef3f7;
   color: #0f3e99;
 }
 
 .flexRow--buyNowButton:hover :global(.vtex-button) {
   background: #dbe9fd;
-  border-color:#dbe9fd;
+  border-color: #dbe9fd;
 }
 
 .flexCol--productRating {
@@ -28,14 +28,17 @@
 .flexCol--summaryUpDetailsListMobile {
   margin-bottom: 0.25rem
 }
+
 .flexRow--searchTitleRow {
   :global(.vtex-store-components-3-x-container) {
     padding: 0 !important;
   }
 }
+
 :global(.vtex-search-result-3-x-orderByOptionsContaine) {
   z-index: 4;
 }
+
 :global(.vtex-breadcrumb-1-x-homeIcon) {
   display: none;
 }
@@ -92,8 +95,15 @@
   margin: 0;
   color: #025789;
 }
+
 :global(.vtex-breadcrumb-1-x-caretIcon) {
   display: none;
+}
+
+.flexRow--categoryDescriptionRow {
+  :global(.vtex-store-components-3-x-container) {
+    padding: 0 !important;
+  }
 }
 
 
@@ -101,6 +111,10 @@
 .flexRow--searchBread :global(.vtex-breadcrumb-1-x-termArrow)::before {
   content: '/';
   padding: 0 6px;
+}
+
+.flexRow--searchBread {
+  padding-block: 2rem 3rem;
 }
 
 .flexRow--searchBread :global(.vtex-breadcrumb-1-x-link),
@@ -115,4 +129,11 @@
   letter-spacing: -0.45px;
   text-transform: none;
   text-decoration: none;
+}
+
+.flexRow--search--info--wrapper {
+  padding-top: 4rem;
+}
+.flexCol--filterCol {
+  margin-top: 70px;
 }
