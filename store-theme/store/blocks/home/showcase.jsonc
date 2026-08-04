@@ -236,10 +236,12 @@
       "blockClass": "showcase"
     }
   },
+  /* Variações não herdam props do bloco base — ver product-summary.jsonc. */
   "add-to-cart-button#showcase": {
     "props": {
       "blockClass": "showcase",
-      "showToast": true
+      "addToCartFeedback": "customEvent",
+      "customPixelEventId": "add-to-cart-button"
     }
   },
   

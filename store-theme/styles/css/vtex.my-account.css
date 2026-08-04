@@ -51,3 +51,9 @@
     height: 62px;
   border: none;
 }
+
+:global(.ReactCollapse--collapse) {
+    :global(.ReactCollapse--content) > :global(div) {
+        padding: 0 !important;
+    }
+}

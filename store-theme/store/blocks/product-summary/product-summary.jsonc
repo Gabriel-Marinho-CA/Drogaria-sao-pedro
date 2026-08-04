@@ -90,11 +90,17 @@
     }
   },
 
+  /* Definição ÚNICA do bloco base (usada pelo card do shelf, pela listagem em
+   * lista e pelo quickview). `addToCartFeedback: "customEvent"` faz o botão
+   * emitir um evento no pixel em vez do toast; o `customPixelEventId` tem que
+   * ser exatamente o mesmo declarado no `minicart.v2` (minicart.jsonc) — é o
+   * que faz o carrinho abrir depois de adicionar. */
   "add-to-cart-button": {
     "props": {
       "text": "Comprar",
       "blockClass": "summary",
-      "showToast": true
+      "addToCartFeedback": "customEvent",
+      "customPixelEventId": "add-to-cart-button"
     }
   },
 

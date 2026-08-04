@@ -1,11 +1,10 @@
 {
-  "add-to-cart-button": {
-    "props": {
-      "addToCartFeedback": "customEvent",
-      "customPixelEventId": "add-to-cart-button"
-    }
-  },
-
+  /* O `add-to-cart-button` base é definido em
+   * product-summary/product-summary.jsonc — um mesmo id não pode ser declarado
+   * em dois arquivos, porque um sobrescreve o outro (era o que apagava o
+   * `addToCartFeedback: "customEvent"` e impedia o minicart de abrir).
+   * O `customPixelEventId` abaixo precisa ser igual ao de TODOS os botões que
+   * devem abrir o carrinho. */
   "minicart.v2": {
     "props": {
       "customPixelEventId": "add-to-cart-button"

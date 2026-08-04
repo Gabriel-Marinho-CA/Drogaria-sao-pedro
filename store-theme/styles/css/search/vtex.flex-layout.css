@@ -178,6 +178,7 @@
 
 
     .flexRowContent--searchInfoMobile {
+       gap: .85rem;
       .stretchChildrenWidth {
         width: 50% !important;
       }

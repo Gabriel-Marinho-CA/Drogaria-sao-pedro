@@ -148,12 +148,31 @@
   },
   /* No layout todos os filtros aparecem fechados, como caixas de 52px.
    * `initiallyCollapsed` é prop do bloco — sem ele o padrão é abrir todos e
-   * nenhum CSS resolve, porque o estado vem do React. */
+   * nenhum CSS resolve, porque o estado vem do React.
+   *
+   * `navigationTypeOnMobile: "collapsible"` troca a navegação da gaveta mobile:
+   * o padrão ("page") substitui a lista pela tela do filtro escolhido (aquele
+   * efeito de "passar para o lado"); com "collapsible" cada filtro abre um
+   * accordion no lugar, um embaixo do outro, igual ao desktop. */
   "filter-navigator.v3": {
+    "children": [
+      "sidebar-close-button"
+    ],
     "props": {
       "title": "Filtros",
       "initiallyCollapsed": true,
-      "openFiltersMode": "many"
+      "openFiltersMode": "many",
+      "navigationTypeOnMobile": "collapsible"
+    }
+  },
+  /* O "X" do layout. O FilterSidebar já tem o ExtensionPoint
+   * `sidebar-close-button`, mas ele só renderiza se o bloco for declarado como
+   * filho do filter-navigator — por isso a gaveta estava sem botão de fechar.
+   * O componente se posiciona sozinho (`absolute top-0 right-0`). */
+  "sidebar-close-button": {
+    "props": {
+      "size": 16,
+      "type": "line"
     }
   },
   "flex-layout.col#content": {

@@ -273,11 +273,14 @@
       "showUnit": false
     }
   },
+  /* Variações do bloco não herdam as props do `add-to-cart-button` base, então
+   * a config de pixel precisa ser repetida aqui para o minicart abrir. */
   "add-to-cart-button#pdp": {
     "props": {
       "blockClass": "pdp",
       "text": "Adicionar",
-      "showToast": true
+      "addToCartFeedback": "customEvent",
+      "customPixelEventId": "add-to-cart-button"
     }
   },
 

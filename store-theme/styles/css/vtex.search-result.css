@@ -212,6 +212,172 @@
   text-transform: none;
 }
 
+/* ─── MOBILE: FILTROS DENTRO DA GAVETA ────────────────────────────── */
+
+/*
+ * Com `navigationTypeOnMobile: "collapsible"` o AccordionFilterItem para de
+ * trocar de "página" e passa a abrir um <Collapse> logo abaixo do cabeçalho:
+ *
+ *   div.accordionFilter                             (h-100 pb9 overflow-scroll)
+ *     div.filterAccordionBreadcrumbs                (flex items-center pa5 bb b--muted-4)
+ *       div.filterBreadcrumbsContent (pv4)
+ *         div.filterBreadcrumbsText (t-heading-4)   -> "Filtros"
+ *     div.accordionFilterContainer--<slug>          (pl7)
+ *       div.accordionFilterItem.filterAccordionItemBox--<slug>
+ *                                                   (t-body pr5 pv3 bb b--muted-5)
+ *         div.accordionFilterContent                (pv4 t-heading-5 | t-small)
+ *           span.accordionFilterItemTitle           -> rótulo
+ *           span.accordionFilterItemIcon (fr)       -> IconCaret down/up
+ *     Collapse > div.pl8 > div.accordionFilterOpen.accordionFilterItemOptions
+ *                                                   -> lista de facets (ph5 pt3)
+ *     button.closeIconButton                        (absolute top-0 right-0 pa5)
+ *     div.filterButtonsBox                          (fixed bottom-0 bt b--muted-5)
+ *
+ * O Collapse é IRMÃO do container do cabeçalho, não filho — por isso cada
+ * cabeçalho vira uma caixa arredondada própria e as opções aparecem embaixo,
+ * fora dela, em vez de a caixa crescer como no desktop.
+ *
+ * As classes tachyons (`pa5`, `pv3`, `pl7`, `bb b--muted-5`, `t-heading-4/5`)
+ * ficam no MESMO elemento dos handles e têm a mesma especificidade. Aqui as
+ * regras são ancoradas no `.accordionFilter` justamente para não depender da
+ * ordem de carregamento — dois handles vencem qualquer tachyon de uma classe.
+ *
+ * Esses handles só existem no render mobile, então não precisam de media query.
+ */
+.accordionFilter {
+  padding: 0 27px 96px;
+  background-color: #ffffff;
+}
+
+/* Cabeçalho "Filtros" — sem a divisória nativa e com o X alinhado ao título. */
+.accordionFilter .filterAccordionBreadcrumbs {
+  padding: 27px 0 20px;
+  border: none;
+}
+
+.accordionFilter .filterBreadcrumbsContent {
+  padding: 0;
+}
+
+.accordionFilter .filterBreadcrumbsText {
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+/* `pl7` recuaria as caixas em relação ao título. */
+.accordionFilter .accordionFilterContainer {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Mesma caixa de 52px dos filtros do desktop. */
+.accordionFilter .accordionFilterItem {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 20px 0 23.25px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  border-radius: 12px;
+}
+
+.accordionFilter .accordionFilterContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
+.accordionFilter .accordionFilterItemTitle {
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.45px;
+}
+
+/* `fr` (float: right) não posiciona dentro de um flex; o auto margin resolve. */
+.accordionFilter .accordionFilterItemIcon {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0;
+  color: #ec1f25;
+}
+
+/* Opções abrem alinhadas ao rótulo da caixa, não ao `ph5` nativo. */
+.accordionFilter .accordionFilterItemOptions {
+  padding: 0 0 15px 23.25px;
+  overflow: visible;
+
+  @media (max-width:750px) {
+    padding: 0 !important;
+
+  }
+}
+
+/*
+ * Botão de fechar (bloco `sidebar-close-button`). Ele é IRMÃO do
+ * `.accordionFilter`, filho direto do `.sidebar`, e já vem `absolute top-0
+ * right-0` — então basta acertar o deslocamento para ele cair na linha do
+ * título "Filtros" (27px de padding + metade da linha de 22px).
+ *
+ * Ancorado no `.sidebar` porque o `pa5` nativo está no mesmo elemento e
+ * empataria em especificidade com um handle sozinho.
+ */
+.sidebar .closeIconButton {
+  top: 32px;
+  right: 27px;
+  padding: 0;
+  color: #ec1f25;
+}
+
+/* ─── MOBILE: BOTÕES LIMPAR / APLICAR ─────────────────────────────── */
+
+/*
+ * A barra fixa do rodapé da gaveta. Os botões são `Button` do styleguide, então
+ * o desenho fica no `.vtex-button` interno; os wrappers só cuidam do espaço.
+ */
+.filterButtonsBox {
+  padding: 12px 27px;
+  border-top: 1px solid #e0e0e0;
+  gap: 12px;
+}
+
+.filterClearButtonWrapper,
+.filterApplyButtonWrapper {
+  width: calc(50% - 6px);
+  padding: 0;
+}
+
+.filterClearButtonWrapper :global(.vtex-button),
+.filterApplyButtonWrapper :global(.vtex-button) {
+  min-height: 44px;
+  border-radius: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  letter-spacing: -0.375px;
+  text-transform: none;
+}
+
+.filterClearButtonWrapper :global(.vtex-button) {
+  background-color: #ffffff;
+  border-color: #cbcbcb;
+  color: #242424;
+}
+
+.filterApplyButtonWrapper :global(.vtex-button) {
+  background-color: #025789;
+  border-color: #025789;
+  color: #ffffff;
+}
+
 /* ─── ORDENAR POR ─────────────────────────────────────────────────── */
 
 .orderByDropdown {
