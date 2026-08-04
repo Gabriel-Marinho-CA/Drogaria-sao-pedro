@@ -76,12 +76,33 @@
   min-width: 230px;
 }
 
-.flexCol--productCountCol {
-  align-items: flex-start;
+/* Linha "Ordenar Por" + "Organizar" (topo dos resultados de busca) */
+.flexRow--searchInfo {
+  margin-bottom: 1rem;
+}
+
+.flexRowContent--searchInfo {
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+
+  .stretchChildrenWidth {
+    width: auto !important
+  }
 }
 
 .flexCol--orderByCol {
-  align-items: flex-end;
+  align-items: flex-start;
+  flex: 0 0 auto;
+}
+
+.flexRow--organizar {
+  flex: 0 0 auto;
+}
+
+.flexRowContent--organizar {
+  align-items: center;
+  gap: 12px;
 }
 
 .flexCol--orderByMobileCol {

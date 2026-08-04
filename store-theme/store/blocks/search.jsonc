@@ -64,6 +64,7 @@
     "children": [
       "flex-layout.row#searchbread",
       "flex-layout.row#searchtitle",
+      "flex-layout.row#searchdescription",
       "flex-layout.row#result"
     ],
     "props": {
@@ -75,13 +76,45 @@
   "flex-layout.row#searchbread": {
     "children": ["breadcrumb.search"],
     "props": {
+      "title": "Linha - Breadcrumb",
+      "blockClass": "searchBread",
       "preserveLayoutOnMobile": true,
       "fullWidth": true
     }
   },
   "flex-layout.row#searchtitle": {
+    "props": {
+      "blockClass": "searchTitleRow"
+    },
     "children": ["search-title.v2"]
   },
+
+  /* Texto descritivo exclusivo de cada categoria/coleção.
+   * O bloco fica vazio no tema de propósito: o conteúdo é preenchido pelo
+   * Site Editor página a página (Categoria > escolher a página > este bloco),
+   * então cada categoria/coleção guarda o seu próprio texto.
+   * Como desktop e mobile apontam para o mesmo `rich-text#category-description`,
+   * o texto é editado uma única vez e aparece nos dois layouts.
+   * Estilo (Roboto 18px/24px, #242424, espaçamentos) fica por conta do dev
+   * através do handle gerado por `blockClass: "categoryDescription"`. */
+  "flex-layout.row#searchdescription": {
+    "children": ["rich-text#category-description"],
+    "props": {
+      "title": "Linha - Descrição da Categoria",
+      "blockClass": "categoryDescriptionRow",
+      "preserveLayoutOnMobile": true
+    }
+  },
+  "rich-text#category-description": {
+    "props": {
+      "title": "Texto - Descrição da Categoria",
+      "text": "",
+      "textAlignment": "LEFT",
+      "textPosition": "LEFT",
+      "blockClass": "categoryDescription"
+    }
+  },
+
   "flex-layout.row#result": {
     "children": ["flex-layout.col#filter", "flex-layout.col#content"],
     "props": {
@@ -108,21 +141,35 @@
     }
   },
   "flex-layout.row#searchinfo": {
-    "children": ["flex-layout.col#productCount", "flex-layout.row#orderByAndSwitcher"]
-  },
-  "flex-layout.row#orderByAndSwitcher": {
-    "children": ["order-by.v2", "gallery-layout-switcher"],
+    "children": ["flex-layout.col#orderBy", "flex-layout.row#organizar"],
     "props": {
-      "horizontalAlign": "right",
+      "title": "Linha - Ordenar e Organizar",
+      "blockClass": "searchInfo",
+      "verticalAlign": "middle"
+    }
+  },
+  "flex-layout.col#orderBy": {
+    "children": ["order-by.v2"],
+    "props": {
+      "blockClass": "orderByCol"
+    }
+  },
+  "flex-layout.row#organizar": {
+    "children": ["rich-text#organizar", "gallery-layout-switcher"],
+    "props": {
+      "title": "Grupo - Organizar",
+      "blockClass": "organizar",
       "preventHorizontalStretch": true,
-      "blockClass": "orderByAndSwitcher",
+      "horizontalAlign": "right",
+      "verticalAlign": "middle",
       "colGap": 3
     }
   },
-  "flex-layout.col#productCount": {
-    "children": ["total-products.v2"],
+  "rich-text#organizar": {
     "props": {
-      "blockClass": "productCountCol"
+      "title": "Texto - Organizar",
+      "text": "Organizar",
+      "blockClass": "organizarLabel"
     }
   },
   "flex-layout.row#fetchprevious": {
@@ -158,7 +205,7 @@
     "children": [
       "flex-layout.row#searchinfomobile",
       "flex-layout.row#searchbread",
-      "flex-layout.row#productCountMobile",
+      "flex-layout.row#searchdescription",
       "flex-layout.row#fetchprevious",
       "flex-layout.row#contentmobile",
       "flex-layout.row#fetchmore"
@@ -196,13 +243,6 @@
     "children": ["order-by.v2"],
     "props": {
       "blockClass": "orderByMobileCol"
-    }
-  },
-
-  "flex-layout.row#productCountMobile": {
-    "children": ["total-products.v2"],
-    "props": {
-      "blockClass": "productCountMobileRow"
     }
   },
 
@@ -272,42 +312,12 @@
     "props": {
       "name": "grid"
     },
-    "children": [
-      "icon-grid",
-      "responsive-layout.desktop#textOptionGrid"
-    ]
+    "children": ["icon-grid"]
   },
   "gallery-layout-option#list": {
     "props": {
       "name": "list"
     },
-    "children": [
-      "icon-inline-grid",
-      "responsive-layout.desktop#textOptionList"
-    ]
-  },
-  "responsive-layout.desktop#textOptionGrid": {
-    "children": [
-      "rich-text#option-grid"
-    ]
-  },
-  "responsive-layout.desktop#textOptionList": {
-    "children": [
-      "rich-text#option-list"
-    ]
-  },
-  "rich-text#option-grid": {
-    "props": {
-      "text": "Grid",
-      "textColor": "c-auto",
-      "blockClass": "layout-option"
-    }
-  },
-  "rich-text#option-list": {
-    "props": {
-      "text": "List",
-      "textColor": "c-auto",
-      "blockClass": "layout-option"
-    }
+    "children": ["icon-inline-grid"]
   }
 }

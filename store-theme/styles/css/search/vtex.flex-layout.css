@@ -1,7 +1,3 @@
-.flexRow--orderByAndSwitcher {
-  padding-right: 1.5em;
-}
-
 .flexRowContent--savingsSummaryListDesktop {
   justify-content: flex-start;
 }
@@ -31,4 +27,92 @@
 
 .flexCol--summaryUpDetailsListMobile {
   margin-bottom: 0.25rem
+}
+.flexRow--searchTitleRow {
+  :global(.vtex-store-components-3-x-container) {
+    padding: 0 !important;
+  }
+}
+:global(.vtex-search-result-3-x-orderByOptionsContaine) {
+  z-index: 4;
+}
+:global(.vtex-breadcrumb-1-x-homeIcon) {
+  display: none;
+}
+
+/* ─── BREADCRUMB DA BUSCA ─────────────────────────────────────────────
+ * Layout: "Drogaria São Pedro / Medicamentos" — tudo em #025789, com a
+ * home escrita por extenso no lugar da casinha e "/" no lugar do caret.
+ * O bloco `breadcrumb` não expõe prop nem para o rótulo da home nem para o
+ * separador, então os dois ícones do vtex.store-icons são escondidos e o
+ * texto entra por `content`. Escopo preso ao `blockClass` da linha para não
+ * afetar o breadcrumb da PDP, que tem regras próprias em pdp/. */
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-container) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  color: #025789;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.45px;
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-homeLink) :global(.vtex__icon-home) {
+  display: none;
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-homeLink) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  color: #025789;
+  text-decoration: none;
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-homeLink)::after {
+  content: 'Drogaria São Pedro';
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-arrow) :global(.vtex__icon-caret),
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-termArrow) :global(.vtex__icon-caret) {
+  display: none;
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-arrow),
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-termArrow) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0 0 .15rem;
+  margin: 0;
+  color: #025789;
+}
+:global(.vtex-breadcrumb-1-x-caretIcon) {
+  display: none;
+}
+
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-arrow)::before,
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-termArrow)::before {
+  content: '/';
+  padding: 0 6px;
+}
+
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-link),
+.flexRow--searchBread :global(.vtex-breadcrumb-1-x-term) {
+  padding: 0;
+  margin: 0;
+  color: #025789;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.45px;
+  text-transform: none;
+  text-decoration: none;
 }

@@ -1,21 +1,181 @@
+/* ─── TÍTULO DA CATEGORIA ─────────────────────────────────────────── */
+
+/*
+ * `search-title.v2` é o SearchTitleFlexible, que injeta
+ * `wrapperClass={styles['galleryTitle--layout']}` no SearchTitle — esse valor
+ * SUBSTITUI o `galleryTitle` padrão, então o <h1> sai como
+ * `galleryTitle--layout t-heading-1` e o handle base nunca aparece aqui.
+ * `.galleryTitle` fica junto só para cobrir o `search-title` v1.
+ *
+ * O `t-heading-1` do styleguide (3rem / 700 / San Francisco) continua no mesmo
+ * elemento e tem a mesma especificidade, então cada propriedade dele precisa
+ * ser redeclarada para vencer por ordem de carregamento.
+ *
+ * Mesma tipografia do título do bloco de richtext da categoria.
+ */
+.galleryTitle--layout,
+.galleryTitle {
+  margin: 0;
+  color: #242424;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 70px;
+  letter-spacing: -0.625px;
+}
+
+/* ─── ORDENAR POR ─────────────────────────────────────────────────── */
+
+.orderByDropdown {
+  width: 285px;
+  max-width: 100%;
+}
+
+.orderByButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 285px;
+  max-width: 100%;
+  height: 52px;
+  padding: 0 23px;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  border-radius: 12px;
+  color: #242424;
+  font-size: 18px;
+  letter-spacing: -0.45px;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.orderByButton:hover,
+.orderByButton:focus {
+  border-color: #025789;
+  outline: none;
+}
+
+.orderByText {
+  color: #242424;
+  font-size: 18px;
+  letter-spacing: -0.45px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: none !important;
+}
+
+.orderByOptionsContainer {
+  min-width: 285px;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.orderByOptionItem {
+  padding: 0.75rem 23px;
+  color: #242424;
+  font-size: 16px;
+}
+
+.orderByOptionItem--selected,
+.orderByOptionItem:hover {
+  color: #025789;
+}
+
+/* ─── ORGANIZAR (switcher de layout) ──────────────────────────────── */
+
+.galleryLayoutSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto !important;
+  overflow: visible;
+  border-radius: 0;
+}
+
 .galleryLayoutOptionButton {
-  background-color: #F0F0F0;
-  color: #3F3F40;
-  padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  border-radius: 12px;
+  color: #707070;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .galleryLayoutOptionButton--selected {
-  background-color: #3F3F40;
-  color: #FFFFFF;
+  background-color: #ffffff;
+  border: 2px solid #025789;
+  color: #025789;
 }
 
-.galleryLayoutSwitcher {
-  border-radius: 4px 4px 4px 4px;
-  justify-content: center;
-  overflow: hidden;
-  width: auto !important;
-  align-self: center
+/*
+ * Os ícones nativos do vtex.store-icons não têm o mesmo desenho do layout.
+ * O SVG original é escondido e o glifo do Figma é pintado por cima via mask,
+ * herdando o `color` do botão (cinza normal / azul selecionado).
+ */
+.galleryLayoutOptionButton :global(.vtex__icon-grid),
+.galleryLayoutOptionButton :global(.vtex__icon-inline-grid) {
+  /* `fill`/`stroke` herdam para os paths e vencem os atributos de apresentação
+   * do SVG nativo, apagando o desenho sem esconder a caixa que recebe a mask. */
+  fill: transparent;
+  stroke: transparent;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
+
+.galleryLayoutOptionButton :global(.vtex__icon-grid) {
+  width: 19px;
+  height: 19px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='1' y='1' width='6' height='6'/%3E%3Crect x='12' y='1' width='6' height='6'/%3E%3Crect x='1' y='12' width='6' height='6'/%3E%3Crect x='12' y='12' width='6' height='6'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='1' y='1' width='6' height='6'/%3E%3Crect x='12' y='1' width='6' height='6'/%3E%3Crect x='1' y='12' width='6' height='6'/%3E%3Crect x='12' y='12' width='6' height='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.galleryLayoutOptionButton :global(.vtex__icon-inline-grid) {
+  width: 13px;
+  height: 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'%3E%3Cg fill='none' stroke='%23000'%3E%3Cpath d='M0 .5h13M0 11.5h13'/%3E%3Crect x='.5' y='4' width='12' height='5'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'%3E%3Cg fill='none' stroke='%23000'%3E%3Cpath d='M0 .5h13M0 11.5h13'/%3E%3Crect x='.5' y='4' width='12' height='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ─── MOBILE ──────────────────────────────────────────────────────── */
+
+@media only screen and (max-width: 639px) {
+  .orderByDropdown,
+  .orderByButton {
+    width: 100%;
+  }
+
+  .orderByButton {
+    height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .orderByText {
+    font-size: 14px;
+  }
+
+  .galleryLayoutOptionButton {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ─── GALERIA ─────────────────────────────────────────────────────── */
 
 .galleryItem--list {
   border-bottom: 1px #E7E9EE solid;
