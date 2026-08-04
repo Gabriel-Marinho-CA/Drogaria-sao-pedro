@@ -247,10 +247,14 @@
     ]
   },
   "search-result-layout.mobile": {
+    /* Mesma ordem do desktop: breadcrumb, título, descrição e só então as
+     * ações. `searchtitle` e `searchdescription` são os MESMOS blocos usados no
+     * desktop, então o conteúdo é idêntico sem duplicar configuração. */
     "children": [
-      "flex-layout.row#searchinfomobile",
       "flex-layout.row#searchbread",
+      "flex-layout.row#searchtitle",
       "flex-layout.row#searchdescription",
+      "flex-layout.row#searchinfomobile",
       "flex-layout.row#fetchprevious",
       "flex-layout.row#contentmobile",
       "flex-layout.row#fetchmore"
@@ -269,19 +273,23 @@
       "search-content"
     ],
     "props": {
-      "preserveLayoutOnMobile": true
+      "preserveLayoutOnMobile": true,
+      "blockClass":"content-wrapper-mobile"
     }
   },
+  /* No layout mobile a linha tem só dois controles, nessa ordem: "Filtros" e
+   * "Ordenar Por". O `gallery-layout-switcher` saiu — ver observação na
+   * entrega; para voltar, basta reincluir "flex-layout.col#switcherMobile". */
   "flex-layout.row#searchinfomobile": {
+    "title": "Linha - Filtros e Ordenar (mobile)",
     "children": [
-      "flex-layout.col#orderByMobile",
       "flex-layout.col#filterMobile",
-      "flex-layout.col#switcherMobile"
+      "flex-layout.col#orderByMobile"
     ],
     "props": {
+      "blockClass": "searchInfoMobile",
       "preserveLayoutOnMobile": true,
-      "colSizing": "auto",
-      "colJustify": "around"
+      "colSizing": "auto"
     }
   },
   "flex-layout.col#orderByMobile": {
@@ -320,6 +328,15 @@
     ],
     "props": {
       "fullWidth": true
+    }
+  },
+  /* `showOnMobile` precisa estar no MESMO bloco que é renderizado
+   * (`breadcrumb.search`, usado em `flex-layout.row#searchbread`). Sem ele o
+   * vtex.breadcrumb aplica `dn db-ns` no container e o breadcrumb some no
+   * mobile. Manter também em `breadcrumb` para qualquer uso do bloco base. */
+  "breadcrumb.search": {
+    "props": {
+      "showOnMobile": true
     }
   },
   "breadcrumb": {
@@ -375,5 +392,5 @@
     "children": [
       "icon-inline-grid"
     ]
-  }
+  } 
 }

@@ -115,6 +115,10 @@
 
 .flexRow--searchBread {
   padding-block: 2rem 3rem;
+
+  @media (max-width: 750px) {
+    padding-block: 1rem 2rem;
+  }
 }
 
 .flexRow--searchBread :global(.vtex-breadcrumb-1-x-link),
@@ -129,13 +133,20 @@
   letter-spacing: -0.45px;
   text-transform: none;
   text-decoration: none;
+
+
+  @media (max-width: 750px) {
+    font-size: 14px;
+    line-height: 1.2;
+  }
 }
 
 .flexRow--search--info--wrapper {
   padding-top: 4rem;
 }
+
 .flexCol--filterCol {
-  margin-top: 66px;
+  margin-top: 97px
 }
 
 :global(.vtex-search-result-3-x-filter__container--title) {
@@ -144,6 +155,38 @@
 
 :global(.vtex-search-result-3-x-gallery) {
   padding-left: .85rem !important;
+
+  @media (max-width:750px) {
+    padding: 0 !important;
+  }
+}
+
+.flexRow--content-wrapper-mobile {
+  :global(.vtex-store-components-3-x-container) {
+
+    @media (max-width:750px) {
+      padding: 0 !important;
+
+    }
+  }
+}
+
+.flexRow--searchInfoMobile {
+  @media (max-width:750px) {
+    margin-block: 2rem;
+    gap: .85rem;
+
+
+    .flexRowContent--searchInfoMobile {
+      .stretchChildrenWidth {
+        width: 50% !important;
+      }
+    }
+
+    :global(.vtex-store-components-3-x-container) {
+      padding: 0 !important;
+    }
+  }
 }
 
 :global(.vtex-search-result-3-x-galleryItem) {
@@ -159,4 +202,28 @@
       border: none !important;
     }
   }
+
+  @media (max-width:750px) {
+
+    :global(.vtex-product-price-1-x-listPriceValue--summary),
+    :global(.vtex-product-price-1-x-currencyCode--summary),
+    :global(.vtex-product-price-1-x-currencyDecimals--summary) {
+      font-size: 10px;
+    }
+
+    :global(.vtex-product-price-1-x-currencyInteger--summary) {
+      font-size: 27px;
+    }
+
+    :global(.vtex-product-price-1-x-savings--summary) {
+      font-size: 9px;
+    }
+    :global(.vtex-product-summary-2-x-element) {
+      padding-inline: .55rem;
+    }
+  }
+}
+
+:global(.vtex-search-result-3-x-searchResultContainer) {
+  margin-bottom: 3rem;
 }

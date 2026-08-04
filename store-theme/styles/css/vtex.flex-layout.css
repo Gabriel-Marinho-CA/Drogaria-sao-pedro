@@ -78,7 +78,7 @@
 
 /* Linha "Ordenar Por" + "Organizar" (topo dos resultados de busca) */
 .flexRow--searchInfo {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .flexRowContent--searchInfo {

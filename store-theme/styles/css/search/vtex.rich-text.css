@@ -15,4 +15,9 @@
   line-height: 24px;
   /* 133.333% */
   letter-spacing: -0.45px;
+
+  @media (max-width:750px) {
+    font-size: 14px;
+    line-height: 1.3;
+  }
 }
