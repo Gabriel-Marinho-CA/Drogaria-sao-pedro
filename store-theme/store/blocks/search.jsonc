@@ -155,7 +155,10 @@
    * efeito de "passar para o lado"); com "collapsible" cada filtro abre um
    * accordion no lugar, um embaixo do outro, igual ao desktop. */
   "filter-navigator.v3": {
-    "children": [
+    /* `blocks` e não `children`: a interface do filter-navigator.v3 declara
+     * composição `blocks`, e usar `children` quebra o build com
+     * "Composition mismatch". */
+    "blocks": [
       "sidebar-close-button"
     ],
     "props": {

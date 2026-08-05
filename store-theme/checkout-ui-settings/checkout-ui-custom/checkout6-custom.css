@@ -1,0 +1,835 @@
+/* Content copied from "checkout5-custom.css" at 2019-03-01T05:12:59.334Z */
+
+/* /files/checkout5-custom.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto:wght@400;500;700&display=swap');
+
+/* Displays the option to enter a foreign document */
+.document-box {
+    display: block;
+}
+
+/* Displays the option to enter an international phone */
+.phone-box {
+    display: block;
+}
+
+/* ==========================================================================
+   Carrinho (/cart) — lista de itens
+   Figma desktop: node 2072-362 | Figma mobile: node 2072-363
+   ========================================================================== */
+
+/* ---------- Estrutura da tabela: vira lista flex/grid ---------- */
+
+.container {
+    max-width: 1440px;
+}
+
+.cart .cart-items,
+.cart .cart-items tbody {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: 0;
+}
+
+/* O layout do Figma nao tem cabecalho de colunas */
+.cart .cart-items thead {
+    display: none;
+}
+
+/* Em algumas versoes o template do checkout envolve os <td> nesta div.
+   `display: contents` faz os <td> participarem do flex/grid da linha. */
+.cart .cart-items .v-custom-product-item-wrap {
+    display: contents;
+}
+
+.cart .cart-items tbody tr.product-item {
+    border: 0;
+    border-bottom: 1px solid #e0e0e0;
+    background: none;
+}
+
+.cart .cart-items tbody tr.product-item:last-child {
+    border-bottom: 0;
+}
+
+.cart .cart-items tbody tr.product-item>td,
+.cart .cart-items .v-custom-product-item-wrap>td {
+    border: 0;
+    background: none;
+    vertical-align: middle;
+}
+
+/* Coluna de entrega nao existe no layout novo */
+.cart .cart-items td.shipping-date {
+    display: none !important;
+}
+
+/* ---------- Imagem ---------- */
+
+.cart .cart-items td.product-image {
+    padding: 0;
+}
+
+.cart .cart-items td.product-image a {
+    display: block;
+}
+
+.cart .cart-items td.product-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ---------- Nome do produto ---------- */
+
+.cart .cart-items td.product-name a {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #707070;
+    text-decoration: none;
+}
+
+.cart .cart-items td.product-name a:hover {
+    text-decoration: underline;
+}
+
+/* Marca / vendedor / descricoes de desconto nao aparecem no layout */
+.cart .cart-items td.product-name .brand,
+.cart .cart-items td.product-name .seller,
+.cart .cart-items td.product-name .item-discount-descriptions {
+    display: none;
+}
+
+/* ---------- Precos ---------- */
+
+.cart .cart-items td.product-price {
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+
+    @media (min-width: 979px) {
+        margin-left: auto !important;
+
+    }
+
+}
+
+body {
+    background: #fff !important;
+}
+
+.cart-template.full-cart.span12.active {
+    gap: 3rem;
+
+    >div {
+        flex: 1;
+    }
+
+    #cartLoadedDiv {
+        width: 100%;
+        flex: 1;
+    }
+
+    .summary-template-holder {
+        flex: 1;
+        max-width: 370px;
+    }
+}
+
+/* rotulos "De" e "Por" e o <br> do template */
+.cart .cart-items td.product-price .old-product-price-label,
+.cart .cart-items td.product-price .new-product-price-label,
+.cart .cart-items td.product-price br,
+.cart .cart-items td.product-price .new-product-real-price-per-unit {
+    display: none !important;
+}
+
+.cart .cart-items td.product-price .list-price {
+    display: block;
+}
+
+.cart .cart-items td.product-price .old-product-price {
+    color: #707070;
+    opacity: 0.5;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.cart .cart-items td.product-price .best-price {
+    display: block;
+}
+
+.cart .cart-items td.product-price .new-product-price {
+    color: #242424;
+    font-weight: 400;
+}
+
+/* ---------- Seletor de quantidade (pilula) ---------- */
+
+.cart .cart-items td.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    background: #fff;
+    padding: 0;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+.cart .cart-items td.quantity input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    text-align: center;
+    color: #242424;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+.cart .cart-items td.quantity input:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.cart .cart-items td.quantity .item-quantity-change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    color: #707070;
+    text-decoration: none;
+    line-height: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.cart .cart-items td.quantity .item-quantity-change:hover {
+    color: #242424;
+}
+
+.cart .cart-items td.quantity .item-quantity-change.disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* Troca os icones do checkout pelos sinais "-" e "+" do layout */
+.cart .cart-items td.quantity .item-quantity-change .icon {
+    display: none;
+}
+
+.cart .cart-items td.quantity .item-quantity-change-decrement::before {
+    content: '\2013';
+}
+
+.cart .cart-items td.quantity .item-quantity-change-increment::before {
+    content: '+';
+    color: #242424;
+}
+
+.cart .cart-items td.quantity .item-multiplier-label,
+.cart .cart-items td.quantity .item-unit-label {
+    display: none;
+}
+
+/* ---------- Total da linha ---------- */
+
+.cart .cart-items td.quantity-price {
+    padding: 0;
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cart .cart-items td.quantity-price .total-selling-price {
+    color: #242424;
+    font-weight: 700;
+}
+
+/* ---------- Remover item (lixeira) ---------- */
+
+.cart .cart-items td.item-remove {
+    padding: 0;
+    text-align: right;
+}
+
+.cart .cart-items td.item-remove .item-link-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.cart .cart-items td.item-remove .item-link-remove .icon-remove {
+    display: none;
+}
+
+.cart .cart-items td.item-remove .item-link-remove::before {
+    content: '';
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* ==========================================================================
+   Desktop (>= 980px)
+   ========================================================================== */
+
+@media (min-width: 980px) {
+    .cart .cart-items tbody tr.product-item {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 34px 0;
+    }
+
+    .cart .cart-items td.product-image {
+        flex: 0 0 139px;
+        width: 139px;
+    }
+
+    .cart .cart-items td.product-name {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 0;
+        max-width: 358px;
+    }
+
+    .cart .cart-items td.product-name a {
+        max-width: 263px;
+        font-size: 16px;
+        line-height: 17px;
+    }
+
+    .cart .cart-items td.product-price {
+        flex: 0 0 110px;
+    }
+
+    .cart .cart-items td.product-price .old-product-price {
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .cart .cart-items td.product-price .new-product-price {
+        font-size: 20px;
+        line-height: 31px;
+        letter-spacing: -0.6px;
+    }
+
+    .cart .cart-items td.quantity {
+        flex: 0 0 134px;
+        width: 134px;
+        height: 46px;
+        padding: 0 6px;
+    }
+
+    .cart .cart-items td.quantity input {
+        font-size: 18px;
+    }
+
+    .cart .cart-items td.quantity .item-quantity-change {
+        width: 30px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .cart .cart-items td.quantity-price {
+        flex: 0 0 120px;
+    }
+
+    .cart .cart-items td.quantity-price .total-selling-price {
+        font-size: 20px;
+        line-height: 31px;
+        letter-spacing: -0.6px;
+    }
+
+    .cart .cart-items td.item-remove {
+        flex: 0 0 20px;
+    }
+
+    .cart .cart-items td.item-remove .item-link-remove::before {
+        width: 17px;
+        height: 19px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16.808' height='18.6755' viewBox='0 0 16.808 18.6755' fill='none'%3E%3Cpath d='M0.933773 2.80133H3.73511V1.86755C3.73511 0.836133 4.57124 0 5.60266 0H11.2053C12.2367 0 13.0729 0.836133 13.0729 1.86755V2.80133H15.8742C16.3899 2.80133 16.808 3.2194 16.808 3.73511C16.808 4.25082 16.3899 4.66889 15.8742 4.66889H14.9404V16.808C14.9404 17.8394 14.1043 18.6755 13.0729 18.6755H3.73511C2.70368 18.6755 1.86755 17.8394 1.86755 16.808V4.66889H0.933773C0.418068 4.66889 0 4.25082 0 3.73511C0 3.2194 0.418068 2.80133 0.933773 2.80133ZM3.73511 4.66889V16.808H13.0729V4.66889H3.73511ZM5.60266 2.80133H11.2053V1.86755H5.60266V2.80133ZM5.60266 6.53644H7.47021V14.9404H5.60266V6.53644ZM9.33776 6.53644H11.2053V14.9404H9.33776V6.53644Z' fill='%23025789'/%3E%3C/svg%3E");
+    }
+}
+
+/* ==========================================================================
+   Mobile (<= 979px)
+   ========================================================================== */
+
+@media (max-width: 979px) {
+    .cart .cart-items tbody tr.product-item {
+        display: grid;
+        grid-template-columns: 104px minmax(0, 1fr) auto;
+        grid-template-areas:
+            'image  name   remove'
+            'qty    price  total';
+        align-items: center;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 20px 0;
+    }
+
+    .cart .cart-items td.product-image {
+        grid-area: image;
+        align-self: start;
+        width: 101px;
+    }
+
+    .cart .cart-items td.product-name {
+        grid-area: name;
+        align-self: start;
+        padding: 0;
+    }
+
+    .cart .cart-items td.product-name a {
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .cart .cart-items td.product-price {
+        grid-area: price;
+        align-self: center;
+    }
+
+    .cart .cart-items td.product-price .old-product-price {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .cart .cart-items td.product-price .new-product-price {
+        font-size: 13px;
+        line-height: 23px;
+        letter-spacing: -0.39px;
+    }
+
+    .cart .cart-items td.quantity {
+        grid-area: qty;
+        width: 104px;
+        height: 28px;
+        padding: 0 4px;
+    }
+
+    .cart .cart-items td.quantity input {
+        font-size: 13px;
+    }
+
+    .cart .cart-items td.quantity .item-quantity-change {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+
+    .cart .cart-items td.quantity-price {
+        grid-area: total;
+        align-self: center;
+    }
+
+    .cart .cart-items td.quantity-price .total-selling-price {
+        font-size: 13px;
+        line-height: 23px;
+        letter-spacing: -0.39px;
+    }
+
+    .cart .cart-items td.item-remove {
+        grid-area: remove;
+        align-self: start;
+    }
+
+    /* No mobile a lixeira fica dentro de um circulo cinza */
+    .cart .cart-items td.item-remove .item-link-remove {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: #e0e0e0;
+    }
+
+    .cart .cart-items td.item-remove .item-link-remove::before {
+        width: 11px;
+        height: 13px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.1299' height='12.3665' viewBox='0 0 11.1299 12.3665' fill='none'%3E%3Cpath d='M0.618324 1.85498H2.47331V1.23665C2.47331 0.55367 3.02697 0 3.70996 0H7.41992C8.10291 0 8.65657 0.55367 8.65657 1.23665V1.85498H10.5116C10.8531 1.85498 11.1299 2.13181 11.1299 2.47331C11.1299 2.8148 10.8531 3.09164 10.5116 3.09164H9.89323V11.1299C9.89323 11.8129 9.33956 12.3665 8.65657 12.3665H2.47331C1.79032 12.3665 1.23666 11.8129 1.23666 11.1299V3.09164H0.618324C0.276836 3.09164 0 2.8148 0 2.47331C0 2.13181 0.276836 1.85498 0.618324 1.85498ZM2.47331 3.09164V11.1299H8.65657V3.09164H2.47331ZM3.70996 1.85498H7.41992V1.23665H3.70996V1.85498ZM3.70996 4.32829H4.94661V9.89323H3.70996V4.32829ZM6.18327 4.32829H7.41992V9.89323H6.18327V4.32829Z' fill='%23707070'/%3E%3C/svg%3E");
+    }
+}
+
+/* ==========================================================================
+   Resumo do pedido (summary-template-holder)
+   Figma: node 2073-368
+   ========================================================================== */
+
+/* Os dois blocos do resumo viram cards brancos arredondados.
+   A largura e travada em 320px (medida do Figma) e alinhada a direita: assim
+   o card casa com o .cart-links-bottom, que e um bloco irmao fora desta coluna
+   e nao tem como herdar a largura dela via CSS. */
+.summary .cart-totalizers .summary-coupon-wrap,
+.summary .cart-totalizers .accordion-group {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+}
+
+/* ---------- Card 1: Cupom de Desconto ---------- */
+
+.summary .cart-totalizers .summary-coupon-wrap {
+    position: relative;
+    /* o topo abre espaco para o titulo gerado via ::before */
+    padding: 54px 37px 23px 35px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* O CSS base do checkout esconde .coupon-label, entao o titulo e o icone
+   sao gerados aqui em vez de depender do markup do template. */
+.summary .cart-totalizers .summary-coupon-wrap::before {
+    content: 'Cupom de Desconto';
+    position: absolute;
+    left: 35px;
+    top: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #242424;
+}
+
+.summary .cart-totalizers .summary-coupon-wrap::after {
+    content: '';
+    position: absolute;
+    right: 37px;
+    top: 23px;
+    width: 23px;
+    height: 17px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23.1158' height='16.2265' viewBox='0 0 23.1158 16.2265' fill='none'%3E%3Cpath d='M14.4202 13.2652C13.1244 13.2652 12.0703 12.2214 12.0703 10.9382C12.0703 9.65512 13.1244 8.61127 14.4202 8.61127C15.7159 8.61127 16.7701 9.65512 16.7701 10.9382C16.7701 12.2214 15.7159 13.2652 14.4202 13.2652ZM14.4202 9.97102C13.8742 9.97102 13.4301 10.4049 13.4301 10.9382C13.4301 11.4715 13.8742 11.9055 14.4202 11.9055C14.9662 11.9055 15.4103 11.4715 15.4103 10.9382C15.4103 10.4049 14.9662 9.97102 14.4202 9.97102Z' fill='%23EC1F25'/%3E%3Cpath d='M8.75193 7.7296C7.42513 7.7296 6.3457 6.66083 6.3457 5.3472C6.3457 4.03346 7.42513 2.96469 8.75193 2.96469C10.0786 2.96469 11.158 4.03346 11.158 5.3472C11.158 6.66083 10.0786 7.7296 8.75193 7.7296ZM8.75193 4.32445C8.17496 4.32445 7.70546 4.78328 7.70546 5.3472C7.70546 5.91112 8.17496 6.36985 8.75193 6.36985C9.3289 6.36985 9.79829 5.91112 9.79829 5.3472C9.79829 4.78328 9.3289 4.32445 8.75193 4.32445Z' fill='%23EC1F25'/%3E%3Cpath d='M7.74593 13.3896C7.5918 13.3896 7.43689 13.3375 7.30951 13.2307C7.02178 12.9895 6.98404 12.5607 7.22531 12.2728L14.8097 3.22644C15.0509 2.93872 15.4796 2.90097 15.7675 3.14224C16.0552 3.38352 16.0929 3.81233 15.8517 4.10006L8.26732 13.1465C8.13287 13.3069 7.94011 13.3896 7.74593 13.3896Z' fill='%23EC1F25'/%3E%3Cpath d='M20.2918 16.2265H2.82644C1.26795 16.2265 0 14.9532 0 13.388V11.1712C0 10.7957 0.304368 10.4913 0.679878 10.4913C1.98176 10.4913 3.04096 9.42452 3.04096 8.11328C3.04096 6.80204 1.98176 5.73523 0.679878 5.73523C0.304368 5.73523 0 5.43086 0 5.05535V2.83852C0 1.27338 1.26795 0 2.82644 0H20.2917C21.849 0 23.1158 1.2723 23.1158 2.83602V5.05535C23.1158 5.43086 22.8115 5.73523 22.436 5.73523C21.134 5.73523 20.0748 6.80204 20.0748 8.11328C20.0748 9.42452 21.134 10.4913 22.436 10.4913C22.8115 10.4913 23.1158 10.7957 23.1158 11.1712V13.3904C23.1158 14.9543 21.849 16.2265 20.2918 16.2265ZM1.35976 11.7885V13.388C1.35976 14.2034 2.01766 14.8667 2.82644 14.8667H20.2918C21.0993 14.8667 21.7561 14.2044 21.7561 13.3904V11.7885C20.0279 11.4667 18.715 9.94112 18.715 8.11328C18.715 6.28544 20.0279 4.75991 21.7561 4.43802V2.83602C21.7561 2.02201 21.0992 1.35976 20.2917 1.35976H2.82644C2.01777 1.35976 1.35976 2.0231 1.35976 2.83852V4.43802C3.08784 4.75991 4.40071 6.28544 4.40071 8.11328C4.40071 9.94112 3.08784 11.4667 1.35976 11.7885Z' fill='%23EC1F25'/%3E%3C/svg%3E");
+}
+
+.summary .cart-totalizers .summary-coupon,
+.summary .cart-totalizers .coupon-form,
+.summary .cart-totalizers .coupon-fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+/* O template alterna entre o link "Adicionar cupom" e o campo.
+   O layout novo mostra o campo sempre aberto. */
+.summary .cart-totalizers .coupon-fieldset>div[data-bind*="isUsingCoupon"] {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.coupon-fields {
+    >span {
+        height: 100% !important;
+
+        input {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+}
+
+.summary .cart-totalizers .coupon-data {
+    display: none !important;
+}
+
+/* O titulo real do template fica escondido: quem desenha e o ::before acima */
+.summary .cart-totalizers .coupon-label {
+    display: none !important;
+}
+
+/* Campo do cupom: pilula com botao circular azul */
+.summary .cart-totalizers .coupon-fields {
+    margin: 0;
+}
+
+.summary .cart-totalizers .coupon-fields>span {
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 34px;
+    border: 1px solid #e0e0e0;
+    border-radius: 22px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.summary .cart-totalizers .coupon-fields .coupon-value {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0 10px 0 25px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    color: #242424;
+}
+
+.summary .cart-totalizers .coupon-fields .coupon-value:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.summary .cart-totalizers .coupon-fields .coupon-value::placeholder {
+    color: #e0e0e0;
+    opacity: 1;
+}
+
+.summary .cart-totalizers .coupon-fields .loading-coupon {
+    align-self: center;
+    margin-right: 6px;
+}
+
+/* Botao "Adicionar" vira o circulo azul com a seta */
+.summary .cart-totalizers .coupon-fields #cart-coupon-add {
+    flex: 0 0 40px;
+    width: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 22px;
+    box-shadow: none;
+    text-shadow: none;
+    background-color: #025789;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 5px 8px;
+    /* esconde o texto "Adicionar" mantendo o botao acessivel */
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    cursor: pointer;
+}
+
+.summary .cart-totalizers .coupon-fields #cart-coupon-add:hover,
+.summary .cart-totalizers .coupon-fields #cart-coupon-add:focus {
+    background-color: #01466e;
+}
+
+/* Cupom ja aplicado */
+.summary .cart-totalizers .coupon-fields .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    min-height: 34px;
+    padding: 0 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #242424;
+}
+
+/* ---------- Card 2: Resumo do Pedido ---------- */
+
+/* O botao fica num bloco irmao (.cart-links-bottom), fora do summary-template-holder.
+   Por isso o card e "emendado": o accordion-group fecha as bordas de cima e o
+   .cart-links-bottom fecha as de baixo, formando um card unico. */
+.summary .cart-totalizers .accordion-group {
+    position: relative;
+    /* o topo abre espaco para o titulo gerado via ::before */
+    padding: 67px 35px 20px;
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 0;
+}
+
+/* Mesmo caso do cupom: o CSS base esconde .accordion-heading no desktop */
+.summary .cart-totalizers .accordion-group::before {
+    content: 'Resumo do Pedido';
+    position: absolute;
+    left: 35px;
+    top: 28px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #242424;
+}
+
+.summary .cart-totalizers .accordion-heading {
+    display: none !important;
+}
+
+.summary {
+    margin-bottom: 0;
+}
+
+.summary .cart-totalizers .accordion-body,
+.summary .cart-totalizers .accordion-inner {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+/* ---------- Linhas de totalizadores ---------- */
+
+.summary .cart-totalizers .accordion-inner table.table {
+    width: 100%;
+    margin: 0;
+    border: 0 !important;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* o checkout aplica bordas proprias nas celulas; aqui elas sao zeradas
+   e so o divisor do "Total" e redesenhado */
+.summary .cart-totalizers .accordion-inner table.table tbody,
+.summary .cart-totalizers .accordion-inner table.table tfoot,
+.summary .cart-totalizers .accordion-inner table.table tr,
+.summary .cart-totalizers .accordion-inner table.table td {
+    border: 0 !important;
+    background: none !important;
+}
+
+.summary .cart-totalizers .accordion-inner table.table td {
+    padding: 7px 0;
+    font-size: 14px;
+    line-height: 17px;
+    color: #242424;
+    vertical-align: middle;
+}
+
+.summary .cart-totalizers .accordion-inner table.table td.info {
+    text-align: left;
+}
+
+.summary .cart-totalizers .accordion-inner table.table td.monetary {
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* celulas de espacamento do template nao sao usadas no layout novo */
+.summary .cart-totalizers .accordion-inner table.table td.space,
+.summary .cart-totalizers .accordion-inner table.table td.empty {
+    display: none !important;
+}
+
+.summary .cart-totalizers .accordion-inner .shipping-calculate-link {
+    color: #025789;
+    text-decoration: none;
+}
+
+.summary .cart-totalizers .accordion-inner .shipping-calculate-link:hover {
+    text-decoration: underline;
+}
+
+/* Linha "Total", separada por um divisor */
+.summary .cart-totalizers .accordion-inner table.table tfoot td {
+    padding-top: 20px;
+    padding-bottom: 0;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #242424;
+}
+.summary .cart-totalizers .accordion-inner table.table tfoot {
+    border-top: 1px solid #e0e0e0 !important;
+}
+
+/* espaco entre a ultima linha e o divisor */
+.summary .cart-totalizers .accordion-inner table.table tbody:last-of-type td {
+    padding-bottom: 20px;
+}
+
+/* ---------- Rodape do card: botao "Comprar" ---------- */
+
+.cart-template .cart-links-bottom {
+    box-sizing: border-box;
+    float: right;
+    clear: both;
+    margin: 0;
+    padding: 0 35px 26px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
+    /* mesma largura fixa dos cards acima, tambem alinhado a direita */
+    width: 320px;
+    max-width: 100%;
+}
+
+/* O layout nao mostra estes links dentro do card */
+.cart-template .cart-links-bottom .link-choose-more-products-wrapper,
+.cart-template .cart-links-bottom .link-print-cart-wrapper {
+    display: none !important;
+}
+
+.cart-template .cart-links-bottom .btn-place-order-wrapper {
+    display: block;
+}
+
+@media (max-width: 979px) {
+
+    .summary .cart-totalizers .summary-coupon-wrap,
+    .summary .cart-totalizers .accordion-group,
+    .cart-template .cart-links-bottom {
+        float: none;
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+    }
+}
+
+.cart-links-bottom .btn-place-order,
+.summary .cart-totalizers .btn-place-order {
+    display: block !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    float: none !important;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 22px;
+    box-shadow: none;
+    text-shadow: none;
+    background: #025789;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    /* o template escreve "Continuar pagamento"; o layout pede "Comprar" */
+    font-size: 0;
+}
+
+.cart-links-bottom .btn-place-order::after,
+.summary .cart-totalizers .btn-place-order::after {
+    content: 'Comprar';
+    font-size: 18px;
+}
+
+.cart-links-bottom .btn-place-order:hover,
+.cart-links-bottom .btn-place-order:focus,
+.summary .cart-totalizers .btn-place-order:hover,
+.summary .cart-totalizers .btn-place-order:focus {
+    background: #01466e;
+    color: #fff;
+}
