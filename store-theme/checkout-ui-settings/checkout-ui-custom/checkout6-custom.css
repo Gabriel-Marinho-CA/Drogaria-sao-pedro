@@ -1486,3 +1486,394 @@ body .summary-template-holder .cart-more-options {
         line-height: 16px;
     }
 }
+
+/* ==========================================================================
+   Prateleiras de recomendacao no carrinho
+   Figma desktop: node 1-5470 | Figma mobile: node 1-11363
+   Markup: gerado em checkout6-custom.js pelos custom elements
+   <dsp-showcase> (titulo + carrossel) e <dsp-product-card> (o card).
+
+   Os componentes usam light DOM justamente para serem vestidos daqui.
+   O CSS do Swiper vem do CDN (carregado pelo script); aqui ficam so os
+   ajustes de layout, o card e o fallback para quando o Swiper nao carrega.
+   ========================================================================== */
+
+.dsp-shelves {
+    box-sizing: border-box;
+    display: block;
+    max-width: 1320px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dsp-shelves *,
+.dsp-shelves *::before,
+.dsp-shelves *::after {
+    box-sizing: border-box;
+}
+
+.dsp-showcase {
+    display: block;
+    margin-bottom: 40px;
+}
+
+.dsp-showcase__title {
+    margin: 0 0 16px;
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 400;
+    letter-spacing: -0.625px;
+    color: #242424;
+}
+
+.dsp-showcase__carousel {
+    overflow: hidden;
+}
+
+/* slides com a mesma altura: quem manda no tamanho e o card */
+.dsp-showcase__slide {
+    height: auto;
+}
+
+/* ---------- Fallback: Swiper indisponivel ----------
+   Vira uma faixa com scroll horizontal nativo. */
+
+.dsp-showcase--plain .dsp-showcase__carousel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dsp-showcase--plain .dsp-showcase__track {
+    display: flex;
+    gap: 2px;
+}
+
+.dsp-showcase--plain .dsp-showcase__slide {
+    flex: 0 0 217px;
+}
+
+.dsp-showcase--plain .dsp-showcase__dots {
+    display: none;
+}
+
+/* ---------- Paginacao (so no mobile, como no Figma) ---------- */
+
+.dsp-showcase__dots {
+    display: none;
+}
+
+.dsp-showcase .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #e0e0e0;
+    opacity: 1;
+}
+
+.dsp-showcase .swiper-pagination-bullet-active {
+    background: #ec1f25;
+}
+
+/* ---------- Card ---------- */
+
+.dsp-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 398px;
+    padding: 9px 13px 16px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+/* Faixa da promocao. O bloco existe mesmo sem teaser para que as imagens
+   fiquem na mesma linha em todos os cards da prateleira. */
+.dsp-card__top {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    margin-bottom: 8px;
+}
+
+.dsp-card__ribbon {
+    display: block;
+    width: 100%;
+    padding: 7px 4px;
+    border-radius: 5px;
+    background: #ec1f25;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dsp-card__image {
+    display: block;
+    height: 153px;
+}
+
+.dsp-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.dsp-card__name {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 57px;
+    margin-top: 8px;
+    color: #707070;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+}
+
+.dsp-card__prices {
+    margin-top: 12px;
+}
+
+/* "de" riscado + selo de desconto dividem a mesma linha */
+.dsp-card__prices-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 24px;
+}
+
+.dsp-card__list-price {
+    margin: 0;
+    color: #707070;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.dsp-card__discount {
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: #fcebc9;
+    color: #242424;
+    font-size: 10px;
+    line-height: 13px;
+    white-space: nowrap;
+}
+
+.dsp-card__discount--high {
+    background: #ec1f25;
+    color: #fff;
+}
+
+.dsp-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
+    margin: 0;
+    color: #242424;
+    letter-spacing: -0.39px;
+}
+
+.dsp-card__currency,
+.dsp-card__cents {
+    font-size: 13px;
+    line-height: 36px;
+}
+
+.dsp-card__integer {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: -0.96px;
+}
+
+/* ---------- Variante "Leve N itens por" ---------- */
+
+.dsp-card__teaser-label {
+    margin: 0;
+    color: #242424;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+.dsp-card__price--teaser {
+    color: #ec1f25;
+}
+
+.dsp-card__unit {
+    margin: 0;
+    color: #242424;
+    font-size: 13px;
+    line-height: 16px;
+    opacity: 0.5;
+}
+
+/* ---------- Botao ---------- */
+
+.dsp-card__buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    height: 31px;
+    margin-top: auto;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 16px;
+    background: #025789;
+    color: #fff;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dsp-card__buy:hover,
+.dsp-card__buy:focus {
+    background: #01466e;
+    color: #fff;
+}
+
+.dsp-card__buy[disabled] {
+    cursor: default;
+}
+
+.dsp-card--loading .dsp-card__buy {
+    opacity: 0.6;
+}
+
+.dsp-card__basket {
+    flex: none;
+    width: 15px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14.9202' height='13.0553' viewBox='0 0 14.9202 13.0553' fill='none'%3E%3Cpath d='M3.73047 8.39278C3.73047 7.87776 4.14797 7.46027 4.66298 7.46027C5.17799 7.46027 5.59549 7.87776 5.59549 8.39278V10.2578C5.59549 10.7728 5.17799 11.1903 4.66298 11.1903C4.14797 11.1903 3.73047 10.7728 3.73047 10.2578V8.39278ZM6.528 8.39278C6.528 7.87776 6.9455 7.46027 7.46051 7.46027C7.97552 7.46027 8.39302 7.87776 8.39302 8.39278V10.2578C8.39302 10.7728 7.97552 11.1903 7.46051 11.1903C6.9455 11.1903 6.528 10.7728 6.528 10.2578V8.39278ZM9.32553 8.39278C9.32553 7.87776 9.74303 7.46027 10.258 7.46027C10.7731 7.46027 11.1906 7.87776 11.1906 8.39278V10.2578C11.1906 10.7728 10.773 11.1903 10.258 11.1903C9.74303 11.1903 9.32553 10.7728 9.32553 10.2578V8.39278Z' fill='white'/%3E%3Cpath d='M5.36846 0.0663944C5.58944 0.198723 5.66126 0.485165 5.52885 0.706097L3.15468 4.66274H11.7655L9.39038 0.706097C9.25802 0.485158 9.32983 0.198752 9.55077 0.0663944C9.77171 -0.0659632 10.0581 0.00584654 10.1905 0.226787L12.8528 4.66274H14.4539C14.7114 4.66274 14.9202 4.87149 14.9202 5.12899V6.06151C14.9202 6.31901 14.7114 6.52776 14.4539 6.52776H13.873L12.1534 12.548C12.0676 12.8486 11.7927 13.0557 11.4801 13.0553L3.44096 13.0553C3.1284 13.0557 2.85354 12.8486 2.76769 12.548L1.04721 6.52776H0.466255C0.20875 6.52776 0 6.31901 0 6.06151V5.12899C0 4.87149 0.20875 4.66274 0.466255 4.66274H2.06738L4.72783 0.226786C4.86016 0.00580649 5.14753 -0.0660138 5.36846 0.0663944ZM2.01702 6.52776L3.61534 12.1228H11.3048L12.9031 6.52776H2.01702Z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* ==========================================================================
+   Prateleiras - mobile (<= 979px)
+   ========================================================================== */
+
+@media (max-width: 979px) {
+    .dsp-shelves {
+        margin-top: 24px;
+        padding: 0 16px;
+    }
+
+    .dsp-showcase {
+        margin-bottom: 24px;
+    }
+
+    .dsp-showcase__title {
+        margin-bottom: 12px;
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: -0.5px;
+    }
+
+    /* os dots ficam abaixo da faixa, e nao sobre os cards */
+    .dsp-showcase__dots {
+        display: block;
+    }
+
+    .dsp-showcase .swiper-horizontal > .swiper-pagination-bullets,
+    .dsp-showcase .swiper-pagination-horizontal {
+        position: static;
+        margin-top: 14px;
+    }
+
+    .dsp-showcase--plain .dsp-showcase__slide {
+        flex-basis: 186px;
+    }
+
+    .dsp-card {
+        min-height: 341px;
+        padding: 7px 11px 12px;
+    }
+
+    .dsp-card__top {
+        min-height: 28px;
+        margin-bottom: 6px;
+    }
+
+    .dsp-card__ribbon {
+        padding: 6px 4px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .dsp-card__image {
+        height: 131px;
+    }
+
+    .dsp-card__name {
+        min-height: 48px;
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .dsp-card__prices-head {
+        min-height: 20px;
+    }
+
+    .dsp-card__list-price {
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    .dsp-card__discount {
+        padding: 5px 6px;
+        font-size: 8px;
+        line-height: 10px;
+    }
+
+    .dsp-card__price {
+        letter-spacing: -0.33px;
+    }
+
+    .dsp-card__currency,
+    .dsp-card__cents {
+        font-size: 11px;
+        line-height: 30px;
+    }
+
+    .dsp-card__integer {
+        font-size: 27px;
+        line-height: 30px;
+        letter-spacing: -0.81px;
+    }
+
+    .dsp-card__teaser-label {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .dsp-card__unit {
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    .dsp-card__buy {
+        gap: 8px;
+        height: 26px;
+        font-size: 11px;
+    }
+
+    .dsp-card__basket {
+        width: 13px;
+        height: 11px;
+    }
+}
