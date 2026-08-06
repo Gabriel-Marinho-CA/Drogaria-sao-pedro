@@ -15,7 +15,7 @@
 }
 
 /* ==========================================================================
-   Carrinho (/cart) — lista de itens
+   Carrinho (/cart) â€” lista de itens
    Figma desktop: node 2072-362 | Figma mobile: node 2072-363
    ========================================================================== */
 
@@ -288,6 +288,11 @@ body .summary-template-holder .cart-more-options {
    Desktop (>= 980px)
    ========================================================================== */
 
+@media (max-width: 979px) {
+.cart .cart-items tbody tr.product-item {
+    display: flex !important;
+}
+}
 @media (min-width: 980px) {
     .cart .cart-items tbody tr.product-item {
         display: flex;
@@ -466,11 +471,18 @@ body .summary-template-holder .cart-more-options {
 }
 
 /* ==========================================================================
-   Entrega / Calcular Frete (.cart-more-options > shipping-preview)
-   Figma: node 1-5286
-   Mesma anatomia do card de cupom: titulo + icone no topo, pilula com
-   botao circular azul embaixo.
-   ========================================================================== */
+   DESATIVADO â€” Entrega / Calcular Frete
+   (.cart-more-options > shipping-preview)   Figma: node 1-5286
+
+   Secao inteira desligada a pedido. Para reativar, apague a linha de
+   abertura deste comentario e a de fechamento no fim da secao.
+
+   ATENCAO: comentario CSS nao aninha, entao os delimitadores dos
+   comentarios internos foram removidos para nao fechar este bloco antes
+   da hora. Ao reativar, o codigo volta a funcionar normalmente; so os
+   comentarios internos ficam como texto solto e precisam ser
+   redelimitados (ou apagados).
+   --------------------------------------------------------------------------
 
 .summary .cart-more-options {
     float: none;
@@ -479,18 +491,18 @@ body .summary-template-holder .cart-more-options {
     margin: 0 0 20px auto;
 }
 
-.summary .cart-more-options #shipping-preview-container {
+.summary .cart-more-options .srp-container {
     position: relative;
     box-sizing: border-box;
-    /* o topo abre espaco para o titulo gerado via ::before */
+     o topo abre espaco para o titulo gerado via ::before 
     padding: 54px 37px 23px 35px;
     background: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
 }
 
-/* O componente renderiza "Entrega"; o layout pede "Calcular Frete" */
-.summary .cart-more-options #shipping-preview-container::before {
+ O componente renderiza "Entrega"; o layout pede "Calcular Frete" 
+.summary .cart-more-options .srp-container::before {
     content: 'Calcular Frete';
     position: absolute;
     left: 35px;
@@ -502,8 +514,8 @@ body .summary-template-holder .cart-more-options {
     color: #242424;
 }
 
-/* Icone do caminhao */
-.summary .cart-more-options #shipping-preview-container::after {
+ Icone do caminhao 
+.summary .cart-more-options .srp-container::after {
     content: '';
     position: absolute;
     right: 39px;
@@ -516,7 +528,7 @@ body .summary-template-holder .cart-more-options {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30.9637' height='18' viewBox='0 0 30.9637 18' fill='none'%3E%3Cpath d='M7.93988 6.13996C7.94725 5.83437 7.70549 5.58051 7.39992 5.57315L0.541886 5.53436C0.245301 5.54073 0.00634863 5.77955 0.000123043 6.07613C-0.00625513 6.38187 0.236131 6.63476 0.541886 6.6413L7.39992 6.67993C7.69504 6.67289 7.93269 6.43523 7.93988 6.13996Z' fill='%23EC1F25'/%3E%3Cpath d='M2.53117 3.65343L8.49895 3.69206C8.79554 3.68797 9.03597 3.45079 9.04447 3.15422C9.05317 2.84864 8.8124 2.59396 8.5068 2.58529L2.53117 2.54649C2.23377 2.55221 1.99398 2.79201 1.98824 3.08941C1.98252 3.39515 2.22558 3.64754 2.53117 3.65343Z' fill='%23EC1F25'/%3E%3Cpath d='M6.83639 9.12415C6.84623 8.81857 6.60644 8.56292 6.30065 8.55309C6.29298 8.55309 2.5389 8.51446 2.53121 8.51446C2.23594 8.51954 1.99664 8.75539 1.9875 9.05051C1.97782 9.35625 2.21778 9.61175 2.52334 9.62125C2.53121 9.62125 6.28529 9.66003 6.29298 9.66003C6.58793 9.65462 6.8269 9.41894 6.83639 9.12415Z' fill='%23EC1F25'/%3E%3Cpath d='M27.1999 10.1167C27.3811 10.115 27.5598 10.0756 27.7248 10.0009C28.3815 9.70419 28.6733 8.93115 28.3766 8.27447L27.0451 5.06217C26.8694 4.70568 26.5059 4.48047 26.1085 4.48161H22.4318C22.1289 4.48292 21.8835 4.72828 21.8822 5.03123V9.5672V9.57277C21.8839 9.87475 22.1299 10.1183 22.4318 10.1167H27.1999ZM22.9891 5.58856H26.0699L27.3703 8.73114C27.387 8.76092 27.3957 8.79464 27.395 8.82884C27.3934 8.93475 27.3059 9.01938 27.1999 9.01757H22.9891V5.58856Z' fill='%23EC1F25'/%3E%3Cpath d='M30.7372 8.30542C30.7329 8.28365 30.7251 8.2627 30.7141 8.24355L28.988 4.5358C28.5646 3.31199 27.4113 2.49131 26.1163 2.49246H21.6733C21.7056 2.34695 21.7219 2.1985 21.7221 2.04955C21.7231 0.918552 20.8071 0.000976562 19.6763 0H3.63818C3.33242 0 3.08462 0.247807 3.08462 0.553387C3.08462 0.859135 3.33242 1.10694 3.63818 1.10694H19.6763C19.7231 1.10727 19.7698 1.1112 19.816 1.11856C20.3341 1.20089 20.6875 1.68783 20.6051 2.20602L18.9021 12.4078C18.861 12.701 19.0578 12.9746 19.3488 13.0286C19.6491 13.0844 19.9378 12.8862 19.9937 12.5859L21.4952 3.59924H26.1163C26.9714 3.5994 27.7257 4.15885 27.974 4.97707L29.7 8.68466C29.7933 8.97486 29.8402 9.27782 29.8395 9.5826V12.9961C29.8391 13.7881 29.1993 14.4313 28.4074 14.4359H27.4089C27.1727 13.2167 26.2193 12.2633 25 12.0269C23.35 11.7073 21.7531 12.7857 21.4334 14.4359H10.9915C10.7571 13.2118 9.79977 12.2543 8.57563 12.0201C6.92562 11.7042 5.33172 12.7857 5.016 14.4359H3.52981C3.52392 14.4358 3.51803 14.4358 3.51215 14.4359C3.20869 14.4407 2.96664 14.6908 2.97135 14.9942C2.97628 15.2977 3.2262 15.5399 3.52981 15.535H5.016C5.25219 16.7541 6.20544 17.7073 7.42463 17.9437C9.07465 18.2635 10.6717 17.1852 10.9915 15.535H21.4334C21.6696 16.7542 22.623 17.7076 23.8422 17.9438C25.4922 18.2637 27.0892 17.1852 27.4089 15.535H28.4074C29.8093 15.5342 30.9454 14.3979 30.9462 12.9961C30.8999 12.0363 31.1087 9.18011 30.7372 8.30542ZM8.00375 16.9205C6.95458 16.9069 6.10721 16.0597 6.09362 15.0106C6.07989 13.9418 6.93494 13.0641 8.00375 13.0504C9.05292 13.064 9.90008 13.9112 9.91367 14.9603C9.92762 16.0291 9.07238 16.9066 8.00375 16.9205ZM24.4211 16.9205C23.3719 16.9069 22.5248 16.0597 22.5112 15.0106C22.4972 13.9418 23.3523 13.0641 24.4211 13.0504C25.4703 13.064 26.3174 13.9112 26.331 14.9603C26.3449 16.0291 25.4898 16.9066 24.4211 16.9205Z' fill='%23EC1F25'/%3E%3C/svg%3E");
 }
 
-/* O layout nao mostra o titulo nem a descricao originais do componente */
+ O layout nao mostra o titulo nem a descricao originais do componente 
 .summary .cart-more-options .srp-main-title,
 .summary .cart-more-options .srp-description {
     display: none !important;
@@ -527,35 +539,83 @@ body .summary-template-holder .cart-more-options {
     padding: 0;
 }
 
-/* ---------- Pilula do CEP ----------
-   O shipping-preview e um app React (classes tachyons que mudam entre
-   versoes), por isso o alvo aqui sao os elementos (input/button) e nao
-   as classes deles. */
+ ---------- Pilula do CEP ----------
+   O componente tem dois estados com estruturas bem diferentes:
+
+   recolhido:  .srp-data > button
+   expandido:  .srp-data > .srp-postal-code > form > div > (p > input) + button
+
+   Por isso a pilula nao mora no .srp-data: no recolhido ela e o proprio
+   .srp-data, no expandido ela e o wrapper do form. 
 .summary .cart-more-options .srp-data {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.summary .cart-more-options .srp-postal-code,
+.summary .cart-more-options .srp-postal-code__form {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ wrapper do form = pilula no estado expandido.
+   Alvo pelo filho direto para nao depender da classe versionada
+   .vtex-shipping-preview-0-x-postalCodeForgotten 
+.summary .cart-more-options .srp-postal-code__form > div {
     position: relative;
     display: flex;
     align-items: stretch;
     box-sizing: border-box;
     height: 34px;
-    margin: 0;
-    padding: 0;
     border: 1px solid #e0e0e0;
     border-radius: 22px;
     background: #fff;
-    overflow: hidden;
 }
 
+.summary .cart-more-options .ship-postalCode {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    position: static;
+}
+
+ o layout nao mostra o label nem o link "Nao sei meu CEP" 
+.summary .cart-more-options .ship-postalCode > label,
+.summary .cart-more-options .ship-postalCode > small {
+    display: none !important;
+}
+
+ a mensagem de erro sai da pilula e aparece logo abaixo dela 
+.summary .cart-more-options .ship-postalCode .help {
+    position: absolute;
+    top: 100%;
+    left: 25px;
+    margin-top: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    line-height: 13px;
+    color: #ec1f25;
+}
+
+ O input recebe .input-small e, em erro, .error (borda vermelha) do CSS
+   base, alem de regras pelo id #ship-postalCode: dai o !important. 
 .summary .cart-more-options .srp-data input {
     flex: 1 1 auto;
     min-width: 0;
-    width: auto;
+    width: auto !important;
     height: auto;
-    margin: 0;
-    padding: 0 10px 0 25px;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    background: transparent;
+    margin: 0 !important;
+    padding: 0 10px 0 25px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     line-height: 12px;
@@ -563,8 +623,8 @@ body .summary-template-holder .cart-more-options {
 }
 
 .summary .cart-more-options .srp-data input:focus {
-    outline: 0;
-    box-shadow: none;
+    outline: 0 !important;
+    box-shadow: none !important;
 }
 
 .summary .cart-more-options .srp-data input::placeholder {
@@ -572,24 +632,26 @@ body .summary-template-holder .cart-more-options {
     opacity: 1;
 }
 
-/* Botao vira o circulo azul com a seta */
+ Botao vira o circulo azul com a seta.
+   O checkout estiliza este botao pelo id (#cart-shipping-calculate), e id
+   sempre vence seletor de classe, entao aqui !important e necessario. 
 .summary .cart-more-options .srp-data button {
     flex: 0 0 40px;
-    width: 40px;
+    width: 40px !important;
     height: auto;
     min-height: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 22px;
-    box-shadow: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 22px !important;
+    box-shadow: none !important;
     text-shadow: none;
-    background-color: #025789;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 5px 8px;
-    /* esconde o texto ("Calcular"/"OK") mantendo o botao clicavel */
+    background-color: #025789 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 5px 8px !important;
+     esconde o texto ("Calcular") mantendo o botao clicavel 
     font-size: 0;
     line-height: 0;
     color: transparent;
@@ -598,14 +660,24 @@ body .summary-template-holder .cart-more-options {
 
 .summary .cart-more-options .srp-data button:hover,
 .summary .cart-more-options .srp-data button:focus {
-    background-color: #01466e;
+    background-color: #01466e !important;
 }
 
-/* ---------- Estado recolhido ----------
+ ---------- Estado recolhido ----------
    Aqui o componente renderiza so o <button>Calcular</button>, sem input.
    Nesse caso o botao e esticado por cima da pilula inteira (transparente),
    e o circulo azul vira decoracao no ::after. Assim a pilula toda dispara
-   o calculo, em vez de so os 40px do circulo. */
+   o calculo, em vez de so os 40px do circulo. 
+.summary .cart-more-options .srp-data:not(:has(input)) {
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 34px;
+    border: 1px solid #e0e0e0;
+    border-radius: 22px;
+    background: #fff;
+}
+
 .summary .cart-more-options .srp-data:not(:has(input))::before {
     content: 'Informe seu CEP';
     position: absolute;
@@ -657,6 +729,7 @@ body .summary-template-holder .cart-more-options {
         margin-left: 0;
     }
 }
+   ========================================================================== */
 
 /* ==========================================================================
    Resumo do pedido (summary-template-holder)
@@ -667,7 +740,7 @@ body .summary-template-holder .cart-more-options {
    A largura e travada em 320px (medida do Figma) e alinhada a direita: assim
    o card casa com o .cart-links-bottom, que e um bloco irmao fora desta coluna
    e nao tem como herdar a largura dela via CSS. */
-.summary .cart-totalizers .summary-coupon-wrap,
+.summary .summary-coupon-wrap,
 .summary .cart-totalizers .accordion-group {
     box-sizing: border-box;
     width: 100%;
@@ -680,8 +753,14 @@ body .summary-template-holder .cart-more-options {
 
 /* ---------- Card 1: Cupom de Desconto ---------- */
 
-.summary .cart-totalizers .summary-coupon-wrap {
+/* O template tem DOIS wrappers de cupom e alterna entre eles conforme
+   checkout.hasShippingPreview(): um dentro de .cart-totalizers e outro
+   fora, irmao dela (este vem com .span7.pull-left do bootstrap). Por isso
+   as regras do cupom sao escopadas em .summary, e nao em .cart-totalizers,
+   e o float/largura da coluna precisam ser zerados aqui. */
+.summary .summary-coupon-wrap {
     position: relative;
+    float: none;
     /* o topo abre espaco para o titulo gerado via ::before */
     padding: 54px 37px 23px 35px;
     text-align: left;
@@ -690,7 +769,7 @@ body .summary-template-holder .cart-more-options {
 
 /* O CSS base do checkout esconde .coupon-label, entao o titulo e o icone
    sao gerados aqui em vez de depender do markup do template. */
-.summary .cart-totalizers .summary-coupon-wrap::before {
+.summary .summary-coupon-wrap::before {
     content: 'Cupom de Desconto';
     position: absolute;
     left: 35px;
@@ -702,7 +781,7 @@ body .summary-template-holder .cart-more-options {
     color: #242424;
 }
 
-.summary .cart-totalizers .summary-coupon-wrap::after {
+.summary .summary-coupon-wrap::after {
     content: '';
     position: absolute;
     right: 37px;
@@ -715,9 +794,9 @@ body .summary-template-holder .cart-more-options {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23.1158' height='16.2265' viewBox='0 0 23.1158 16.2265' fill='none'%3E%3Cpath d='M14.4202 13.2652C13.1244 13.2652 12.0703 12.2214 12.0703 10.9382C12.0703 9.65512 13.1244 8.61127 14.4202 8.61127C15.7159 8.61127 16.7701 9.65512 16.7701 10.9382C16.7701 12.2214 15.7159 13.2652 14.4202 13.2652ZM14.4202 9.97102C13.8742 9.97102 13.4301 10.4049 13.4301 10.9382C13.4301 11.4715 13.8742 11.9055 14.4202 11.9055C14.9662 11.9055 15.4103 11.4715 15.4103 10.9382C15.4103 10.4049 14.9662 9.97102 14.4202 9.97102Z' fill='%23EC1F25'/%3E%3Cpath d='M8.75193 7.7296C7.42513 7.7296 6.3457 6.66083 6.3457 5.3472C6.3457 4.03346 7.42513 2.96469 8.75193 2.96469C10.0786 2.96469 11.158 4.03346 11.158 5.3472C11.158 6.66083 10.0786 7.7296 8.75193 7.7296ZM8.75193 4.32445C8.17496 4.32445 7.70546 4.78328 7.70546 5.3472C7.70546 5.91112 8.17496 6.36985 8.75193 6.36985C9.3289 6.36985 9.79829 5.91112 9.79829 5.3472C9.79829 4.78328 9.3289 4.32445 8.75193 4.32445Z' fill='%23EC1F25'/%3E%3Cpath d='M7.74593 13.3896C7.5918 13.3896 7.43689 13.3375 7.30951 13.2307C7.02178 12.9895 6.98404 12.5607 7.22531 12.2728L14.8097 3.22644C15.0509 2.93872 15.4796 2.90097 15.7675 3.14224C16.0552 3.38352 16.0929 3.81233 15.8517 4.10006L8.26732 13.1465C8.13287 13.3069 7.94011 13.3896 7.74593 13.3896Z' fill='%23EC1F25'/%3E%3Cpath d='M20.2918 16.2265H2.82644C1.26795 16.2265 0 14.9532 0 13.388V11.1712C0 10.7957 0.304368 10.4913 0.679878 10.4913C1.98176 10.4913 3.04096 9.42452 3.04096 8.11328C3.04096 6.80204 1.98176 5.73523 0.679878 5.73523C0.304368 5.73523 0 5.43086 0 5.05535V2.83852C0 1.27338 1.26795 0 2.82644 0H20.2917C21.849 0 23.1158 1.2723 23.1158 2.83602V5.05535C23.1158 5.43086 22.8115 5.73523 22.436 5.73523C21.134 5.73523 20.0748 6.80204 20.0748 8.11328C20.0748 9.42452 21.134 10.4913 22.436 10.4913C22.8115 10.4913 23.1158 10.7957 23.1158 11.1712V13.3904C23.1158 14.9543 21.849 16.2265 20.2918 16.2265ZM1.35976 11.7885V13.388C1.35976 14.2034 2.01766 14.8667 2.82644 14.8667H20.2918C21.0993 14.8667 21.7561 14.2044 21.7561 13.3904V11.7885C20.0279 11.4667 18.715 9.94112 18.715 8.11328C18.715 6.28544 20.0279 4.75991 21.7561 4.43802V2.83602C21.7561 2.02201 21.0992 1.35976 20.2917 1.35976H2.82644C2.01777 1.35976 1.35976 2.0231 1.35976 2.83852V4.43802C3.08784 4.75991 4.40071 6.28544 4.40071 8.11328C4.40071 9.94112 3.08784 11.4667 1.35976 11.7885Z' fill='%23EC1F25'/%3E%3C/svg%3E");
 }
 
-.summary .cart-totalizers .summary-coupon,
-.summary .cart-totalizers .coupon-form,
-.summary .cart-totalizers .coupon-fieldset {
+.summary .summary-coupon,
+.summary .coupon-form,
+.summary .coupon-fieldset {
     margin: 0;
     padding: 0;
     border: 0;
@@ -726,7 +805,7 @@ body .summary-template-holder .cart-more-options {
 
 /* O template alterna entre o link "Adicionar cupom" e o campo.
    O layout novo mostra o campo sempre aberto. */
-.summary .cart-totalizers .coupon-fieldset>div[data-bind*="isUsingCoupon"] {
+.summary .coupon-fieldset>div[data-bind*="isUsingCoupon"] {
     display: block !important;
     opacity: 1 !important;
 }
@@ -742,21 +821,21 @@ body .summary-template-holder .cart-more-options {
     }
 }
 
-.summary .cart-totalizers .coupon-data {
+.summary .coupon-data {
     display: none !important;
 }
 
 /* O titulo real do template fica escondido: quem desenha e o ::before acima */
-.summary .cart-totalizers .coupon-label {
+.summary .coupon-label {
     display: none !important;
 }
 
 /* Campo do cupom: pilula com botao circular azul */
-.summary .cart-totalizers .coupon-fields {
+.summary .coupon-fields {
     margin: 0;
 }
 
-.summary .cart-totalizers .coupon-fields>span {
+.summary .coupon-fields>span {
     display: flex;
     align-items: stretch;
     box-sizing: border-box;
@@ -767,53 +846,59 @@ body .summary-template-holder .cart-more-options {
     overflow: hidden;
 }
 
-.summary .cart-totalizers .coupon-fields .coupon-value {
+/* o checkout estiliza este campo pelo id (#cart-coupon), dai o !important */
+.summary .coupon-fields .coupon-value {
     flex: 1 1 auto;
     min-width: 0;
-    width: auto;
+    width: auto !important;
     height: auto;
-    margin: 0;
-    padding: 0 10px 0 25px;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    background: transparent;
+    margin: 0 !important;
+    padding: 0 10px 0 25px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     line-height: 12px;
     color: #242424;
 }
 
-.summary .cart-totalizers .coupon-fields .coupon-value:focus {
-    outline: 0;
-    box-shadow: none;
+.summary .coupon-fields .coupon-value:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
 }
 
-.summary .cart-totalizers .coupon-fields .coupon-value::placeholder {
+.summary .coupon-fields .coupon-value::placeholder {
     color: #e0e0e0;
     opacity: 1;
 }
 
-.summary .cart-totalizers .coupon-fields .loading-coupon {
+.summary .coupon-fields .loading-coupon {
     align-self: center;
     margin-right: 6px;
 }
 
-/* Botao "Adicionar" vira o circulo azul com a seta */
-.summary .cart-totalizers .coupon-fields #cart-coupon-add {
+/* Botao "Adicionar" vira o circulo azul com a seta.
+   O checkout estiliza este botao pelo id (#cart-coupon-add). Um id vence
+   qualquer quantidade de classes, entao sem o id no seletor a unica saida
+   e !important. */
+.summary .coupon-fields button {
     flex: 0 0 40px;
-    width: 40px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 22px;
-    box-shadow: none;
+    width: 40px !important;
+    height: auto;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 22px !important;
+    box-shadow: none !important;
     text-shadow: none;
-    background-color: #025789;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 5px 8px;
+    background-color: #025789 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 5px 8px !important;
     /* esconde o texto "Adicionar" mantendo o botao acessivel */
     font-size: 0;
     line-height: 0;
@@ -821,13 +906,13 @@ body .summary-template-holder .cart-more-options {
     cursor: pointer;
 }
 
-.summary .cart-totalizers .coupon-fields #cart-coupon-add:hover,
-.summary .cart-totalizers .coupon-fields #cart-coupon-add:focus {
-    background-color: #01466e;
+.summary .coupon-fields button:hover,
+.summary .coupon-fields button:focus {
+    background-color: #01466e !important;
 }
 
 /* Cupom ja aplicado */
-.summary .cart-totalizers .coupon-fields .info {
+.summary .coupon-fields .info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -983,13 +1068,27 @@ body .summary-template-holder .cart-more-options {
 
 @media (max-width: 979px) {
 
-    .summary .cart-totalizers .summary-coupon-wrap,
+    .summary .summary-coupon-wrap,
     .summary .cart-totalizers .accordion-group,
     .cart-template .cart-links-bottom {
         float: none;
         width: 100%;
         max-width: none;
         margin-left: 0;
+    }
+
+    /* No mobile o checkout gruda esta barra no rodape da tela
+       (position: fixed). O layout pede o botao no fluxo, logo abaixo do
+       card do resumo - igual ao desktop. */
+    .cart-template .cart-links-bottom {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        z-index: auto !important;
+        flex: none;
+        box-shadow: none !important;
     }
 }
 
@@ -1029,4 +1128,361 @@ body .summary-template-holder .cart-more-options {
 .summary .cart-totalizers .btn-place-order:focus {
     background: #01466e;
     color: #fff;
+}
+
+
+/* ==========================================================================
+   Rodape do checkout
+   Figma desktop: node 1-5385 | Figma mobile: node 1-11476
+   Markup: footer.html (marcacao propria, colada no layout do checkout)
+
+   O checkout nao carrega tachyons nem o CSS do vtex.flex-layout, entao todo
+   o layout e escrito aqui do zero.
+   ========================================================================== */
+
+.dsp-footer {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    max-width: 1320px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+    font-family: 'Roboto', sans-serif;
+    color: #707070;
+}
+
+.dsp-footer *,
+.dsp-footer *::before,
+.dsp-footer *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Logo + selos (lado a lado no desktop) ---------- */
+
+.dsp-footer__logo {
+    align-self: center;
+    display: block;
+    padding: 40px 53px 40px 0;
+}
+
+.dsp-footer__logo img {
+    display: block;
+    width: 278px;
+    height: auto;
+}
+
+.dsp-footer__seals {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 40px 0 40px 36px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.dsp-footer__title {
+    margin: 0 0 14px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #025789;
+}
+
+.dsp-footer__badge {
+    display: block;
+    width: 66px;
+    height: auto;
+}
+
+/* bandeiras: 4 por linha, como no layout */
+.dsp-footer__pays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 176px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dsp-footer__pays img {
+    display: block;
+    width: 38px;
+    height: auto;
+}
+
+.dsp-footer__apps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dsp-footer__apps img {
+    display: block;
+    width: 112px;
+    height: 37px;
+}
+
+/* a moldura e do CSS; o asset e so o icone */
+.dsp-footer__socials {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dsp-footer__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    border: 1px solid #025789;
+    border-radius: 11px;
+}
+
+.dsp-footer__socials img {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+/* ---------- Menus ---------- */
+
+.dsp-footer__menus {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* no desktop o botao e so o titulo da coluna */
+.dsp-footer__col-toggle {
+    display: block;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #025789;
+    text-align: left;
+    cursor: default;
+}
+
+.dsp-footer__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dsp-footer__links li {
+    margin: 0 0 13px;
+}
+
+.dsp-footer__links a {
+    display: block;
+    font-size: 18px;
+    line-height: 20px;
+    color: #707070;
+    text-decoration: none;
+}
+
+.dsp-footer__links a:hover {
+    color: #025789;
+}
+
+/* ---------- Copyright ---------- */
+
+.dsp-footer__legal {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.dsp-footer__copy {
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.dsp-footer__tech {
+    margin: 0;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.dsp-footer__tech strong {
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Rodape - mobile (<= 979px)
+   Ordem do layout: logo -> menus -> selos -> copyright
+   ========================================================================== */
+
+@media (max-width: 979px) {
+
+    .dsp-footer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+        padding: 0 20px;
+    }
+
+    .dsp-footer__logo {
+        order: 1;
+        padding: 24px 0;
+        text-align: center;
+    }
+
+    .dsp-footer__logo img {
+        width: 204px;
+        margin: 0 auto;
+    }
+
+    .dsp-footer__menus {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 0 0 24px;
+        border-top: 0;
+    }
+
+    .dsp-footer__seals {
+        order: 3;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        border-left: 0;
+    }
+
+    .dsp-footer__legal {
+        order: 4;
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        padding: 22px 0 28px;
+    }
+
+    /* ---------- selos empilhados ---------- */
+
+    .dsp-footer__seal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 22px 0;
+        border-top: 1px solid #e0e0e0;
+        width: 100%;
+    }
+
+    .dsp-footer__seal:first-child {
+        border-top: 0;
+    }
+
+    .dsp-footer__title {
+        margin: 0 0 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 27px;
+        letter-spacing: -0.325px;
+    }
+
+    .dsp-footer__pays {
+        max-width: none;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .dsp-footer__pays img {
+        width: 34px;
+    }
+
+    .dsp-footer__apps {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dsp-footer__socials {
+        justify-content: center;
+    }
+
+    /* ---------- menus viram acordeao ----------
+       O estado vive no aria-expanded do proprio botao: o JS so alterna o
+       atributo e o CSS reage via seletor irmao. Sem classe de estado extra. */
+
+    .dsp-footer__col-toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 48px;
+        margin: 0;
+        padding: 0 44px 0 22px;
+        border-radius: 10px;
+        background: #f6f6f6;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 27px;
+        letter-spacing: -0.325px;
+        cursor: pointer;
+    }
+
+    .dsp-footer__col-toggle::after {
+        content: '';
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        width: 6px;
+        height: 10px;
+        margin-top: -5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.76118' height='10.0177' viewBox='0 0 5.76118 10.0177' fill='none'%3E%3Cpath d='M0.220452 0.220302C-0.0732794 0.514125 -0.0732794 0.990411 0.220452 1.28424L3.94497 5.00876L0.220452 8.73328C-0.0734701 9.02704 -0.0734701 9.50346 0.220368 9.7973C0.514215 10.0911 0.990624 10.0911 1.28446 9.7973L5.54087 5.54073C5.83461 5.2469 5.83461 4.77062 5.54087 4.47679L1.28439 0.220302C0.990563 -0.0734339 0.514276 -0.0734339 0.220452 0.220302Z' fill='%23025789'/%3E%3C/svg%3E");
+        transform: rotate(90deg);
+        transition: transform 0.2s ease;
+    }
+
+    .dsp-footer__col-toggle[aria-expanded="true"]::after {
+        transform: rotate(270deg);
+    }
+
+    .dsp-footer__links {
+        display: none;
+        padding: 10px 22px 6px;
+    }
+
+    .dsp-footer__col-toggle[aria-expanded="true"] + .dsp-footer__links {
+        display: block;
+    }
+
+    .dsp-footer__links li {
+        margin: 0 0 10px;
+    }
+
+    .dsp-footer__links a {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .dsp-footer__copy,
+    .dsp-footer__tech {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        line-height: 16px;
+    }
 }
