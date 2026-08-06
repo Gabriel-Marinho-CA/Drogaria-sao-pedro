@@ -466,6 +466,199 @@ body .summary-template-holder .cart-more-options {
 }
 
 /* ==========================================================================
+   Entrega / Calcular Frete (.cart-more-options > shipping-preview)
+   Figma: node 1-5286
+   Mesma anatomia do card de cupom: titulo + icone no topo, pilula com
+   botao circular azul embaixo.
+   ========================================================================== */
+
+.summary .cart-more-options {
+    float: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 0 20px auto;
+}
+
+.summary .cart-more-options #shipping-preview-container {
+    position: relative;
+    box-sizing: border-box;
+    /* o topo abre espaco para o titulo gerado via ::before */
+    padding: 54px 37px 23px 35px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+}
+
+/* O componente renderiza "Entrega"; o layout pede "Calcular Frete" */
+.summary .cart-more-options #shipping-preview-container::before {
+    content: 'Calcular Frete';
+    position: absolute;
+    left: 35px;
+    top: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #242424;
+}
+
+/* Icone do caminhao */
+.summary .cart-more-options #shipping-preview-container::after {
+    content: '';
+    position: absolute;
+    right: 39px;
+    top: 21px;
+    width: 31px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30.9637' height='18' viewBox='0 0 30.9637 18' fill='none'%3E%3Cpath d='M7.93988 6.13996C7.94725 5.83437 7.70549 5.58051 7.39992 5.57315L0.541886 5.53436C0.245301 5.54073 0.00634863 5.77955 0.000123043 6.07613C-0.00625513 6.38187 0.236131 6.63476 0.541886 6.6413L7.39992 6.67993C7.69504 6.67289 7.93269 6.43523 7.93988 6.13996Z' fill='%23EC1F25'/%3E%3Cpath d='M2.53117 3.65343L8.49895 3.69206C8.79554 3.68797 9.03597 3.45079 9.04447 3.15422C9.05317 2.84864 8.8124 2.59396 8.5068 2.58529L2.53117 2.54649C2.23377 2.55221 1.99398 2.79201 1.98824 3.08941C1.98252 3.39515 2.22558 3.64754 2.53117 3.65343Z' fill='%23EC1F25'/%3E%3Cpath d='M6.83639 9.12415C6.84623 8.81857 6.60644 8.56292 6.30065 8.55309C6.29298 8.55309 2.5389 8.51446 2.53121 8.51446C2.23594 8.51954 1.99664 8.75539 1.9875 9.05051C1.97782 9.35625 2.21778 9.61175 2.52334 9.62125C2.53121 9.62125 6.28529 9.66003 6.29298 9.66003C6.58793 9.65462 6.8269 9.41894 6.83639 9.12415Z' fill='%23EC1F25'/%3E%3Cpath d='M27.1999 10.1167C27.3811 10.115 27.5598 10.0756 27.7248 10.0009C28.3815 9.70419 28.6733 8.93115 28.3766 8.27447L27.0451 5.06217C26.8694 4.70568 26.5059 4.48047 26.1085 4.48161H22.4318C22.1289 4.48292 21.8835 4.72828 21.8822 5.03123V9.5672V9.57277C21.8839 9.87475 22.1299 10.1183 22.4318 10.1167H27.1999ZM22.9891 5.58856H26.0699L27.3703 8.73114C27.387 8.76092 27.3957 8.79464 27.395 8.82884C27.3934 8.93475 27.3059 9.01938 27.1999 9.01757H22.9891V5.58856Z' fill='%23EC1F25'/%3E%3Cpath d='M30.7372 8.30542C30.7329 8.28365 30.7251 8.2627 30.7141 8.24355L28.988 4.5358C28.5646 3.31199 27.4113 2.49131 26.1163 2.49246H21.6733C21.7056 2.34695 21.7219 2.1985 21.7221 2.04955C21.7231 0.918552 20.8071 0.000976562 19.6763 0H3.63818C3.33242 0 3.08462 0.247807 3.08462 0.553387C3.08462 0.859135 3.33242 1.10694 3.63818 1.10694H19.6763C19.7231 1.10727 19.7698 1.1112 19.816 1.11856C20.3341 1.20089 20.6875 1.68783 20.6051 2.20602L18.9021 12.4078C18.861 12.701 19.0578 12.9746 19.3488 13.0286C19.6491 13.0844 19.9378 12.8862 19.9937 12.5859L21.4952 3.59924H26.1163C26.9714 3.5994 27.7257 4.15885 27.974 4.97707L29.7 8.68466C29.7933 8.97486 29.8402 9.27782 29.8395 9.5826V12.9961C29.8391 13.7881 29.1993 14.4313 28.4074 14.4359H27.4089C27.1727 13.2167 26.2193 12.2633 25 12.0269C23.35 11.7073 21.7531 12.7857 21.4334 14.4359H10.9915C10.7571 13.2118 9.79977 12.2543 8.57563 12.0201C6.92562 11.7042 5.33172 12.7857 5.016 14.4359H3.52981C3.52392 14.4358 3.51803 14.4358 3.51215 14.4359C3.20869 14.4407 2.96664 14.6908 2.97135 14.9942C2.97628 15.2977 3.2262 15.5399 3.52981 15.535H5.016C5.25219 16.7541 6.20544 17.7073 7.42463 17.9437C9.07465 18.2635 10.6717 17.1852 10.9915 15.535H21.4334C21.6696 16.7542 22.623 17.7076 23.8422 17.9438C25.4922 18.2637 27.0892 17.1852 27.4089 15.535H28.4074C29.8093 15.5342 30.9454 14.3979 30.9462 12.9961C30.8999 12.0363 31.1087 9.18011 30.7372 8.30542ZM8.00375 16.9205C6.95458 16.9069 6.10721 16.0597 6.09362 15.0106C6.07989 13.9418 6.93494 13.0641 8.00375 13.0504C9.05292 13.064 9.90008 13.9112 9.91367 14.9603C9.92762 16.0291 9.07238 16.9066 8.00375 16.9205ZM24.4211 16.9205C23.3719 16.9069 22.5248 16.0597 22.5112 15.0106C22.4972 13.9418 23.3523 13.0641 24.4211 13.0504C25.4703 13.064 26.3174 13.9112 26.331 14.9603C26.3449 16.0291 25.4898 16.9066 24.4211 16.9205Z' fill='%23EC1F25'/%3E%3C/svg%3E");
+}
+
+/* O layout nao mostra o titulo nem a descricao originais do componente */
+.summary .cart-more-options .srp-main-title,
+.summary .cart-more-options .srp-description {
+    display: none !important;
+}
+
+.summary .cart-more-options .srp-content {
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------- Pilula do CEP ----------
+   O shipping-preview e um app React (classes tachyons que mudam entre
+   versoes), por isso o alvo aqui sao os elementos (input/button) e nao
+   as classes deles. */
+.summary .cart-more-options .srp-data {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 22px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.summary .cart-more-options .srp-data input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0 10px 0 25px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    color: #242424;
+}
+
+.summary .cart-more-options .srp-data input:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.summary .cart-more-options .srp-data input::placeholder {
+    color: #e0e0e0;
+    opacity: 1;
+}
+
+/* Botao vira o circulo azul com a seta */
+.summary .cart-more-options .srp-data button {
+    flex: 0 0 40px;
+    width: 40px;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 22px;
+    box-shadow: none;
+    text-shadow: none;
+    background-color: #025789;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 5px 8px;
+    /* esconde o texto ("Calcular"/"OK") mantendo o botao clicavel */
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    cursor: pointer;
+}
+
+.summary .cart-more-options .srp-data button:hover,
+.summary .cart-more-options .srp-data button:focus {
+    background-color: #01466e;
+}
+
+/* ---------- Estado recolhido ----------
+   Aqui o componente renderiza so o <button>Calcular</button>, sem input.
+   Nesse caso o botao e esticado por cima da pilula inteira (transparente),
+   e o circulo azul vira decoracao no ::after. Assim a pilula toda dispara
+   o calculo, em vez de so os 40px do circulo. */
+.summary .cart-more-options .srp-data:not(:has(input))::before {
+    content: 'Informe seu CEP';
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    color: #e0e0e0;
+    pointer-events: none;
+}
+
+.summary .cart-more-options .srp-data:not(:has(input)) button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex: none;
+    width: 100%;
+    background-color: transparent;
+    background-image: none;
+}
+
+.summary .cart-more-options .srp-data:not(:has(input))::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    border-radius: 22px;
+    background-color: #025789;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4.53353' height='7.88303' viewBox='0 0 4.53353 7.88303' fill='none'%3E%3Cpath d='M0.173472 0.173357C-0.0576677 0.404569 -0.0576677 0.779365 0.173472 1.01058L3.10433 3.94145L0.173472 6.87232C-0.0578127 7.10348 -0.0578127 7.47838 0.173404 7.70961C0.404635 7.94083 0.779536 7.94083 1.01076 7.70961L4.36016 4.36006C4.59132 4.12885 4.59132 3.75405 4.36016 3.52284L1.0107 0.173357C0.779483 -0.0577855 0.404689 -0.0577855 0.173472 0.173357Z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 5px 8px;
+    pointer-events: none;
+}
+
+.summary .cart-more-options .srp-data:not(:has(input)):hover::after {
+    background-color: #01466e;
+}
+
+@media (max-width: 979px) {
+    .summary .cart-more-options {
+        max-width: none;
+        margin-left: 0;
+    }
+}
+
+/* ==========================================================================
    Resumo do pedido (summary-template-holder)
    Figma: node 2073-368
    ========================================================================== */
