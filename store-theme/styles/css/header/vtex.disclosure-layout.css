@@ -1,0 +1,135 @@
+/* ─── DRAWER MOBILE: sanfona de departamentos ─────────────────────────
+   Figma node 1-12716. Blocos em store/blocks/header/drawer-mobile.jsonc
+
+   Cada departamento é um disclosure-layout: o trigger é a linha de 44px do
+   Figma e o conteúdo é a lista de subcategorias, que abre empurrando os
+   itens de baixo.
+
+   O trigger leva dois blockClass — `drawer-dep` (o desenho da linha, comum a
+   todos) e `drawer-dep-<categoria>` (só a cor da barrinha à esquerda).
+
+   A transição do conteúdo copia a do FAQ e a do rodapé deste mesmo tema:
+   o vtex.disclosure-layout marca `[data-enter]` / `[data-leave]` no elemento.
+   --------------------------------------------------------------------- */
+
+/* ---------- linha do departamento ---------- */
+
+.trigger--drawer-dep {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 44px;
+    margin-bottom: 5px;
+    padding: 0 12px;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* O rótulo não é link: quem abre e fecha é o trigger inteiro. */
+.trigger--drawer-dep :global(.vtex-rich-text-0-x-paragraph) {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #707070;
+}
+
+/* Barrinha colorida à esquerda — mesmas cores do menu Departamentos do
+   desktop (ver .styledLinkContent--dep-* em header/vtex.flex-layout.css). */
+.trigger--drawer-dep-medicamentos :global(.vtex-rich-text-0-x-paragraph) {
+    border-left: 3px solid #8ECEA5;
+    padding-left: 6px;
+}
+
+.trigger--drawer-dep-infantil :global(.vtex-rich-text-0-x-paragraph) {
+    border-left: 3px solid #99CEEF;
+    padding-left: 6px;
+}
+
+.trigger--drawer-dep-dermocosmeticos :global(.vtex-rich-text-0-x-paragraph) {
+    border-left: 3px solid #CB9D90;
+    padding-left: 6px;
+}
+
+.trigger--drawer-dep-saude-bem-estar :global(.vtex-rich-text-0-x-paragraph) {
+    border-left: 3px solid #E76E67;
+    padding-left: 6px;
+}
+
+.trigger--drawer-dep-beleza-cuidados :global(.vtex-rich-text-0-x-paragraph) {
+    border-left: 3px solid #FDC066;
+    padding-left: 6px;
+}
+
+/* O destaque colorido do departamento ABERTO não está aqui: ele depende de
+   `[aria-expanded="true"]`, e o builder do VTEX recusa seletor de atributo
+   com valor nos arquivos de override (http://bit.ly/io-css-selectors).
+   Essas regras ficam em styles/css/vtex.my-account.css, que é a exceção. */
+
+/* ---------- chevron ---------- */
+
+/* O disclosure-state-indicator já vira sozinho conforme abre e fecha; aqui
+   só ajustamos tamanho e cor. */
+.trigger--drawer-dep :global(.vtex-store-icons-0-x-caretIcon) {
+    flex: 0 0 auto;
+    width: 11px;
+    height: 11px;
+    color: #707070;
+    transition: transform .2s ease;
+}
+
+/* ---------- conteúdo: subcategorias ---------- */
+
+.content--drawer-dep {
+    transition: opacity 250ms ease-in-out, height 250ms ease-in-out,
+        transform 250ms ease-in-out;
+    opacity: 0;
+    height: 0;
+    transform: translate3d(0, -10%, 0);
+}
+
+.content--drawer-dep[data-enter] {
+    opacity: 1;
+    height: fit-content;
+    transform: translate3d(0, 0, 0);
+    /* recuo à esquerda para o segundo nível ficar visivelmente aninhado */
+    padding: 0 0 8px 24px;
+}
+
+.content--drawer-dep[data-leave] {
+    height: 0;
+    overflow: hidden;
+}
+
+/* Menu das subcategorias. Sem a caixa branca e sem chevron — o desenho de
+   linha de 44px é só do primeiro nível. */
+.content--drawer-dep :global(.vtex-menu-2-x-menuContainer--drawer-sub) {
+    display: flex;
+    flex-direction: column;
+}
+
+.content--drawer-dep :global(.vtex-menu-2-x-styledLinkContainer) {
+    width: 100%;
+    margin: 0;
+    padding-block: 0;
+}
+
+.content--drawer-dep :global(.vtex-menu-2-x-styledLink) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+}
+
+.content--drawer-dep :global(.vtex-menu-2-x-styledLinkContent) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #707070;
+    background-image: none;
+}

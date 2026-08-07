@@ -50,10 +50,60 @@
 :global(.vtex-dropdown__container) :global(select) {
     height: 62px;
   border: none;
+  @media (max-width:750px) {
+    height: 48px;
+  }
 }
 
 :global(.ReactCollapse--collapse) {
     :global(.ReactCollapse--content) > :global(div) {
         padding: 0 !important;
+    }
+}
+
+/* ─── DRAWER MOBILE: departamento aberto ──────────────────────────────
+   Complemento de header/vtex.disclosure-layout.css, onde está o resto da
+   sanfona. Só estas regras vivem aqui porque dependem de
+   `[aria-expanded="true"]`: o trigger é um widget de disclosure e é esse
+   atributo que marca o estado aberto (o vtex.disclosure-layout não expõe um
+   handle modificador para isso), e o builder recusa seletor de atributo com
+   valor nos arquivos de override normais.
+
+   Aberto, a linha ganha a cor da própria categoria. A barrinha da esquerda
+   fica transparente em vez de sumir, para o texto não deslocar 9px ao abrir.
+   --------------------------------------------------------------------- */
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep[aria-expanded="true"]) :global(.vtex-rich-text-0-x-paragraph) {
+    border-left-color: transparent;
+    color: #fff;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep[aria-expanded="true"]) :global(.vtex-store-icons-0-x-caretIcon) {
+    color: #fff;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep-medicamentos[aria-expanded="true"]) {
+    background: #8ECEA5;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep-infantil[aria-expanded="true"]) {
+    background: #99CEEF;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep-dermocosmeticos[aria-expanded="true"]) {
+    background: #CB9D90;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep-saude-bem-estar[aria-expanded="true"]) {
+    background: #E76E67;
+}
+
+:global(.vtex-disclosure-layout-1-x-trigger--drawer-dep-beleza-cuidados[aria-expanded="true"]) {
+    background: #FDC066;
+}
+
+@media (max-width:750px) {
+    :global(.vtex-store-components-3-x-container) {
+        padding-inline: 1rem !important;
     }
 }

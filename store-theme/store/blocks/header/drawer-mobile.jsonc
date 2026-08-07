@@ -7,16 +7,22 @@
 
      Montagem:
        drawer
-       ├── drawer-header#menu-mobile      login + botão de fechar
+       ├── drawer-header#menu-mobile            login + botão de fechar
        └── flex-layout.col#drawer-body
-           ├── menu#drawer-departamentos  as mesmas categorias do desktop
-           └── flex-layout.col#drawer-extras   "Baixe o app" / "Ajuda"
+           ├── disclosure-layout-group#drawer-departamentos
+           │   └── 5x disclosure-layout (trigger + conteúdo)
+           └── flex-layout.col#drawer-extras    "Baixe o app" / "Ajuda"
 
-     Os `menu-item#dep-*` são reaproveitados de row-links-header.jsonc — são
-     os mesmos itens do menu Departamentos do desktop. Como o bloco é o mesmo,
-     o blockClass deles também é; para vestir só a versão do drawer, escope
-     pelo pai: `.menu--drawer-departamentos`.
+     Por que disclosure-layout e não vtex.menu:
+     o submenu do vtex.menu abre por hover. No toque o navegador emula o
+     hover no primeiro toque e não desfaz, então a lista abria e não fechava
+     mais — e o toque no item ainda navegava para a categoria em vez de
+     abrir. O disclosure-layout é clique-abre / clique-fecha de verdade,
+     e é o mesmo componente que o tema já usa no FAQ e no rodapé.
 
+     O `disclosure-layout-group` mantém só um departamento aberto por vez.
+
+     Estilo em styles/css/header/vtex.disclosure-layout.css.
      Fora do escopo por decisão: "Insira o seu CEP", que existe no Figma.
      ============================================================= */
 
@@ -33,7 +39,7 @@
     ]
   },
 
-  /* Topo: "Bem vindo, Faça seu Login ou Cadastro" + X.
+  /* Topo: ícone de perfil + "Bem vindo, Faça seu Login ou Cadastro" + X.
      Ao declarar filhos no drawer-header, o botão de fechar deixa de ser
      automático e precisa entrar na mão. */
   "drawer-header#menu-mobile": {
@@ -51,8 +57,24 @@
     },
     "children": [
       "login",
+      "rich-text#drawer-login",
       "drawer-close-button"
     ]
+  },
+  /* A saudação é um rich-text, e não o rótulo do bloco `login`.
+
+     O Figma pede duas cores na mesma linha ("Bem vindo," cinza e o link em
+     vermelho sublinhado); aqui elas saem de elementos reais — `paragraph` e
+     `link` — em vez de pseudo-elementos em cima de um handle do vtex.login
+     que nem sempre é renderizado. O bloco `login` continua ao lado, pelo
+     ícone de perfil e pelo comportamento de sessão. */
+  "rich-text#drawer-login": {
+    "props": {
+      "blockClass": "drawer-login",
+      "text": "Bem vindo, [Faça seu Login ou Cadastro](/login)",
+      "textPosition": "LEFT",
+      "textAlignment": "LEFT"
+    }
   },
 
   "flex-layout.col#drawer-body": {
@@ -60,31 +82,335 @@
       "blockClass": "drawer-body"
     },
     "children": [
-      "vtex.menu@2.x:menu#drawer-departamentos",
+      "disclosure-layout-group#drawer-departamentos",
       "flex-layout.col#drawer-extras"
     ]
   },
 
-  /* Lista de categorias. No Figma o primeiro item vem destacado (fundo verde,
-     texto branco) e os demais brancos com a barrinha colorida à esquerda —
-     tudo isso é CSS em cima destes handles. */
-  "vtex.menu@2.x:menu#drawer-departamentos": {
+  // =============================================================
+  // DEPARTAMENTOS — uma sanfona por categoria
+  //
+  // Cada bloco segue sempre o mesmo desenho:
+  //   disclosure-layout#drawer-<cat>
+  //   ├── disclosure-trigger#drawer-<cat>   a linha de 44px
+  //   │   ├── rich-text#drawer-dep-<cat>    o nome (não é link: só abre)
+  //   │   └── disclosure-state-indicator    o chevron, que gira sozinho
+  //   └── disclosure-content#drawer-<cat>
+  //       └── menu#drawer-sub-<cat>         as subcategorias
+  //
+  // A barrinha colorida à esquerda vem do segundo blockClass do trigger
+  // (drawer-dep-medicamentos, drawer-dep-infantil, ...).
+  // =============================================================
+  "disclosure-layout-group#drawer-departamentos": {
     "title": "Menu - Departamentos (drawer)",
-    "props": {
-      "orientation": "vertical",
-      "blockClass": "drawer-departamentos"
-    },
     "children": [
-      "menu-item#dep-medicamentos",
-      "menu-item#dep-infantil",
-      "menu-item#dep-dermocosmeticos",
-      "menu-item#dep-saude-bem-estar",
-      "menu-item#dep-beleza-cuidados"
+      "disclosure-layout#drawer-medicamentos",
+      "disclosure-layout#drawer-infantil",
+      "disclosure-layout#drawer-dermocosmeticos",
+      "disclosure-layout#drawer-saude-bem-estar",
+      "disclosure-layout#drawer-beleza-cuidados"
     ]
   },
 
-  // Rodapé do drawer. Blocos próprios (e não os de col-extras) para o CSS do
-  // row-links do desktop não vazar para cá.
+  // ---------- Medicamentos ----------
+  "disclosure-layout#drawer-medicamentos": {
+    "props": {
+      "animated": true
+    },
+    "children": [
+      "disclosure-trigger#drawer-medicamentos",
+      "disclosure-content#drawer-medicamentos"
+    ]
+  },
+  "disclosure-trigger#drawer-medicamentos": {
+    "props": {
+      "as": "div",
+      "blockClass": [
+        "drawer-dep",
+        "drawer-dep-medicamentos"
+      ]
+    },
+    "children": [
+      "rich-text#drawer-dep-medicamentos",
+      "disclosure-state-indicator"
+    ]
+  },
+  "rich-text#drawer-dep-medicamentos": {
+    "props": {
+      "blockClass": "drawer-dep",
+      "text": "Medicamentos"
+    }
+  },
+  "disclosure-content#drawer-medicamentos": {
+    "props": {
+      "blockClass": "drawer-dep"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-sub-medicamentos"
+    ]
+  },
+  // Reaproveita os menu-item#sub-* do menu Departamentos do desktop
+  // (row-links-header.jsonc) — são as mesmas subcategorias.
+  "vtex.menu@2.x:menu#drawer-sub-medicamentos": {
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-sub"
+    },
+    "children": [
+      "menu-item#sub-remedios-cardiologicos",
+      "menu-item#sub-mais-medicamentos",
+      "menu-item#sub-antigripais",
+      "menu-item#sub-saude-dos-olhos"
+    ]
+  },
+
+  // ---------- Infantil ----------
+  "disclosure-layout#drawer-infantil": {
+    "props": {
+      "animated": true
+    },
+    "children": [
+      "disclosure-trigger#drawer-infantil",
+      "disclosure-content#drawer-infantil"
+    ]
+  },
+  "disclosure-trigger#drawer-infantil": {
+    "props": {
+      "as": "div",
+      "blockClass": [
+        "drawer-dep",
+        "drawer-dep-infantil"
+      ]
+    },
+    "children": [
+      "rich-text#drawer-dep-infantil",
+      "disclosure-state-indicator"
+    ]
+  },
+  "rich-text#drawer-dep-infantil": {
+    "props": {
+      "blockClass": "drawer-dep",
+      "text": "Infantil"
+    }
+  },
+  "disclosure-content#drawer-infantil": {
+    "props": {
+      "blockClass": "drawer-dep"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-sub-infantil"
+    ]
+  },
+  /* PROVISÓRIO — trocar pelos menu-item das subcategorias reais de Infantil.
+     Enquanto elas não existem, a sanfona abre com um único link para a
+     categoria, para o comportamento ficar testável. */
+  "vtex.menu@2.x:menu#drawer-sub-infantil": {
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-sub"
+    },
+    "children": [
+      "menu-item#drawer-sub-infantil-todos"
+    ]
+  },
+  "menu-item#drawer-sub-infantil-todos": {
+    "props": {
+      "id": "menu-item-drawer-sub-infantil-todos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/infantil",
+        "text": "Ver tudo em Infantil",
+        "tagTitle": "Infantil"
+      }
+    }
+  },
+
+  // ---------- Dermocosméticos ----------
+  "disclosure-layout#drawer-dermocosmeticos": {
+    "props": {
+      "animated": true
+    },
+    "children": [
+      "disclosure-trigger#drawer-dermocosmeticos",
+      "disclosure-content#drawer-dermocosmeticos"
+    ]
+  },
+  "disclosure-trigger#drawer-dermocosmeticos": {
+    "props": {
+      "as": "div",
+      "blockClass": [
+        "drawer-dep",
+        "drawer-dep-dermocosmeticos"
+      ]
+    },
+    "children": [
+      "rich-text#drawer-dep-dermocosmeticos",
+      "disclosure-state-indicator"
+    ]
+  },
+  "rich-text#drawer-dep-dermocosmeticos": {
+    "props": {
+      "blockClass": "drawer-dep",
+      "text": "Dermocosméticos"
+    }
+  },
+  "disclosure-content#drawer-dermocosmeticos": {
+    "props": {
+      "blockClass": "drawer-dep"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-sub-dermocosmeticos"
+    ]
+  },
+  // PROVISÓRIO — ver comentário em menu#drawer-sub-infantil
+  "vtex.menu@2.x:menu#drawer-sub-dermocosmeticos": {
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-sub"
+    },
+    "children": [
+      "menu-item#drawer-sub-dermocosmeticos-todos"
+    ]
+  },
+  "menu-item#drawer-sub-dermocosmeticos-todos": {
+    "props": {
+      "id": "menu-item-drawer-sub-dermocosmeticos-todos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/dermocosmeticos",
+        "text": "Ver tudo em Dermocosméticos",
+        "tagTitle": "Dermocosméticos"
+      }
+    }
+  },
+
+  // ---------- Saúde e Bem Estar ----------
+  "disclosure-layout#drawer-saude-bem-estar": {
+    "props": {
+      "animated": true
+    },
+    "children": [
+      "disclosure-trigger#drawer-saude-bem-estar",
+      "disclosure-content#drawer-saude-bem-estar"
+    ]
+  },
+  "disclosure-trigger#drawer-saude-bem-estar": {
+    "props": {
+      "as": "div",
+      "blockClass": [
+        "drawer-dep",
+        "drawer-dep-saude-bem-estar"
+      ]
+    },
+    "children": [
+      "rich-text#drawer-dep-saude-bem-estar",
+      "disclosure-state-indicator"
+    ]
+  },
+  "rich-text#drawer-dep-saude-bem-estar": {
+    "props": {
+      "blockClass": "drawer-dep",
+      "text": "Saúde e Bem Estar"
+    }
+  },
+  "disclosure-content#drawer-saude-bem-estar": {
+    "props": {
+      "blockClass": "drawer-dep"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-sub-saude-bem-estar"
+    ]
+  },
+  // PROVISÓRIO — ver comentário em menu#drawer-sub-infantil
+  "vtex.menu@2.x:menu#drawer-sub-saude-bem-estar": {
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-sub"
+    },
+    "children": [
+      "menu-item#drawer-sub-saude-bem-estar-todos"
+    ]
+  },
+  "menu-item#drawer-sub-saude-bem-estar-todos": {
+    "props": {
+      "id": "menu-item-drawer-sub-saude-bem-estar-todos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/saude-e-bem-estar",
+        "text": "Ver tudo em Saúde e Bem Estar",
+        "tagTitle": "Saúde e Bem Estar"
+      }
+    }
+  },
+
+  // ---------- Beleza e Cuidados ----------
+  "disclosure-layout#drawer-beleza-cuidados": {
+    "props": {
+      "animated": true
+    },
+    "children": [
+      "disclosure-trigger#drawer-beleza-cuidados",
+      "disclosure-content#drawer-beleza-cuidados"
+    ]
+  },
+  "disclosure-trigger#drawer-beleza-cuidados": {
+    "props": {
+      "as": "div",
+      "blockClass": [
+        "drawer-dep",
+        "drawer-dep-beleza-cuidados"
+      ]
+    },
+    "children": [
+      "rich-text#drawer-dep-beleza-cuidados",
+      "disclosure-state-indicator"
+    ]
+  },
+  "rich-text#drawer-dep-beleza-cuidados": {
+    "props": {
+      "blockClass": "drawer-dep",
+      "text": "Beleza e Cuidados"
+    }
+  },
+  "disclosure-content#drawer-beleza-cuidados": {
+    "props": {
+      "blockClass": "drawer-dep"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-sub-beleza-cuidados"
+    ]
+  },
+  // PROVISÓRIO — ver comentário em menu#drawer-sub-infantil
+  "vtex.menu@2.x:menu#drawer-sub-beleza-cuidados": {
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-sub"
+    },
+    "children": [
+      "menu-item#drawer-sub-beleza-cuidados-todos"
+    ]
+  },
+  "menu-item#drawer-sub-beleza-cuidados-todos": {
+    "props": {
+      "id": "menu-item-drawer-sub-beleza-cuidados-todos",
+      "type": "custom",
+      "itemProps": {
+        "type": "internal",
+        "href": "/beleza-e-cuidados",
+        "text": "Ver tudo em Beleza e Cuidados",
+        "tagTitle": "Beleza e Cuidados"
+      }
+    }
+  },
+
+  // =============================================================
+  // Rodapé do drawer
+  // =============================================================
+  // Blocos próprios (e não os de col-extras) para o CSS do row-links do
+  // desktop não vazar para cá.
   "flex-layout.col#drawer-extras": {
     "props": {
       "blockClass": "drawer-extras"

@@ -227,7 +227,19 @@
   padding: 40px;
   max-width: 546px;
   width: 100%;
+
+  @media (max-width:750px) {
+    border: none;
+    padding-inline: 0;
+  }
 }
+
+@media (max-width:750px) {
+  :global(.vtex-product-identifier-0-x-product-identifier--itemId) {
+    padding-right: 1rem;
+  }
+}
+
 
 .flexCol--productInfo .flexColChild {
   width: 100%;
@@ -364,6 +376,10 @@
   border: 1px solid #e0e0e0;
   border-radius: 9px;
   background-color: #fff;
+
+  @media (max-width:750px) {
+    height: 48px;
+  }
 }
 
 .flexCol--variations :global(.vtex-dropdown__caption) {
@@ -394,6 +410,11 @@
   opacity: 0.5;
   text-decoration: line-through;
   margin: 0 0 12px;
+
+
+  @media (max-width:750px) {
+    font-size: 17px;
+  }
 }
 
 .flexRow--sellingPriceSavings .flexRowContent--sellingPriceSavings {
@@ -424,6 +445,10 @@
 .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyFraction--pdp) {
   font-size: 24px;
   font-weight: 400;
+
+  @media (max-width:750px) {
+    font-size: 17px;
+  }
 }
 
 .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-currencyInteger--pdp),
@@ -448,6 +473,10 @@
   white-space: nowrap;
   max-width: 106px;
   margin-left: auto;
+
+  @media (max-width:750px) {
+    margin-right: 1rem;
+  }
 }
 
 .flexRow--sellingPriceSavings :global(.vtex-product-price-1-x-savings--pdp),
@@ -804,12 +833,15 @@
 .flexRow--productSpecificationGroup {
   width: 100%;
 }
+
 .flexRow--productSpecificationGroup .flexRow--productSpecificationGroupName {
- display: none !important;
+  display: none !important;
 }
- .flexCol--productSpecificationName {
+
+.flexCol--productSpecificationName {
   padding: 0 !important;
- }
+}
+
 .flexRow--productSpecification {
   .stretchChildrenWidth {
     width: 100% !important;
@@ -839,8 +871,9 @@
   padding: 0;
   margin: 0 0 4px;
 }
+
 :global(.vtex-store-components-3-x-content) {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;

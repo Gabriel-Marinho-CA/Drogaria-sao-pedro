@@ -48,9 +48,8 @@
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        // 1 card por vez com o próximo espiando na borda. O Figma mobile mostra
-        // ~2,2, mas a leitura ficou melhor com um card só.
-        "phone": 1.2
+        // 2 cards por vez com o terceiro espiando na borda, como no Figma mobile.
+        "phone": 2.2
       },
       // o Swiper aplica o gap inline no slide, então ele vem por prop e não
       // pelo CSS. 2px = as bordas de 1px dos cards vizinhos encostando.
@@ -94,7 +93,7 @@
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        "phone": 1.2
+        "phone": 2.2
       },
       "spaceBetween": 2,
       "infinite": false,
@@ -135,7 +134,7 @@
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        "phone": 1.2
+        "phone": 2.2
       },
       "spaceBetween": 2,
       "infinite": false,

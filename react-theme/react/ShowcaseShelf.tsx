@@ -104,7 +104,7 @@ function ShowcaseShelf({
     [data, total]
   )
 
-  const phone = itemsPerPage?.phone ?? 2.2
+  const phone = itemsPerPage?.phone ?? 2.2 
   const tablet = itemsPerPage?.tablet ?? 3
   const desktop = itemsPerPage?.desktop ?? 5
  

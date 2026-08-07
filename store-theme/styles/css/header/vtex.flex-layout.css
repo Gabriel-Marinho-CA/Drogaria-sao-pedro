@@ -551,20 +551,34 @@
 
 /* ---------- topo: login + fechar ---------- */
 
+:global(.vtex-store-drawer-0-x-childrenContainer--menu-mobile) {
+    margin-top: 2rem;
+}
+
 .flexRowContent--drawer-user {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: flex-start;
+    gap: .75rem;
     padding: 24px 27px 0;
 
     .stretchChildrenWidth {
         width: auto !important;
     }
 
+    /* o X encosta na direita; o resto fica agrupado à esquerda */
+    >.stretchChildrenWidth:last-child {
+        margin-left: auto;
+    }
+
     :global(.vtex-login-2-x-container),
     :global(.vtex-login-2-x-buttonLink) {
         padding: 0;
+    }
+    :global(.vtex-login-2-x-buttonLink) {
+        :global(.vtex-button__label) {
+            padding: 0;
+        }
     }
 
     :global(.vtex-login-2-x-profileIcon) {
@@ -572,34 +586,11 @@
         height: auto;
     }
 
-    /* Duas cores no mesmo rótulo: "Bem vindo," cinza e o link em vermelho
-       sublinhado. Um pseudo-elemento não comporta as duas, então vai um em
-       cada ponta e o texto original é zerado. */
+    /* O bloco `login` entra só pelo ícone — a saudação é o
+       rich-text#drawer-login ao lado. Isto zera qualquer rótulo que o
+       vtex.login resolva renderizar (o nome do usuário, quando logado). */
     :global(.vtex-login-2-x-label) {
         font-size: 0;
-        text-align: start;
-        text-transform: none;
-
-        &::before {
-            content: "Bem vindo, ";
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            line-height: 18px;
-            letter-spacing: -0.4px;
-            color: #707070;
-            text-transform: none;
-        }
-
-        &::after {
-            content: "Faça seu Login ou Cadastro";
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            line-height: 18px;
-            letter-spacing: -0.4px;
-            color: #EC1F25;
-            text-decoration: underline;
-            text-transform: none;
-        }
     }
 
     :global(.vtex-button):hover {
@@ -608,7 +599,6 @@
 
     :global(.vtex-store-drawer-0-x-closeIconButton) {
         padding: 0;
-        margin-left: auto;
     }
 
     :global(.vtex-store-drawer-0-x-closeIconContainer) svg {
@@ -617,133 +607,29 @@
     }
 }
 
+/* Saudação: "Bem vindo," cinza + link vermelho sublinhado. */
+:global(.vtex-rich-text-0-x-paragraph--drawer-login) {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: -0.4px;
+    color: #707070;
+
+    :global(.vtex-rich-text-0-x-link) {
+        color: #EC1F25;
+        text-decoration: underline;
+    }
+}
+
 /* ---------- corpo ---------- */
 
 .flexCol--drawer-body {
-    padding: 0 27px 32px;
+    padding: 0  27px 32px 0
 }
 
-/* ---------- lista de departamentos ---------- */
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 40px;
-
-    :global(.vtex-menu-2-x-menuItem) {
-        width: 100%;
-    }
-
-    :global(.vtex-menu-2-x-styledLinkContainer) {
-        width: 100%;
-        margin: 0;
-        padding-block: 0;
-    }
-
-    /* a caixa de 44px do Figma */
-    :global(.vtex-menu-2-x-styledLink) {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: 44px;
-        padding-inline: 12px;
-        background: #fff;
-        border-radius: 5px;
-    }
-
-    :global(.vtex-menu-2-x-styledLinkContent) {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: -0.4px;
-        color: #707070;
-    }
-
-    /* Chevron como elemento (e não background) para poder girar ao abrir. */
-    :global(.vtex-menu-2-x-styledLink)::after {
-        content: "";
-        flex: 0 0 auto;
-        width: 6px;
-        height: 11px;
-        margin-left: auto;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIxMSIgdmlld0JveD0iMCAwIDYgMTEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLjIyMDQ1MiAwLjIyMDMwMkMtMC4wNzMyNzk0IDAuNTE0MTI1IC0wLjA3MzI3OTQgMC45OTA0MTEgMC4yMjA0NTIgMS4yODQyNEwzLjk0NDk3IDUuMDA4NzZMMC4yMjA0NTIgOC43MzMyOEMtMC4wNzM0NzAxIDkuMDI3MDQgLTAuMDczNDcwMSA5LjUwMzQ2IDAuMjIwMzY4IDkuNzk3M0MwLjUxNDIxNSAxMC4wOTExIDAuOTkwNjI0IDEwLjA5MTEgMS4yODQ0NiA5Ljc5NzNMNS41NDA4NyA1LjU0MDczQzUuODM0NjEgNS4yNDY5IDUuODM0NjEgNC43NzA2MiA1LjU0MDg3IDQuNDc2NzlMMS4yODQzOSAwLjIyMDMwMkMwLjk5MDU2MyAtMC4wNzM0MzM5IDAuNTE0Mjc2IC0wLjA3MzQzMzkgMC4yMjA0NTIgMC4yMjAzMDJaIiBmaWxsPSIjNzA3MDcwIi8+Cjwvc3ZnPgo=);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        transition: transform .2s ease;
-    }
-
-    /* aberto: chevron aponta para baixo */
-    :global(.vtex-menu-2-x-menuItem--isOpen) :global(.vtex-menu-2-x-styledLink)::after {
-        transform: rotate(90deg);
-    }
-}
-
-/* ---------- submenu abrindo para baixo (disclosure) ---------- */
-
-/* No desktop o submenu é um painel flutuante (absoluto, com sombra e raio) e o
-   item aberto fica verde por inteiro — ver as regras de .submenuContainer e
-   de --dep-medicamentos--isOpen mais acima neste arquivo. No drawer ele tem
-   que voltar ao fluxo normal: abre para baixo e empurra os itens seguintes.
-
-   As cadeias de seletor abaixo são longas de propósito: precisam ganhar em
-   especificidade daquelas regras, que vêm antes. */
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-menuItem--isOpen) {
-    background: none;
-    border-radius: 0;
-}
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) {
-    position: static;
-    width: 100%;
-    height: auto;
-}
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) :global(.vtex-menu-2-x-submenuWrapper) {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding: 0;
-    border: none;
-    border-radius: 0 !important;
-    box-shadow: none;
-}
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) :global(.vtex-menu-2-x-submenuWrapper) :global(.vtex-menu-2-x-submenu) {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    /* recuo à esquerda para o segundo nível ficar visivelmente aninhado */
-    padding: 0 0 4px 12px;
-    background: none;
-    border-radius: 0;
-    overflow: visible;
-    max-height: none;
-}
-
-/* Itens de segundo nível: menores, sem a caixa branca e sem chevron. */
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLink) {
-    height: 36px;
-    padding-inline: 12px;
-    background: none;
-    border-radius: 0;
-}
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLink)::after {
-    display: none;
-}
-
-:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLinkContent) {
-    padding-right: 0;
-    font-size: 15px;
-    color: #707070;
-    background-image: none;
-}
+/* A lista de departamentos é sanfona (vtex.disclosure-layout) e está vestida
+   em header/vtex.disclosure-layout.css. */
 
 /* ---------- rodapé: Baixe o app / Ajuda ---------- */
 
@@ -754,6 +640,7 @@
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid #E0E0E0;
+    padding-left: 10px;
 }
 
 :global(.vtex-rich-text-0-x-paragraph--drawer-baixe-o-app),
