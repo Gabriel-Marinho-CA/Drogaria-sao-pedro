@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Swiper — CSS de funcionamento (vendor)
+
+   Só o núcleo do Swiper 6: a pista em flex, o clipping do container e as
+   bolinhas de paginação. Nada de identidade visual aqui — o desenho da
+   prateleira (título, gaps, cor das bolinhas, setas) é vestido no tema, em
+   store-theme/styles/css/drogariasaopedro.custom-components.css, pelos
+   handles showcaseShelf*.
+
+   O arquivo é .global.css de propósito: o builder do VTEX trata .css comum
+   como CSS Module e trocaria os nomes das classes que o Swiper escreve no
+   DOM em runtime (.swiper-slide, .swiper-pagination-bullet...).
+   ========================================================================== */
+
+.swiper-container {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    padding: 0 0 2rem 0;
+    overflow: hidden;
+    list-style: none;
+}
+
+.swiper-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    transition-property: transform;
+}
+
+/* Sem isto o Android borra o texto durante o arrasto. */
+.swiper-container-android .swiper-slide,
+.swiper-wrapper {
+    transform: translate3d(0, 0, 0);
+}
+
+.swiper-slide {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    transition-property: transform;
+}
+
+/* Os cards do product-summary têm alturas diferentes; deixamos o slide
+   crescer e esticamos todos pela altura do mais alto. */
+.swiper-container .swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiper-container .swiper-slide {
+    height: auto;
+}
+
+.swiper-container-autoheight,
+.swiper-container-autoheight .swiper-slide {
+    height: auto;
+}
+
+.swiper-container-autoheight .swiper-wrapper {
+    align-items: flex-start;
+    transition-property: transform, height;
+}
+
+.swiper-slide-invisible-blank {
+    visibility: hidden;
+}
+
+.swiper-container-multirow > .swiper-wrapper {
+    flex-wrap: wrap;
+}
+
+.swiper-container-free-mode > .swiper-wrapper {
+    margin: 0 auto;
+    transition-timing-function: ease-out;
+}
+
+/* ── Paginação ─────────────────────────────────────────────────────────── */
+
+.swiper-pagination {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+    transition: 300ms opacity;
+}
+
+.swiper-pagination.swiper-pagination-hidden {
+    opacity: 0;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-pagination-bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border: none;
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+button.swiper-pagination-bullet {
+    padding: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 4px;
+}
+
+.swiper-pagination-lock {
+    display: none;
+}
+
+/* ── Navegação ─────────────────────────────────────────────────────────── */
+
+/* O Swiper só marca o estado; posição e aparência das setas saem do tema. */
+.swiper-button-disabled {
+    cursor: auto;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.swiper-button-lock {
+    display: none;
+}

@@ -38,6 +38,9 @@
     display: none;
 }
 
+.seller.muted {
+    display: none !important;
+}
 /* Em algumas versoes o template do checkout envolve os <td> nesta div.
    `display: contents` faz os <td> participarem do flex/grid da linha. */
 .cart .cart-items .v-custom-product-item-wrap {
@@ -399,6 +402,7 @@ body .summary-template-holder .cart-more-options {
         grid-area: name;
         align-self: start;
         padding: 0;
+        margin-left: 70px !important;
     }
 
     .cart .cart-items td.product-name a {
@@ -444,6 +448,9 @@ body .summary-template-holder .cart-more-options {
         align-self: center;
     }
 
+    .full-cart .cart table tbody tr td.quantity {
+        margin-left: 70px !important;
+    }
     .cart .cart-items td.quantity-price .total-selling-price {
         font-size: 13px;
         line-height: 23px;
@@ -460,6 +467,7 @@ body .summary-template-holder .cart-more-options {
         width: 35px;
         height: 35px;
         border-radius: 50%;
+        box-sizing: border-box;
         background: #e0e0e0;
     }
 
@@ -909,6 +917,11 @@ body .summary-template-holder .cart-more-options {
 .summary .coupon-fields button:hover,
 .summary .coupon-fields button:focus {
     background-color: #01466e !important;
+}
+
+.table.cart-items td.product-name a, .table.cart-items td.product-name a:hover {
+    color: initial  !important;
+    font-weight: 400 !important;
 }
 
 /* Cupom ja aplicado */

@@ -1,0 +1,113 @@
+{
+  /* =============================================================
+     DRAWER MOBILE — Figma: node 1-12716
+
+     Aberto pelo hamburguer da linha 1 do header mobile
+     (flex-layout.row#main-row-mobile, em row-1-header-mobile.jsonc).
+
+     Montagem:
+       drawer
+       ├── drawer-header#menu-mobile      login + botão de fechar
+       └── flex-layout.col#drawer-body
+           ├── menu#drawer-departamentos  as mesmas categorias do desktop
+           └── flex-layout.col#drawer-extras   "Baixe o app" / "Ajuda"
+
+     Os `menu-item#dep-*` são reaproveitados de row-links-header.jsonc — são
+     os mesmos itens do menu Departamentos do desktop. Como o bloco é o mesmo,
+     o blockClass deles também é; para vestir só a versão do drawer, escope
+     pelo pai: `.menu--drawer-departamentos`.
+
+     Fora do escopo por decisão: "Insira o seu CEP", que existe no Figma.
+     ============================================================= */
+
+  "drawer": {
+    "title": "Menu Mobile",
+    "props": {
+      "blockClass": "menu-mobile"
+    },
+    "blocks": [
+      "drawer-header#menu-mobile"
+    ],
+    "children": [
+      "flex-layout.col#drawer-body"
+    ]
+  },
+
+  /* Topo: "Bem vindo, Faça seu Login ou Cadastro" + X.
+     Ao declarar filhos no drawer-header, o botão de fechar deixa de ser
+     automático e precisa entrar na mão. */
+  "drawer-header#menu-mobile": {
+    "children": [
+      "flex-layout.row#drawer-user"
+    ]
+  },
+  "flex-layout.row#drawer-user": {
+    "props": {
+      "blockClass": "drawer-user",
+      "fullWidth": true,
+      "preserveLayoutOnMobile": true,
+      "preventVerticalStretch": true,
+      "verticalAlign": "middle"
+    },
+    "children": [
+      "login",
+      "drawer-close-button"
+    ]
+  },
+
+  "flex-layout.col#drawer-body": {
+    "props": {
+      "blockClass": "drawer-body"
+    },
+    "children": [
+      "vtex.menu@2.x:menu#drawer-departamentos",
+      "flex-layout.col#drawer-extras"
+    ]
+  },
+
+  /* Lista de categorias. No Figma o primeiro item vem destacado (fundo verde,
+     texto branco) e os demais brancos com a barrinha colorida à esquerda —
+     tudo isso é CSS em cima destes handles. */
+  "vtex.menu@2.x:menu#drawer-departamentos": {
+    "title": "Menu - Departamentos (drawer)",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "drawer-departamentos"
+    },
+    "children": [
+      "menu-item#dep-medicamentos",
+      "menu-item#dep-infantil",
+      "menu-item#dep-dermocosmeticos",
+      "menu-item#dep-saude-bem-estar",
+      "menu-item#dep-beleza-cuidados"
+    ]
+  },
+
+  // Rodapé do drawer. Blocos próprios (e não os de col-extras) para o CSS do
+  // row-links do desktop não vazar para cá.
+  "flex-layout.col#drawer-extras": {
+    "props": {
+      "blockClass": "drawer-extras"
+    },
+    "children": [
+      "rich-text#drawer-baixe-o-app",
+      "rich-text#drawer-ajuda"
+    ]
+  },
+  "rich-text#drawer-baixe-o-app": {
+    "props": {
+      "blockClass": "drawer-baixe-o-app",
+      "text": "[Baixe o app](#)",
+      "textPosition": "LEFT",
+      "textAlignment": "LEFT"
+    }
+  },
+  "rich-text#drawer-ajuda": {
+    "props": {
+      "blockClass": "drawer-ajuda",
+      "text": "[Ajuda](#)",
+      "textPosition": "LEFT",
+      "textAlignment": "LEFT"
+    }
+  }
+}

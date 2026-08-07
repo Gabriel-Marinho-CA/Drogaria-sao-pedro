@@ -1,250 +1,162 @@
 {
+  /* ─────────────────────────────────────────────────────────────
+     Prateleiras da home — Figma cards: node 1-3131 | desktop: 1-5470
+     | mobile: 1-11363
+
+     O `showcase-shelf` é um bloco React de
+     drogariasaopedro.custom-components (react/ShowcaseShelf.tsx). Ele é
+     autossuficiente: busca a coleção sozinho (vtex.search-graphql) e desenha
+     cada produto com o ShowcaseCard, o card do Figma feito naquele app.
+
+     Ou seja, não há mais `list-context.product-list`, nem `rich-text` de
+     título, nem `product-summary.shelf` aqui — coleção, título e layout são
+     props do bloco. O card da busca e da PDP continua sendo o
+     `product-summary.shelf` de product-summary/product-summary.jsonc, que não
+     foi tocado.
+
+     O `flex-layout.row` continua por fora só como caixa da seção: é ele que
+     dá o container (gutters e largura máxima) e o espaçamento vertical de
+     .flexRowContent--showcase.
+
+     Estilo: nada aqui é vestido por CSS handle do tema. O visual do carrossel
+     e do card vive no CSS Module do app
+     (react/components/showcase/showcase.css).
+     ───────────────────────────────────────────────────────────── */
+
   // ─────────────────────────────────────────────────────────────
   // Showcase — Destaques da Semana
   // ─────────────────────────────────────────────────────────────
-  "rich-text#showcase-title": {
-    "title": "Título - Destaques da Semana",
-    "props": {
-      "text": "## Destaques da Semana",
-      "blockClass": "showcaseTitle"
-    }
-  },
   "flex-layout.row#showcase": {
     "title": "Prateleira - Destaques da Semana",
     "props": {
       "blockClass": "showcase"
     },
     "children": [
-      "rich-text#showcase-title",
-      "list-context.product-list#showcase"
+      "showcase-shelf#showcase"
     ]
   },
-  "list-context.product-list#showcase": {
-    "title": "Lista de Produtos - Destaques da Semana",
-    "blocks": [
-      "product-summary.shelf"
-    ],
-    "children": [
-      "slider-layout#showcase-products"
-    ],
+  "showcase-shelf#showcase": {
+    "title": "Carrossel - Destaques da Semana",
     "props": {
-      // Substitua pelo ID da coleção desejada no VTEX Catalog
-      "collection": ""
-    }
-  },
-  "slider-layout#showcase-products": {
-    "title": "Slider - Destaques da Semana",
-    "props": {
+      "title": "Destaques da Semana",
+      // Substitua pelo ID da coleção desejada no VTEX Catalog.
+      // Provisório: vazio, a busca vai sem filtro e o `orderBy` sozinho
+      // decide — a prateleira sobe com os mais vendidos em vez de ficar vazia.
+      "collection": "",
+      "orderBy": "OrderByTopSaleDESC",
+      "maxItems": 12,
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        "phone": 2
+        // 1 card por vez com o próximo espiando na borda. O Figma mobile mostra
+        // ~2,2, mas a leitura ficou melhor com um card só.
+        "phone": 1.2
       },
-      // itemsPerPage quebrado + infinite se dão mal: o modo infinito clona
-      // slides e calcula o transform por página inteira, então com 2.2 o
-      // alinhamento vai desandando a cada volta.
+      // o Swiper aplica o gap inline no slide, então ele vem por prop e não
+      // pelo CSS. 2px = as bordas de 1px dos cards vizinhos encostando.
+      "spaceBetween": 2,
+      // com slidesPerView fracionado o loop desalinha a cada volta
       "infinite": false,
-      // alinha o slide ativo à esquerda e deixa o próximo aparecendo à
-      // direita — é o peek sem o desalinhamento do modo paginado.
-      "showNavigationArrows": "never",
-      "showPaginationDots": "always",
-      "blockClass": "showcaseSlider"
-    }
+      "showNavigationArrows": false,
+      "showPaginationDots": true
+    },
+    /* O coração da wishlist. O card React o renderiza por
+       `ExtensionPoint id="add-to-list-btn"`, que endereça o slot pelo nome da
+       interface — por isso `blocks` e não `children`.
+
+       Não dá para importar o componente: vtex.wish-list é app com cobrança e
+       só entra em peerDependencies, que compõe bloco mas não expõe módulo JS. */
+    "blocks": [
+      "add-to-list-btn"
+    ]
   },
+
   // ─────────────────────────────────────────────────────────────
-  // Showcase 2 — clone do #showcase, entra abaixo do minibanners-2
+  // Showcase 2 — entra abaixo do minibanners-2
   // ─────────────────────────────────────────────────────────────
-  "rich-text#showcase-title-2": {
-    "title": "Título - Showcase 2",
-    "props": {
-      "text": "## Showcase 2",
-      "blockClass": "showcaseTitle"
-    }
-  },
   "flex-layout.row#showcase-2": {
     "title": "Prateleira - Showcase 2",
     "props": {
       "blockClass": "showcase"
     },
     "children": [
-      "rich-text#showcase-title-2",
-      "list-context.product-list#showcase-2"
+      "showcase-shelf#showcase-2"
     ]
   },
-  "list-context.product-list#showcase-2": {
-    "title": "Lista de Produtos - Showcase 2",
-    "blocks": [
-      "product-summary.shelf"
-    ],
-    "children": [
-      "slider-layout#showcase-products-2"
-    ],
+  "showcase-shelf#showcase-2": {
+    "title": "Carrossel - Showcase 2",
     "props": {
-      // Substitua pelo ID da coleção desejada no VTEX Catalog
-      "collection": ""
-    }
-  },
-  "slider-layout#showcase-products-2": {
-    "title": "Slider - Showcase 2",
-    "props": {
+      "title": "Showcase 2",
+      // Ver comentário em showcase-shelf#showcase
+      "collection": "",
+      "orderBy": "OrderByTopSaleDESC",
+      "maxItems": 12,
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        "phone": 2
+        "phone": 1.2
       },
+      "spaceBetween": 2,
       "infinite": false,
-      "showNavigationArrows": "never",
-      "showPaginationDots": "always",
-      "blockClass": "showcaseSlider"
-    }
+      "showNavigationArrows": false,
+      "showPaginationDots": true
+    },
+    /* O coração da wishlist. O card React o renderiza por
+       `ExtensionPoint id="add-to-list-btn"`, que endereça o slot pelo nome da
+       interface — por isso `blocks` e não `children`.
+
+       Não dá para importar o componente: vtex.wish-list é app com cobrança e
+       só entra em peerDependencies, que compõe bloco mas não expõe módulo JS. */
+    "blocks": [
+      "add-to-list-btn"
+    ]
   },
+
   // ─────────────────────────────────────────────────────────────
-  // Showcase 3 — clone do #showcase, entra abaixo do showcase-2
+  // Showcase 3 — entra abaixo do showcase-2
   // ─────────────────────────────────────────────────────────────
-  "rich-text#showcase-title-3": {
-    "title": "Título - Showcase 3",
-    "props": {
-      "text": "## Showcase 3",
-      "blockClass": "showcaseTitle"
-    }
-  },
   "flex-layout.row#showcase-3": {
     "title": "Prateleira - Showcase 3",
     "props": {
       "blockClass": "showcase"
     },
     "children": [
-      "rich-text#showcase-title-3",
-      "list-context.product-list#showcase-3"
+      "showcase-shelf#showcase-3"
     ]
   },
-  "list-context.product-list#showcase-3": {
-    "title": "Lista de Produtos - Showcase 3",
-    "blocks": [
-      "product-summary.shelf"
-    ],
-    "children": [
-      "slider-layout#showcase-products-3"
-    ],
+  "showcase-shelf#showcase-3": {
+    "title": "Carrossel - Showcase 3",
     "props": {
-      // Substitua pelo ID da coleção desejada no VTEX Catalog
-      "collection": ""
-    }
-  },
-  "slider-layout#showcase-products-3": {
-    "title": "Slider - Showcase 3",
-    "props": {
+      "title": "Showcase 3",
+      // Ver comentário em showcase-shelf#showcase
+      "collection": "",
+      "orderBy": "OrderByTopSaleDESC",
+      "maxItems": 12,
       "itemsPerPage": {
         "desktop": 5,
         "tablet": 3,
-        "phone": 2
+        "phone": 1.2
       },
+      "spaceBetween": 2,
       "infinite": false,
-      "showNavigationArrows": "never",
-      "showPaginationDots": "always",
-      "blockClass": "showcaseSlider"
-    }
-  },
-  // ─────────────────────────────────────────────────────────────
-  // Product Summary — Card de Destaque
-  // ─────────────────────────────────────────────────────────────
-  "product-summary.shelf#showcase": {
-    "children": [
-      "stack-layout#showcase",
-      "product-summary-name#showcase",
-      "flex-layout.row#list-price-savings-showcase",
-      "product-selling-price#showcase",
-      "add-to-cart-button#showcase"
-    ]
-  },
-  // Imagem do produto + tags de coleção (em cima) + wishlist (canto superior)
-  "stack-layout#showcase": {
-    "children": [
-      "product-summary-image#showcase",
-      "vtex.product-highlights@2.x:product-highlights#collection-showcase",
+      "showNavigationArrows": false,
+      "showPaginationDots": true
+    },
+    /* O coração da wishlist. O card React o renderiza por
+       `ExtensionPoint id="add-to-list-btn"`, que endereça o slot pelo nome da
+       interface — por isso `blocks` e não `children`.
+
+       Não dá para importar o componente: vtex.wish-list é app com cobrança e
+       só entra em peerDependencies, que compõe bloco mas não expõe módulo JS. */
+    "blocks": [
       "add-to-list-btn"
     ]
   },
-  "product-summary-image#showcase": {
-    "props": {
-      "showBadge": false,
-      "aspectRatio": "1:1",
-      "maxHeight": 300,
-      "blockClass": "showcaseImage"
-    }
-  },
-  // Tags de coleção sobrepostas à imagem (ex: "LEVE 3 PAGUE 2", "50% OFF NA 2ª UNIDADE")
-  "vtex.product-highlights@2.x:product-highlights#collection-showcase": {
-    "props": {
-      "type": "collection"
-    },
-    "children": [
-      "product-highlight-wrapper#showcase"
-    ]
-  },
-  "product-highlight-wrapper#showcase": {
-    "props": {
-      "blockClass": "collection-showcase"
-    },
-    "children": [
-      "product-highlight-text#showcase"
-    ]
-  },
-  "product-highlight-text#showcase": {
-    "props": {
-      "message": "{highlightName}",
-      "blockClass": "collection-showcase"
-    }
-  },
-  "product-summary-name#showcase": {
-    "props": {
-      "blockClass": "showcase",
-      "tag": "h3"
-    }
-  },
-  // Linha: preço de lista riscado + % de desconto
-  "flex-layout.row#list-price-savings-showcase": {
-    "props": {
-      "blockClass": "listPriceSavingsShowcase",
-      "colGap": 2,
-      "preserveLayoutOnMobile": true,
-      "preventHorizontalStretch": true,
-      "verticalAlign": "middle"
-    },
-    "children": [
-      "product-list-price#showcase",
-      "product-price-savings#showcase"
-    ]
-  },
-  "product-list-price#showcase": {
-    "props": {
-      "blockClass": "showcase"
-    }
-  },
-  // % de desconto (ex: "27% OFF")
-  "product-price-savings#showcase": {
-    "props": {
-      "markers": [
-        "discount"
-      ],
-      "blockClass": "showcase"
-    }
-  },
-  // Spot price — preço promocional em destaque
-  "product-selling-price#showcase": {
-    "props": {
-      "blockClass": "showcase"
-    }
-  },
-  /* Variações não herdam props do bloco base — ver product-summary.jsonc. */
-  "add-to-cart-button#showcase": {
-    "props": {
-      "blockClass": "showcase",
-      "addToCartFeedback": "customEvent",
-      "customPixelEventId": "add-to-cart-button"
-    }
-  },
-  
+
+  /* ─────────────────────────────────────────────────────────────
+     Bloco antigo "Confira nossas ofertas". Não é referenciado por
+     store.home (ver home.jsonc) — segue aqui só como legado.
+     ───────────────────────────────────────────────────────────── */
   "flex-layout.col#showcase-confira-ofertas": {
     "props": {
       "blockClass": [

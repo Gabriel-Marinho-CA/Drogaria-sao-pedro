@@ -87,19 +87,6 @@
   },
   "header-layout.mobile": {
     "children": ["sticky-layout#row-mobile"]
-  },
-  "drawer": {
-    "children": ["menu#drawer"]
-  },
-
-  "menu#drawer": {
-    "children": [
-      "menu-item#category-apparel",
-      "menu-item#category-home",
-      "menu-item#more"
-    ],
-    "props": {
-      "orientation": "vertical"
-    }
   }
+  /* O `drawer` (menu mobile) está em drawer-mobile.jsonc. */
 }

@@ -17,6 +17,7 @@
     "vtex.product-quantity": "1.x",
     "vtex.format-currency": "0.x",
     "vtex.slider-layout": "0.x",
+    "vtex.list-context": "0.x",
     "vtex.store-components": "3.x",
     "vtex.order-items": "0.x",
     "vtex.pages-graphql": "2.x",
@@ -26,6 +27,9 @@
     "vtex.store-graphql": "2.x",
     "tfcqf0.similar-products-variants": "0.x",
     "vtex.add-to-cart-button": "0.x"
+  },
+  "peerDependencies": {
+    "vtex.wish-list": "1.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

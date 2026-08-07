@@ -1,0 +1,446 @@
+/* ==========================================================================
+   Card e prateleira do showcase — Figma node 1-3131 (desktop) / 1-11363 (mobile)
+
+   CSS Module do app: os nomes de classe são livres e o builder do VTEX escopa
+   tudo. As poucas regras com `:global()` alcançam DOM que não é nosso — o
+   <button> do styleguide dentro do AddToCartButton e as classes que o Swiper
+   escreve em runtime.
+
+   Medidas do Figma, card de 217px: borda de 1px, 14px de padding lateral,
+   conteúdo de 189px.
+   ========================================================================== */
+
+/* ── Prateleira ────────────────────────────────────────────────────────── */
+
+.shelf {
+  width: 100%;
+}
+
+.title {
+  margin: 0 0 16px;
+  color: #242424;
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.625px;
+  line-height: 1.2;
+}
+
+.carousel {
+  position: relative;
+  /* espaço para as bolinhas, que o Swiper posiciona por cima da pista */
+  padding-bottom: 40px;
+}
+
+/* Os cards vizinhos encostam pelas bordas de 1px, então o slide não ganha
+   padding próprio — o respiro sai do `spaceBetween` do bloco. */
+.slide {
+  display: flex;
+  height: auto;
+}
+
+.slide>* {
+  width: 100%;
+}
+
+.carousel :global(.swiper-pagination) {
+  bottom: 0;
+}
+
+.carousel :global(.swiper-pagination-bullet) {
+  width: 13px;
+  height: 13px;
+  background: #fff;
+  border: 1px solid #cbcbcb;
+  opacity: 1;
+}
+
+.carousel :global(.swiper-pagination-bullet-active) {
+  background: #ec1f25;
+  border-color: #ec1f25;
+}
+
+.arrow {
+  position: absolute;
+  top: calc(50% - 20px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: #ec1f25;
+  background: #fff;
+  border: 1px solid #cbcbcb;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.arrowPrev {
+  left: -25px;
+}
+
+.arrowNext {
+  right: -25px;
+}
+
+/* Sem espaço para as setas fora da pista em telas menores. */
+@media screen and (max-width: 1330px) {
+  .arrow {
+    display: none;
+  }
+}
+
+/* ── Card ──────────────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 14px 14px 15px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+/* Faixa do topo: a tag de coleção e o coração da wishlist ficam aqui, por
+   cima da imagem. Tem altura fixa para que todos os cards do carrossel
+   alinhem a imagem na mesma linha, com ou sem tag. */
+.header {
+  position: relative;
+  height: 34px;
+  flex: 0 0 auto;
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 7px 8px;
+  background: #ec1f25;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Wishlist ──────────────────────────────────────────────────────────── */
+
+/* Coração do vtex.wish-list (AddProductBtn). Figma: 19x18 encostado na borda
+   direita do conteúdo, alinhado ao topo da faixa. */
+.wishlist {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 24px;
+  height: 24px;
+}
+
+.wishlist :global(.vtex-wish-list-1-x-wishlistIconContainer) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.wishlist svg {
+  width: 19px;
+  height: 18px;
+}
+
+/* ── Imagem ────────────────────────────────────────────────────────────── */
+
+.imageLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 153px;
+  flex: 0 0 auto;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 153px;
+  object-fit: contain;
+}
+
+/* ── Nome ──────────────────────────────────────────────────────────────── */
+
+.nameLink {
+  display: block;
+  margin-top: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 3 linhas de 19px: a altura travada mantém preço e botão dos cards vizinhos
+   na mesma linha, mesmo com nomes de tamanhos diferentes. */
+.name {
+  display: -webkit-box;
+  height: 57px;
+  margin: 0;
+  overflow: hidden;
+  color: #707070;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* ── Preços ────────────────────────────────────────────────────────────── */
+
+/* Linha do "de" riscado + selo de desconto. Fica com altura reservada mesmo
+   sem promoção, senão o card sem desconto sobe e desalinha o carrossel. */
+.priceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 24px;
+  margin-top: 14px;
+  flex: 0 0 auto;
+}
+
+.listPrice {
+  color: #707070;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.discount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 63px;
+  height: 24px;
+  padding: 0 8px;
+  background: #fcebc9;
+  border-radius: 3px;
+  color: #242424;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 13px;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* A partir de 50% o selo vira vermelho com texto branco (Figma: 27% bege,
+   55% vermelho). */
+.discountHigh {
+  background: #ec1f25;
+  color: #fff;
+}
+
+.sellingPrice {
+  display: block;
+  margin-top: 2px;
+  color: #242424;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.39px;
+  line-height: 36px;
+}
+
+.priceSymbol,
+.priceFraction {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.priceInteger {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.96px;
+}
+
+.unavailable {
+  display: block;
+  margin-top: 2px;
+  color: #707070;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 36px;
+}
+
+/* ── Botão ─────────────────────────────────────────────────────────────── */
+
+/* `margin-top: auto` cola o botão na base: é o que mantém o rodapé dos cards
+   alinhado quando um tem preço "de/por" e o vizinho não. */
+.buy {
+  margin-top: auto;
+  padding-top: 14px;
+  flex: 0 0 auto;
+}
+
+.buy :global(.vtex-button) {
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  background-color: #025789;
+  border: none;
+  border-radius: 100px;
+
+
+  @media (max-width:750px) {
+    height: 32px;
+    min-height: 32px;
+  }
+}
+
+.buy :global(.vtex-button):hover {
+  background-color: #01456d;
+}
+
+.buy :global(.vtex-button__label) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  text-transform: none;
+
+  @media (max-width:750px) {
+    font-size: 11px;
+  }
+}
+
+/* A cesta vem por CSS porque o AddToCartButton só aceita texto no rótulo — o
+   SVG é o exportado do Figma, embutido para não depender de um asset externo. */
+.buy :global(.vtex-button__label)::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px;
+  height: 13px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.9202 13.0553'%3E%3Cpath fill='white' d='M3.73004 8.39278C3.73004 7.87776 4.14754 7.46027 4.66255 7.46027C5.17756 7.46027 5.59506 7.87776 5.59506 8.39278V10.2578C5.59506 10.7728 5.17756 11.1903 4.66255 11.1903C4.14754 11.1903 3.73004 10.7728 3.73004 10.2578V8.39278ZM6.52757 8.39278C6.52757 7.87776 6.94507 7.46027 7.46008 7.46027C7.9751 7.46027 8.39259 7.87776 8.39259 8.39278V10.2578C8.39259 10.7728 7.9751 11.1903 7.46008 11.1903C6.94507 11.1903 6.52757 10.7728 6.52757 10.2578V8.39278ZM9.3251 8.39278C9.3251 7.87776 9.7426 7.46027 10.2576 7.46027C10.7726 7.46027 11.1901 7.87776 11.1901 8.39278V10.2578C11.1901 10.7728 10.7726 11.1903 10.2576 11.1903C9.7426 11.1903 9.3251 10.7728 9.3251 10.2578V8.39278Z'/%3E%3Cpath fill='white' d='M5.36846 0.0663944C5.58944 0.198723 5.66126 0.485165 5.52885 0.706097L3.15468 4.66274H11.7655L9.39038 0.706097C9.25802 0.485158 9.32983 0.198752 9.55077 0.0663944C9.77171 -0.0659632 10.0581 0.00584654 10.1905 0.226787L12.8528 4.66274H14.4539C14.7114 4.66274 14.9202 4.87149 14.9202 5.12899V6.06151C14.9202 6.31901 14.7114 6.52776 14.4539 6.52776H13.873L12.1534 12.548C12.0676 12.8486 11.7927 13.0557 11.4801 13.0553L3.44096 13.0553C3.1284 13.0557 2.85354 12.8486 2.76769 12.548L1.04721 6.52776H0.466255C0.20875 6.52776 0 6.31901 0 6.06151V5.12899C0 4.87149 0.20875 4.66274 0.466255 4.66274H2.06738L4.72783 0.226786C4.86016 0.00580649 5.14753 -0.0660138 5.36846 0.0663944ZM2.01702 6.52776L3.61534 12.1228H11.3048L12.9031 6.52776H2.01702Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────────── */
+
+/* Figma mobile — card: node 1-8081 | prateleira: node 1-11363.
+   Card de 186x341 com 12px de padding, conteúdo de 162px. Não é o desktop
+   reduzido por escala: cada medida abaixo saiu do node do card. */
+@media screen and (max-width: 750px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 12px 12px 13px;
+  }
+
+  .header {
+    height: 29px;
+  }
+
+  .wishlist svg {
+    width: 17px;
+    height: 15px;
+  }
+
+  .imageLink {
+    height: 131px;
+  }
+
+  .image {
+    max-height: 131px;
+  }
+
+  .nameLink {
+    margin-top: 7px;
+  }
+
+  /* 3 linhas de 16px */
+  .name {
+    height: 48px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .priceRow {
+    height: 20px;
+    margin-top: 13px;
+  }
+
+  .listPrice {
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .discount {
+    min-width: 54px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .sellingPrice {
+    letter-spacing: -0.33px;
+    line-height: 30px;
+  }
+
+  .priceSymbol,
+  .priceFraction {
+    font-size: 11px;
+  }
+
+  .priceInteger {
+    font-size: 27px;
+    letter-spacing: -0.81px;
+  }
+
+  .unavailable {
+    font-size: 14px;
+    line-height: 30px;
+  }
+
+  .buy {
+    padding-top: 13px;
+  }
+
+  .buy :global(.vtex-button__label)::before {
+    width: 13px;
+    height: 11px;
+  }
+
+  /* O node do card mobile não traz faixa de coleção; proporcional ao desktop. */
+  .tag {
+    padding: 6px 6px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

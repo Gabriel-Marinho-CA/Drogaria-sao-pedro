@@ -1,0 +1,75 @@
+# Coleção do catálogo → produtos da prateleira.
+#
+# O par `query` = id da coleção + `map: "productClusterIds"` é a mesma forma
+# que o `list-context.product-list` usa internamente; funciona tanto na busca
+# legada quanto na Intelligent Search, ao contrário do argumento `collection`,
+# que só existe na legada. Sem `query`/`map` a busca vai sem filtro e o
+# `orderBy` sozinho decide o que sobe.
+
+query ShowcaseProductSearch(
+  $query: String
+  $map: String
+  $orderBy: String
+  $from: Int
+  $to: Int
+  $hideUnavailableItems: Boolean
+) {
+  productSearch(
+    query: $query
+    map: $map
+    orderBy: $orderBy
+    from: $from
+    to: $to
+    hideUnavailableItems: $hideUnavailableItems
+  ) @context(provider: "vtex.search-graphql") {
+    products {
+      productId
+      productName
+      productReference
+      linkText
+      link
+      brand
+      categoryTree {
+        name
+      }
+      clusterHighlights {
+        id
+        name
+      }
+      # O card monta o item do carrinho com o mapCatalogItemToCart do
+      # vtex.add-to-cart-button; os campos abaixo (ean, referenceId,
+      # measurementUnit, variations) existem para ele preencher a linha do
+      # minicart e o evento do pixel.
+      items {
+        itemId
+        name
+        ean
+        measurementUnit
+        referenceId {
+          Key
+          Value
+        }
+        variations {
+          name
+          values
+        }
+        images {
+          imageUrl
+          imageLabel
+          imageText
+        }
+        sellers {
+          sellerId
+          sellerName
+          sellerDefault
+          commertialOffer {
+            Price
+            ListPrice
+            AvailableQuantity
+            PriceValidUntil
+          }
+        }
+      }
+    }
+  }
+}

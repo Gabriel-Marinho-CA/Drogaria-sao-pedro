@@ -1,5 +1,11 @@
 {
   "product-spec-banner": {
     "component": "ProductSpecBanner"
+  },
+  "showcase-shelf": {
+    "component": "ShowcaseShelf",
+    "allowed": [
+      "add-to-list-btn"
+    ]
   }
 }

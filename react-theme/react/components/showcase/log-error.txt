@@ -1,0 +1,2 @@
+16:37:51.873 - error: Error resolving block "showcase-shelf#showcase":
+Unable to find an extension point declared for block 'add-to-list-btn' on block 'showcase-shelf#showcase'. Check 'allowed' blocks on interface 'drogariasaopedro.custom-components@0.x:showcase-shelf

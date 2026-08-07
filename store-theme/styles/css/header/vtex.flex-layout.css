@@ -233,7 +233,7 @@
         border-top-left-radius: 20px;
         box-shadow: 0px 3px 6px #cecece;
         border: none;
-
+        z-index: 4;
         :global(.vtex-menu-2-x-submenu) {
             display: flex;
             flex-direction: column;
@@ -529,4 +529,266 @@
     :global(.vtex-store-components-3-x-suffixWrapper) {
         align-items: center;
     }
+}
+
+
+/* ─── DRAWER MOBILE (menu) ───────────────────────────────────────────
+   Figma 430x935: node 1-12716. Blocos em store/blocks/header/drawer-mobile.jsonc
+
+   O drawer abre num portal, fora do DOM do header — por isso estas regras
+   NÃO ficam aninhadas em .flexRowContent--main-header-row-mobile. O que
+   ancora tudo são os blockClass dos flex-layout de dentro do drawer.
+
+   As barrinhas coloridas à esquerda dos departamentos já vêm das regras
+   .vtex-menu-2-x-styledLinkContent--dep-* lá em cima, que são globais e
+   valem aqui também. O mesmo para o destaque verde do item aberto
+   (.vtex-menu-2-x-menuItem--dep-medicamentos--isOpen).
+   ------------------------------------------------------------------- */
+
+:global(.vtex-store-drawer-0-x-drawer--menu-mobile) {
+    background: #fff;
+}
+
+/* ---------- topo: login + fechar ---------- */
+
+.flexRowContent--drawer-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 24px 27px 0;
+
+    .stretchChildrenWidth {
+        width: auto !important;
+    }
+
+    :global(.vtex-login-2-x-container),
+    :global(.vtex-login-2-x-buttonLink) {
+        padding: 0;
+    }
+
+    :global(.vtex-login-2-x-profileIcon) {
+        width: 27px;
+        height: auto;
+    }
+
+    /* Duas cores no mesmo rótulo: "Bem vindo," cinza e o link em vermelho
+       sublinhado. Um pseudo-elemento não comporta as duas, então vai um em
+       cada ponta e o texto original é zerado. */
+    :global(.vtex-login-2-x-label) {
+        font-size: 0;
+        text-align: start;
+        text-transform: none;
+
+        &::before {
+            content: "Bem vindo, ";
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 18px;
+            letter-spacing: -0.4px;
+            color: #707070;
+            text-transform: none;
+        }
+
+        &::after {
+            content: "Faça seu Login ou Cadastro";
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 18px;
+            letter-spacing: -0.4px;
+            color: #EC1F25;
+            text-decoration: underline;
+            text-transform: none;
+        }
+    }
+
+    :global(.vtex-button):hover {
+        background: none !important;
+    }
+
+    :global(.vtex-store-drawer-0-x-closeIconButton) {
+        padding: 0;
+        margin-left: auto;
+    }
+
+    :global(.vtex-store-drawer-0-x-closeIconContainer) svg {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+/* ---------- corpo ---------- */
+
+.flexCol--drawer-body {
+    padding: 0 27px 32px;
+}
+
+/* ---------- lista de departamentos ---------- */
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 40px;
+
+    :global(.vtex-menu-2-x-menuItem) {
+        width: 100%;
+    }
+
+    :global(.vtex-menu-2-x-styledLinkContainer) {
+        width: 100%;
+        margin: 0;
+        padding-block: 0;
+    }
+
+    /* a caixa de 44px do Figma */
+    :global(.vtex-menu-2-x-styledLink) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 44px;
+        padding-inline: 12px;
+        background: #fff;
+        border-radius: 5px;
+    }
+
+    :global(.vtex-menu-2-x-styledLinkContent) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: -0.4px;
+        color: #707070;
+    }
+
+    /* Chevron como elemento (e não background) para poder girar ao abrir. */
+    :global(.vtex-menu-2-x-styledLink)::after {
+        content: "";
+        flex: 0 0 auto;
+        width: 6px;
+        height: 11px;
+        margin-left: auto;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIxMSIgdmlld0JveD0iMCAwIDYgMTEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLjIyMDQ1MiAwLjIyMDMwMkMtMC4wNzMyNzk0IDAuNTE0MTI1IC0wLjA3MzI3OTQgMC45OTA0MTEgMC4yMjA0NTIgMS4yODQyNEwzLjk0NDk3IDUuMDA4NzZMMC4yMjA0NTIgOC43MzMyOEMtMC4wNzM0NzAxIDkuMDI3MDQgLTAuMDczNDcwMSA5LjUwMzQ2IDAuMjIwMzY4IDkuNzk3M0MwLjUxNDIxNSAxMC4wOTExIDAuOTkwNjI0IDEwLjA5MTEgMS4yODQ0NiA5Ljc5NzNMNS41NDA4NyA1LjU0MDczQzUuODM0NjEgNS4yNDY5IDUuODM0NjEgNC43NzA2MiA1LjU0MDg3IDQuNDc2NzlMMS4yODQzOSAwLjIyMDMwMkMwLjk5MDU2MyAtMC4wNzM0MzM5IDAuNTE0Mjc2IC0wLjA3MzQzMzkgMC4yMjA0NTIgMC4yMjAzMDJaIiBmaWxsPSIjNzA3MDcwIi8+Cjwvc3ZnPgo=);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        transition: transform .2s ease;
+    }
+
+    /* aberto: chevron aponta para baixo */
+    :global(.vtex-menu-2-x-menuItem--isOpen) :global(.vtex-menu-2-x-styledLink)::after {
+        transform: rotate(90deg);
+    }
+}
+
+/* ---------- submenu abrindo para baixo (disclosure) ---------- */
+
+/* No desktop o submenu é um painel flutuante (absoluto, com sombra e raio) e o
+   item aberto fica verde por inteiro — ver as regras de .submenuContainer e
+   de --dep-medicamentos--isOpen mais acima neste arquivo. No drawer ele tem
+   que voltar ao fluxo normal: abre para baixo e empurra os itens seguintes.
+
+   As cadeias de seletor abaixo são longas de propósito: precisam ganhar em
+   especificidade daquelas regras, que vêm antes. */
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-menuItem--isOpen) {
+    background: none;
+    border-radius: 0;
+}
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) {
+    position: static;
+    width: 100%;
+    height: auto;
+}
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) :global(.vtex-menu-2-x-submenuWrapper) {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border: none;
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenuContainer) :global(.vtex-menu-2-x-submenuWrapper) :global(.vtex-menu-2-x-submenu) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* recuo à esquerda para o segundo nível ficar visivelmente aninhado */
+    padding: 0 0 4px 12px;
+    background: none;
+    border-radius: 0;
+    overflow: visible;
+    max-height: none;
+}
+
+/* Itens de segundo nível: menores, sem a caixa branca e sem chevron. */
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLink) {
+    height: 36px;
+    padding-inline: 12px;
+    background: none;
+    border-radius: 0;
+}
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLink)::after {
+    display: none;
+}
+
+:global(.vtex-menu-2-x-menuContainer--drawer-departamentos) :global(.vtex-menu-2-x-submenu) :global(.vtex-menu-2-x-styledLinkContent) {
+    padding-right: 0;
+    font-size: 15px;
+    color: #707070;
+    background-image: none;
+}
+
+/* ---------- rodapé: Baixe o app / Ajuda ---------- */
+
+.flexCol--drawer-extras {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E0E0E0;
+}
+
+:global(.vtex-rich-text-0-x-paragraph--drawer-baixe-o-app),
+:global(.vtex-rich-text-0-x-paragraph--drawer-ajuda) {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin: 0;
+    padding-block: .5rem;
+
+    :global(.vtex-rich-text-0-x-link) {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        letter-spacing: -0.45px;
+        color: #707070;
+        text-decoration: none;
+    }
+
+    &::before {
+        content: "";
+        flex: 0 0 auto;
+        width: 22px;
+        height: 22px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+:global(.vtex-rich-text-0-x-paragraph--drawer-baixe-o-app)::before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAxNCAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjg1NDYgMEgxLjQ4MTgyQzAuNjYzNDI5IDAgMCAwLjY2MzQzNSAwIDEuNDgxODJWMTkuMjYzN0MwIDIwLjA4MjEgMC42NjM0MjkgMjAuNzQ1NSAxLjQ4MTgyIDIwLjc0NTVIMTEuODU0NkMxMi42NzMgMjAuNzQ1NSAxMy4zMzY0IDIwLjA4MjEgMTMuMzM2NCAxOS4yNjM3VjEuNDgxODJDMTMuMzM2NCAwLjY2MzQzNSAxMi42NzMgMCAxMS44NTQ2IDBaTTcuNDA5MSAxOS4yNjM3SDUuOTI3MjhWMTcuNzgxOUg3LjQwOTFWMTkuMjYzN1pNMS40ODE4MiAxNi4zVjEuNDgxODJIMTEuODU0NlYxNi4zSDEuNDgxODJaIiBmaWxsPSIjMDI1Nzg5Ii8+Cjwvc3ZnPgo=);
+    /* o ícone é mais alto que largo — a caixa é 22 e ele ocupa 13x21 */
+    background-size: auto 21px;
+}
+
+:global(.vtex-rich-text-0-x-paragraph--drawer-ajuda)::before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMiAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExIDBDNC45MjQ4NiAwIDAgNC45MjQ4NiAwIDExQzAgMTcuMDc1MSA0LjkyNDg2IDIyIDExIDIyQzE3LjA3NTEgMjIgMjIgMTcuMDc1MSAyMiAxMUMyMiA0LjkyNDg2IDE3LjA3NTEgLTkuNTM2NzRlLTA3IDExIDBaTTExIDIwLjQyODVDNS43OTI3NCAyMC40Mjg2IDEuNTcxNDIgMTYuMjA3MiAxLjU3MTQyIDExQzEuNTcxNDIgNS43OTI3NCA1Ljc5Mjc0IDEuNTcxNDMgMTEgMS41NzE0M0MxNi4yMDcyIDEuNTcxNDMgMjAuNDI4NiA1Ljc5Mjc0IDIwLjQyODYgMTFDMjAuNDI4NiAxNi4yMDcyIDE2LjIwNzIgMjAuNDI4NiAxMSAyMC40Mjg1WiIgZmlsbD0iIzAyNTc4OSIvPgo8Y2lyY2xlIGN4PSIxMSIgY3k9IjE2Ljk5OTkiIHI9IjEiIGZpbGw9IiMwMjU3ODkiLz4KPHBhdGggZD0iTTExLjc4NTcgNC43MTQyN0gxMC42MDcxQzkuNjY4NzYgNC43MTIxOCA4Ljc2ODIzIDUuMDg0MDIgOC4xMDQ3IDUuNzQ3NTVDNy40NDExNyA2LjQxMTA4IDcuMDY5MzMgNy4zMTE2MiA3LjA3MTQyIDguMjQ5OTlWOC42NDI4NEg4LjY0Mjg1VjguMjQ5OTlDOC42NDI4NSA3LjE2NTE0IDkuNTIyMjkgNi4yODU3IDEwLjYwNzEgNi4yODU3SDExLjc4NTdDMTIuODcwNSA2LjI4NTcgMTMuNzUgNy4xNjUxNCAxMy43NSA4LjI0OTk5QzEzLjc1IDkuMzM0ODMgMTIuODcwNSAxMC4yMTQzIDExLjc4NTcgMTAuMjE0M0gxMC4yMTQzVjEzLjc1SDExLjc4NTdWMTEuNzg1N0MxMy43Mzg0IDExLjc4NTcgMTUuMzIxNCAxMC4yMDI3IDE1LjMyMTQgOC4yNDk5OUMxNS4zMjE0IDYuMjk3MjcgMTMuNzM4NCA0LjcxNDI3IDExLjc4NTcgNC43MTQyN1oiIGZpbGw9IiMwMjU3ODkiLz4KPC9zdmc+Cg==);
 }

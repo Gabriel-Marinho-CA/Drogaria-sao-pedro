@@ -321,7 +321,6 @@
 
   }
 }
-
 /*
  * Botão de fechar (bloco `sidebar-close-button`). Ele é IRMÃO do
  * `.accordionFilter`, filho direto do `.sidebar`, e já vem `absolute top-0
@@ -432,6 +431,7 @@
   border: 1px solid #cbcbcb;
   border-radius: 12px;
   overflow: hidden;
+  z-index: 4 !important;
 }
 
 .orderByOptionItem {
