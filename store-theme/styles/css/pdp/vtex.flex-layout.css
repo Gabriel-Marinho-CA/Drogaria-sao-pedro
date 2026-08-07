@@ -426,7 +426,7 @@
 
 .flexRow--sellingPriceSavings .stretchChildrenWidth {
   flex: 0 0 auto;
-  width: auto;
+  width: auto !important;
 }
 
 /* Preço spot: "R$" e centavos menores, inteiro em destaque */
@@ -706,6 +706,7 @@
 
 .flexRow--shippingForm .stretchChildrenWidth:last-child {
   flex: 0 1 auto;
+  width: auto !important;
 }
 
 /* O botão fica logo abaixo do <form>, em largura total; posicionamos
@@ -939,6 +940,7 @@
 
   .flexRow--shippingForm .stretchChildrenWidth:first-child {
     flex: 0 0 100%;
+    padding-right: 0 !important;
   }
 
   .flexRow--shippingForm :global(.vtex-store-components-3-x-shippingContainer) {
