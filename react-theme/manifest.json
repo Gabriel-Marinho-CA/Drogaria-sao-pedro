@@ -1,7 +1,7 @@
 {
   "vendor": "drogariasaopedro",
   "name": "custom-components",
-  "version": "0.0.13",
+  "version": "1.0.14",
   "title": "Drogaria São Pedro - Componentes customizados",
   "description": "Blocos customizados da loja que não existem no Store Framework nativo.",
   "builders": {

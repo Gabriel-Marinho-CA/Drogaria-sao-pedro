@@ -1,7 +1,7 @@
 {
   "vendor": "drogariasaopedro",
   "name": "store-theme",
-  "version": "5.0.22",
+  "version": "5.0.24",
   "builders": {
     "styles": "2.x",
     "store": "0.x",
