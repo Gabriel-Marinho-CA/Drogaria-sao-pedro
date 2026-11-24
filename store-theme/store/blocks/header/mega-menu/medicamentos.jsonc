@@ -1,0 +1,170 @@
+{
+  // Montagem e convenções: ver commons.jsonc nesta pasta.
+
+  "menu-item#link-medicamentos": {
+    "props": {
+      "id": "menu-item-medicamentos",
+      "type": "custom",
+      "blockClass": "mega-menu-dep",
+      "itemProps": {
+        "type": "internal",
+        "href": "/medicamentos",
+        "text": "Medicamentos",
+        "tagTitle": "Medicamentos"
+      }
+    },
+    "blocks": [
+      "vtex.menu@2.x:submenu#mega-medicamentos"
+    ]
+  },
+  "vtex.menu@2.x:submenu#mega-medicamentos": {
+    "title": "Mega menu - Medicamentos",
+    "props": {
+      "blockClass": "mega-menu",
+      "width": "100%"
+    },
+    "children": [
+      "flex-layout.row#mega-medicamentos"
+    ]
+  },
+  "flex-layout.row#mega-medicamentos": {
+    "props": {
+      "blockClass": "mega-menu",
+      "fullWidth": true,
+      "colSizing": "auto",
+      "preventVerticalStretch": true,
+      "experimentalHideEmptyCols": true
+    },
+    "children": [
+      "flex-layout.col#mega-medicamentos-col1",
+      "flex-layout.col#mega-medicamentos-col2",
+      "flex-layout.col#mega-medicamentos-col3",
+      "flex-layout.col#mega-medicamentos-banner"
+    ]
+  },
+
+  // ---------- Coluna 1 ----------
+  "flex-layout.col#mega-medicamentos-col1": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-medicamentos-col1"
+    ]
+  },
+  // As mesmas subcategorias do menu Departamentos (row-links-header.jsonc).
+  "vtex.menu@2.x:menu#mega-medicamentos-col1": {
+    "title": "Mega menu - Medicamentos - Coluna 1",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": [
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/medicamentos/remedios-cardiologicos",
+            "text": "Remédios Cardiológicos",
+            "tagTitle": "Remédios Cardiológicos"
+          }
+        },
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/medicamentos/mais-medicamentos",
+            "text": "Mais Medicamentos",
+            "tagTitle": "Mais Medicamentos"
+          }
+        },
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/medicamentos/antigripais",
+            "text": "Antigripais",
+            "tagTitle": "Antigripais"
+          }
+        },
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/medicamentos/saude-dos-olhos",
+            "text": "Saúde dos Olhos",
+            "tagTitle": "Saúde dos Olhos"
+          }
+        }
+      ]
+    }
+  },
+
+  // ---------- Coluna 2 ----------
+  "flex-layout.col#mega-medicamentos-col2": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-medicamentos-col2"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-medicamentos-col2": {
+    "title": "Mega menu - Medicamentos - Coluna 2",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Coluna 3 ----------
+  "flex-layout.col#mega-medicamentos-col3": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-medicamentos-col3"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-medicamentos-col3": {
+    "title": "Mega menu - Medicamentos - Coluna 3",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Banner ----------
+  "flex-layout.col#mega-medicamentos-banner": {
+    "props": {
+      "blockClass": "mega-menu-banner",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "list-context.image-list#mega-medicamentos"
+    ]
+  },
+  // PROVISÓRIO — imagem de exemplo; trocar pelo banner do departamento.
+  "list-context.image-list#mega-medicamentos": {
+    "title": "Mega menu - Medicamentos - Banner",
+    "props": {
+      "height": 300,
+      "images": [
+        {
+          "image": "assets/imgs/minibanners-2-1.png",
+          "description": "Medicamentos",
+          "link": {
+            "url": "/medicamentos"
+          }
+        }
+      ]
+    },
+    "children": [
+      "list-context-renderer#mega-menu-banner"
+    ]
+  }
+}

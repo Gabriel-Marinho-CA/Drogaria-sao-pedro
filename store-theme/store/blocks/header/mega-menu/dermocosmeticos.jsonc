@@ -1,0 +1,143 @@
+{
+  // Montagem e convenções: ver commons.jsonc nesta pasta.
+
+  "menu-item#link-dermocosmeticos": {
+    "props": {
+      "id": "menu-item-dermocosmeticos",
+      "type": "custom",
+      "blockClass": "mega-menu-dep",
+      "itemProps": {
+        "type": "internal",
+        "href": "/dermocosmeticos",
+        "text": "Dermocosméticos",
+        "tagTitle": "Dermocosméticos"
+      }
+    },
+    "blocks": [
+      "vtex.menu@2.x:submenu#mega-dermocosmeticos"
+    ]
+  },
+  "vtex.menu@2.x:submenu#mega-dermocosmeticos": {
+    "title": "Mega menu - Dermocosméticos",
+    "props": {
+      "blockClass": "mega-menu",
+      "width": "100%"
+    },
+    "children": [
+      "flex-layout.row#mega-dermocosmeticos"
+    ]
+  },
+  "flex-layout.row#mega-dermocosmeticos": {
+    "props": {
+      "blockClass": "mega-menu",
+      "fullWidth": true,
+      "colSizing": "auto",
+      "preventVerticalStretch": true,
+      "experimentalHideEmptyCols": true
+    },
+    "children": [
+      "flex-layout.col#mega-dermocosmeticos-col1",
+      "flex-layout.col#mega-dermocosmeticos-col2",
+      "flex-layout.col#mega-dermocosmeticos-col3",
+      "flex-layout.col#mega-dermocosmeticos-banner"
+    ]
+  },
+
+  // ---------- Coluna 1 ----------
+  "flex-layout.col#mega-dermocosmeticos-col1": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-dermocosmeticos-col1"
+    ]
+  },
+  // PROVISÓRIO — ver comentário em menu#mega-saude-col1 (saude.jsonc)
+  "vtex.menu@2.x:menu#mega-dermocosmeticos-col1": {
+    "title": "Mega menu - Dermocosméticos - Coluna 1",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": [
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/dermocosmeticos",
+            "text": "Ver tudo em Dermocosméticos",
+            "tagTitle": "Dermocosméticos"
+          }
+        }
+      ]
+    }
+  },
+
+  // ---------- Coluna 2 ----------
+  "flex-layout.col#mega-dermocosmeticos-col2": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-dermocosmeticos-col2"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-dermocosmeticos-col2": {
+    "title": "Mega menu - Dermocosméticos - Coluna 2",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Coluna 3 ----------
+  "flex-layout.col#mega-dermocosmeticos-col3": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-dermocosmeticos-col3"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-dermocosmeticos-col3": {
+    "title": "Mega menu - Dermocosméticos - Coluna 3",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Banner ----------
+  "flex-layout.col#mega-dermocosmeticos-banner": {
+    "props": {
+      "blockClass": "mega-menu-banner",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "list-context.image-list#mega-dermocosmeticos"
+    ]
+  },
+  // PROVISÓRIO — imagem de exemplo; trocar pelo banner do departamento.
+  "list-context.image-list#mega-dermocosmeticos": {
+    "title": "Mega menu - Dermocosméticos - Banner",
+    "props": {
+      "height": 300,
+      "images": [
+        {
+          "image": "assets/imgs/minibanners-2-1.png",
+          "description": "Dermocosméticos",
+          "link": {
+            "url": "/dermocosmeticos"
+          }
+        }
+      ]
+    },
+    "children": [
+      "list-context-renderer#mega-menu-banner"
+    ]
+  }
+}

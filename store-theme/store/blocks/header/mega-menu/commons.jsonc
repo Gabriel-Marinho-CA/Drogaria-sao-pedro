@@ -1,0 +1,35 @@
+{
+  /* =============================================================
+     MEGA MENU — barra de categorias do desktop (menu#mega-menu-bar,
+     em row-links-header.jsonc)
+
+     Mesma montagem do horizontal-menu-mz0001 do Minas Mais: passar o
+     mouse num departamento da barra abre um painel com colunas de
+     subcategorias e um banner à direita.
+
+       menu-item#link-<dep>                     link da barra (abre no hover)
+       └── submenu#mega-<dep>                   painel, width 100%
+           └── flex-layout.row#mega-<dep>
+               ├── flex-layout.col#mega-<dep>-col1 ─ menu vertical (`items`)
+               ├── flex-layout.col#mega-<dep>-col2 ─ menu vertical (`items`)
+               ├── flex-layout.col#mega-<dep>-col3 ─ menu vertical (`items`)
+               └── flex-layout.col#mega-<dep>-banner ─ list-context.image-list
+
+     Um arquivo por departamento nesta pasta. As subcategorias moram na
+     prop `items` de cada coluna e o banner em `images`, então os dois
+     são editáveis pelo Site Editor sem mexer aqui.
+
+     Coluna sem subcategoria: deixe `items: []`. O painel só desenha o
+     que tiver conteúdo; o banner continua encostado na direita.
+
+     Estilo: styles/css/header/vtex.flex-layout.css, seção MEGA MENU.
+     ============================================================= */
+
+  // Renderer comum dos banners do painel (um por departamento).
+  "list-context-renderer#mega-menu-banner": {
+    "props": {
+      "listElement": "div",
+      "itemElement": "div"
+    }
+  }
+}

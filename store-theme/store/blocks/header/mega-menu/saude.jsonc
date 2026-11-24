@@ -1,0 +1,145 @@
+{
+  // Montagem e convenções: ver commons.jsonc nesta pasta.
+
+  "menu-item#link-saude": {
+    "props": {
+      "id": "menu-item-saude",
+      "type": "custom",
+      "blockClass": "mega-menu-dep",
+      "itemProps": {
+        "type": "internal",
+        "href": "/saude",
+        "text": "Saúde",
+        "tagTitle": "Saúde"
+      }
+    },
+    "blocks": [
+      "vtex.menu@2.x:submenu#mega-saude"
+    ]
+  },
+  "vtex.menu@2.x:submenu#mega-saude": {
+    "title": "Mega menu - Saúde",
+    "props": {
+      "blockClass": "mega-menu",
+      "width": "100%"
+    },
+    "children": [
+      "flex-layout.row#mega-saude"
+    ]
+  },
+  "flex-layout.row#mega-saude": {
+    "props": {
+      "blockClass": "mega-menu",
+      "fullWidth": true,
+      "colSizing": "auto",
+      "preventVerticalStretch": true,
+      "experimentalHideEmptyCols": true
+    },
+    "children": [
+      "flex-layout.col#mega-saude-col1",
+      "flex-layout.col#mega-saude-col2",
+      "flex-layout.col#mega-saude-col3",
+      "flex-layout.col#mega-saude-banner"
+    ]
+  },
+
+  // ---------- Coluna 1 ----------
+  "flex-layout.col#mega-saude-col1": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-saude-col1"
+    ]
+  },
+  /* PROVISÓRIO — trocar pelas subcategorias reais de Saúde. Enquanto elas
+     não existem, a coluna abre com um único link para a categoria, como
+     no drawer mobile. */
+  "vtex.menu@2.x:menu#mega-saude-col1": {
+    "title": "Mega menu - Saúde - Coluna 1",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": [
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/saude",
+            "text": "Ver tudo em Saúde",
+            "tagTitle": "Saúde"
+          }
+        }
+      ]
+    }
+  },
+
+  // ---------- Coluna 2 ----------
+  "flex-layout.col#mega-saude-col2": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-saude-col2"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-saude-col2": {
+    "title": "Mega menu - Saúde - Coluna 2",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Coluna 3 ----------
+  "flex-layout.col#mega-saude-col3": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-saude-col3"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-saude-col3": {
+    "title": "Mega menu - Saúde - Coluna 3",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Banner ----------
+  "flex-layout.col#mega-saude-banner": {
+    "props": {
+      "blockClass": "mega-menu-banner",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "list-context.image-list#mega-saude"
+    ]
+  },
+  // PROVISÓRIO — imagem de exemplo; trocar pelo banner do departamento.
+  "list-context.image-list#mega-saude": {
+    "title": "Mega menu - Saúde - Banner",
+    "props": {
+      "height": 300,
+      "images": [
+        {
+          "image": "assets/imgs/minibanners-2-1.png",
+          "description": "Saúde",
+          "link": {
+            "url": "/saude"
+          }
+        }
+      ]
+    },
+    "children": [
+      "list-context-renderer#mega-menu-banner"
+    ]
+  }
+}

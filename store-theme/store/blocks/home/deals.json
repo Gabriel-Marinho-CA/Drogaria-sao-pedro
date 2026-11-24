@@ -10,7 +10,7 @@
   },
   "list-context.info-card-list#deals": {
     "children": [
-      "list-context-renderer"
+      "slider-layout#deals"
     ],
     "props": {
       "infoCards": [
@@ -64,6 +64,21 @@
           "imageActionUrl": "/"
         }
       ]
+    }
+  },
+  "slider-layout#deals": {
+    "title": "Carrossel - Categorias de navegação",
+    "props": {
+      "blockClass": "deals",
+      "itemsPerPage": {
+        "desktop": 7,
+        "tablet": 5,
+        "phone": 3
+      },
+      "infinite": false,
+      "fullWidth": true,
+      "showNavigationArrows": "desktopOnly",
+      "showPaginationDots": "never"
     }
   }
 }

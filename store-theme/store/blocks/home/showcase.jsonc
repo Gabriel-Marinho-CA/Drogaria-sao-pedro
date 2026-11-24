@@ -31,8 +31,8 @@
     "props": {
       "blockClass": "showcase"
     },
-    "children": [
-      "showcase-shelf#showcase"
+    "children": [ 
+      "showcase-shelf#showcase" 
     ]
   },
   "showcase-shelf#showcase": {

@@ -1,0 +1,143 @@
+{
+  // Montagem e convenções: ver commons.jsonc nesta pasta.
+
+  "menu-item#link-beleza": {
+    "props": {
+      "id": "menu-item-beleza",
+      "type": "custom",
+      "blockClass": "mega-menu-dep",
+      "itemProps": {
+        "type": "internal",
+        "href": "/beleza",
+        "text": "Beleza",
+        "tagTitle": "Beleza"
+      }
+    },
+    "blocks": [
+      "vtex.menu@2.x:submenu#mega-beleza"
+    ]
+  },
+  "vtex.menu@2.x:submenu#mega-beleza": {
+    "title": "Mega menu - Beleza",
+    "props": {
+      "blockClass": "mega-menu",
+      "width": "100%"
+    },
+    "children": [
+      "flex-layout.row#mega-beleza"
+    ]
+  },
+  "flex-layout.row#mega-beleza": {
+    "props": {
+      "blockClass": "mega-menu",
+      "fullWidth": true,
+      "colSizing": "auto",
+      "preventVerticalStretch": true,
+      "experimentalHideEmptyCols": true
+    },
+    "children": [
+      "flex-layout.col#mega-beleza-col1",
+      "flex-layout.col#mega-beleza-col2",
+      "flex-layout.col#mega-beleza-col3",
+      "flex-layout.col#mega-beleza-banner"
+    ]
+  },
+
+  // ---------- Coluna 1 ----------
+  "flex-layout.col#mega-beleza-col1": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-beleza-col1"
+    ]
+  },
+  // PROVISÓRIO — ver comentário em menu#mega-saude-col1 (saude.jsonc)
+  "vtex.menu@2.x:menu#mega-beleza-col1": {
+    "title": "Mega menu - Beleza - Coluna 1",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": [
+        {
+          "type": "custom",
+          "itemProps": {
+            "type": "internal",
+            "href": "/beleza",
+            "text": "Ver tudo em Beleza",
+            "tagTitle": "Beleza"
+          }
+        }
+      ]
+    }
+  },
+
+  // ---------- Coluna 2 ----------
+  "flex-layout.col#mega-beleza-col2": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-beleza-col2"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-beleza-col2": {
+    "title": "Mega menu - Beleza - Coluna 2",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Coluna 3 ----------
+  "flex-layout.col#mega-beleza-col3": {
+    "props": {
+      "blockClass": "mega-menu-col",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "vtex.menu@2.x:menu#mega-beleza-col3"
+    ]
+  },
+  "vtex.menu@2.x:menu#mega-beleza-col3": {
+    "title": "Mega menu - Beleza - Coluna 3",
+    "props": {
+      "orientation": "vertical",
+      "blockClass": "mega-menu-links",
+      "items": []
+    }
+  },
+
+  // ---------- Banner ----------
+  "flex-layout.col#mega-beleza-banner": {
+    "props": {
+      "blockClass": "mega-menu-banner",
+      "preventVerticalStretch": true
+    },
+    "children": [
+      "list-context.image-list#mega-beleza"
+    ]
+  },
+  // PROVISÓRIO — imagem de exemplo; trocar pelo banner do departamento.
+  "list-context.image-list#mega-beleza": {
+    "title": "Mega menu - Beleza - Banner",
+    "props": {
+      "height": 300,
+      "images": [
+        {
+          "image": "assets/imgs/minibanners-2-1.png",
+          "description": "Beleza",
+          "link": {
+            "url": "/beleza"
+          }
+        }
+      ]
+    },
+    "children": [
+      "list-context-renderer#mega-menu-banner"
+    ]
+  }
+}

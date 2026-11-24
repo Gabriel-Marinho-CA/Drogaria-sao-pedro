@@ -190,8 +190,10 @@
     }
 }
 
+/* Só o nível 1 da barra. Sem o modificador, o gap vazava para as listas
+   verticais dentro do mega menu (que também são menuContainer). */
 .flexColChild--col-menu-links {
-    :global(.vtex-menu-2-x-menuContainer) {
+    :global(.vtex-menu-2-x-menuContainer--menu-links-row) {
         gap: 2rem;
     }
 }
@@ -349,6 +351,8 @@
     justify-content: center;
     gap: 2.5rem;
     align-items: center;
+    /* âncora do mega menu — ver seção MEGA MENU abaixo */
+    position: relative;
 
     .stretchChildrenWidth {
         width: auto !important;
@@ -358,6 +362,153 @@
 :global(.vtex-menu-2-x-submenu--main-menu-departments) :global(.vtex-menu-2-x-styledLinkContainer) {
     padding-block: .25rem;
 }
+
+
+/* ─── MEGA MENU ──────────────────────────────────────────────────────
+   Blocos em store/blocks/header/mega-menu/. Mesma montagem do
+   horizontal-menu-mz0001 do Minas Mais: cada link da barra
+   (menu#mega-menu-bar, blockClass menu-links-row) abre no hover um painel com colunas de
+   subcategorias e um banner à direita.
+
+   Posicionamento (vtex-apps/menu, Submenu.tsx): com `width: "100%"` o
+   submenuContainer NÃO recebe `relative` e o submenuWrapper é
+   `absolute left-0 w-100`. Nenhum ancestral entre o link e a barra é
+   posicionado, então o painel se ancora na .flexRowContent--row-links:
+   ocupa a largura do conteúdo da barra e nasce na borda de baixo dela.
+
+   O dropdown "Departamentos" não é afetado: o submenu dele não passa
+   `width`, e nesse caso o vtex.menu deixa o próprio container relative.
+
+   As regras genéricas de submenu lá em cima (raio só à esquerda,
+   submenu em coluna com padding 2rem) valem para qualquer submenu; os
+   seletores daqui repetem a mesma profundidade e vêm depois, então
+   ganham só no mega menu.
+   ------------------------------------------------------------------- */
+
+/* nível 1 aberto */
+:global(.vtex-menu-2-x-menuItem--mega-menu-dep--isOpen) :global(.vtex-menu-2-x-styledLinkContent--mega-menu-dep) {
+    color: #025789;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* o painel */
+:global(.vtex-menu-2-x-submenuContainer--mega-menu) :global(.vtex-menu-2-x-submenuWrapper--mega-menu) {
+    top: 100%;
+    z-index: 10;
+    padding: 0;
+    border: none;
+    border-radius: 0 0 16px 16px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .12);
+
+    /* Ponte invisível entre o link e o painel. O link fica centralizado
+       na barra, então sobra uma faixa entre ele e a borda de baixo, onde
+       o mouse sai do <li>. O vtex.menu já tolera uma passada rápida
+       (debounce de 200ms), mas com a ponte o painel não fecha nem com o
+       mouse devagar — ela é filha do <li>, então conta como hover nele. */
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        height: 16px;
+    }
+}
+
+:global(.vtex-menu-2-x-submenuContainer--mega-menu) :global(.vtex-menu-2-x-submenuWrapper--mega-menu) :global(.vtex-menu-2-x-submenu--mega-menu) {
+    display: block;
+    gap: 0;
+    padding: 32px 40px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* colunas: largura do conteúdo, lado a lado */
+.flexRowContent--mega-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 3rem;
+
+    > :global(div) {
+        flex: 0 0 auto;
+        width: auto !important;
+    }
+
+    /* O último filho (o banner) fica com o resto da linha, e o banner
+       encosta na direita pelo margin-left dele. Se um departamento ficar
+       sem banner, a última coluna de links cresce mas continua à esquerda. */
+    > :global(div):last-child {
+        flex: 1 1 auto;
+    }
+
+    /* os separadores verticais da barra (.flexRowContent--row-links
+       .stretchChildrenWidth::after) alcançariam estas colunas */
+    .stretchChildrenWidth::after {
+        display: none !important;
+    }
+}
+
+.flexCol--mega-menu-col {
+    min-width: 0;
+}
+
+/* links das subcategorias */
+:global(.vtex-menu-2-x-menuContainer--mega-menu-links) {
+    gap: 0;
+
+    :global(.vtex-menu-2-x-menuItem),
+    :global(.vtex-menu-2-x-styledLinkContainer),
+    :global(.vtex-menu-2-x-styledLink) {
+        margin: 0;
+        padding: 0;
+    }
+
+    :global(.vtex-menu-2-x-styledLink) {
+        display: block;
+        text-decoration: none;
+    }
+
+    :global(.vtex-menu-2-x-styledLinkContent) {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.8;
+        color: #707070;
+        white-space: nowrap;
+        padding: 0;
+        border: none;
+
+        &:hover {
+            color: #025789;
+            text-decoration: underline;
+            text-decoration-color: #EC1F25;
+        }
+    }
+}
+
+/* banner */
+.flexCol--mega-menu-banner {
+    margin-left: auto;
+    max-width: 540px;
+
+    :global(img) {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+}
+
+
+/* Sem @keyframes neste arquivo: o builder de estilos do VTEX valida cada
+   seletor e falha com os quadros (`from`/`to`) — o build de CSS do link
+   parou inteiro por causa de um. O "Toda Loja" que abria sozinho era
+   conteúdo do Site Editor (ver menu-item#trigger-toda-loja). */
 
 
 /* ─── HEADER MOBILE ──────────────────────────────────────────────────

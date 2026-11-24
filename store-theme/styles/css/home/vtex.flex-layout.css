@@ -1,106 +1,166 @@
+/* ─── CATEGORIAS DE NAVEGAÇÃO (deals) ────────────────────────────────
+   Blocos em store/blocks/home/deals.json. Os info-cards entram num
+   slider-layout com 7 por página no desktop. Até 7 itens é uma linha
+   parada; a partir do 8º o vtex.slider-layout desenha as setas sozinho
+   (ele só mostra setas quando há mais itens que slides por página).
+
+   Dentro do slider-layout os handles do info-card saem com o namespace
+   dele (vtex-slider-layout-0-x-infoCard*), como na barra de avisos do
+   header — os seletores cobrem os dois namespaces por segurança.
+   ------------------------------------------------------------------- */
 .flexRow--deals {
     background: none;
     margin-block: 3rem;
 
     @media (max-width:750px) {
         margin-block: 1rem;
-
-        :global(.vtex-store-components-3-x-container) {
-            padding-right: 0;
-
-            .stretchChildrenWidth {
-                display: flex;
-                gap: 2rem;
-                justify-content: flex-start;
-                overflow-x: auto;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-
-                &::-webkit-scrollbar {
-                    display: none;
-                    width: 0;
-                    height: 0;
-                }
-
-                > :global(div) {
-                    min-width: 25vw;
-                }
-
-            }
-
-            :global(.vtex-button__label) {
-                text-transform: initial;
-                font-size: 14px;
-            }
-        }
     }
 
+    /* setas: mesmo visual do banner principal (sliderLayoutContainer--carousel) */
+    :global(.vtex-slider-layout-0-x-sliderLeftArrow),
+    :global(.vtex-slider-layout-0-x-sliderRightArrow) {
+        border: 1px solid #CBCBCB;
+        background: #fff !important;
+        border-radius: 50%;
+        color: #EC1F25;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    .flexRowContent--deals {
-        .stretchChildrenWidth {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
+        :global(.vtex-slider-layout-0-x-caretIcon) {
+            width: 15px;
         }
+
+        /* Sem estilo próprio para a seta desabilitada (começo/fim, já que
+           infinite é false): seria `[disabled]`, e o builder do VTEX
+           marca seletor de atributo como deprecated (bit.ly/io-css-selectors). */
     }
 
+    :global(.vtex-slider-layout-0-x-sliderLeftArrow) {
+        left: -12px;
+    }
+
+    :global(.vtex-slider-layout-0-x-sliderRightArrow) {
+        right: -12px;
+    }
+
+    :global(.vtex-slider-layout-0-x-infoCardContainer),
     :global(.vtex-list-context-0-x-infoCardContainer) {
         display: flex;
         flex-direction: column-reverse;
+        align-items: center;
+        padding: 0 .25rem;
 
+        /* o info-card traz ph3-s / pr4-ns no texto: zera para o nome
+           poder usar a largura toda do slide */
+        :global(.vtex-slider-layout-0-x-infoCardTextContainer),
+        :global(.vtex-slider-layout-0-x-infoCardImageContainer),
         :global(.vtex-list-context-0-x-infoCardTextContainer),
         :global(.vtex-list-context-0-x-infoCardImageContainer) {
             width: 100% !important;
             align-items: center;
+            padding: 0;
         }
 
+        :global(.vtex-slider-layout-0-x-infoCardImageContainer),
         :global(.vtex-list-context-0-x-infoCardImageContainer) {
             display: flex;
             justify-content: center;
 
-            :global(.vtex-list-context-0-x-infoCardImage) {
-                @media (min-width:1240px) and (max-width:1440px) {
-                    min-width: 140px;
-                    max-width: 140px;
-                }
-
-                @media (min-width:1000px) and (max-width:1239px) {
-                    min-width: 115px;
-                    max-width: 115px;
-                }
-
-                @media (max-width:1000px) {
-                    min-width: 90px;
-                    max-width: 90px;
-                }
+            /* O <a> em volta da imagem encolhia até o tamanho dela, e aí o
+               max-width: 100% da imagem era relativo a ela mesma: no mobile
+               os 90px vazavam do slide e saíam cortados. Com o <a> na
+               largura do container, a imagem encolhe junto com o slide. */
+            > :global(a) {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                min-width: 0;
             }
         }
 
+        /* Círculo garantido pelo CSS, não pelo arquivo: tem gente subindo
+           imagem quadrada. aspect-ratio força a caixa quadrada e o
+           object-fit recorta qualquer proporção pelo centro. */
+        :global(.vtex-slider-layout-0-x-infoCardImage),
+        :global(.vtex-list-context-0-x-infoCardImage) {
+            display: block;
+            width: 140px;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+
+            @media (min-width:1000px) and (max-width:1239px) {
+                width: 115px;
+            }
+
+            @media (max-width:1000px) {
+                width: 90px;
+            }
+        }
+
+        /* ── Nome da categoria ──
+           No Site Editor os cards foram preenchidos de dois jeitos: a
+           maioria pelo "título" (vira um rich-text: container > wrapper >
+           paragraph, 16px, alinhado à esquerda) e um pelo "texto do botão"
+           (vira um vtex-button: 18px, padding lateral, margens mt6/mb6).
+           Por isso os nomes saíam com tamanhos e alturas diferentes.
+           As regras abaixo deixam os dois caminhos com a mesma cara. */
+        :global(.vtex-slider-layout-0-x-container),
+        :global(.vtex-list-context-0-x-container) {
+            width: 100%;
+            justify-content: center;
+        }
+
+        :global(.vtex-slider-layout-0-x-infoCardCallActionContainer),
         :global(.vtex-list-context-0-x-infoCardCallActionContainer) {
             margin: .35rem 0 0 0;
+            max-width: 100%;
         }
 
         :global(.vtex-button) {
             background: none;
             border: none;
+            padding: 0;
+            min-height: 0;
+            max-width: 100%;
+        }
 
-            :global(.vtex-button__label) {
-                font-size: 18px;
-                color: #707070;
-                font-family: 'Roboto', sans-serif;
-                text-transform: initial;
+        :global(.vtex-slider-layout-0-x-paragraph),
+        :global(.vtex-list-context-0-x-paragraph),
+        :global(.vtex-button__label) {
+            margin: .35rem 0 0 0;
+            padding: 0 !important;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: #707070;
+            text-align: center;
+            text-transform: initial;
+            white-space: normal;
+            /* palavra que não cabe nem sozinha (ex.: "Dermocosméticos"
+               numa tela de 320px) quebra em vez de ser cortada */
+            overflow-wrap: break-word;
 
-                @media (min-width:1000px) and (max-width:1239px) {
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-
+            @media (min-width:1000px) and (max-width:1239px) {
+                font-size: 14px;
             }
 
-
-            :global(.vtex-button__label) {
-                padding: 0 !important;
+            /* 3 por página no celular: a fonte acompanha a largura da tela */
+            @media (max-width:750px) {
+                font-size: clamp(11px, 3.2vw, 13px);
             }
+        }
 
+        /* o label do botão não leva a margem: ela já vem do container */
+        :global(.vtex-button__label) {
+            margin: 0;
         }
     }
 }
@@ -186,7 +246,7 @@
             line-height: 1.2;
             /* 280% */
             letter-spacing: -0.625px;
-            margin: 0;
+            mmargin: 0 0 16px;
 
             @media (max-width:750px) {
                 font-size: 20px;
@@ -237,7 +297,7 @@
     }
 
     @media (max-width:1000px) {
-        .stretchChildrenWidth    {
+        .stretchChildrenWidth {
             gap: .25rem;
         }
     }
@@ -309,6 +369,19 @@
     }
 
     .flexRowContent--benefits {
+
+        :global(.vtex-list-context-0-x-paragraph) {
+            margin: 0;
+            color: #025789;
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.45px;
+            text-align: center;
+        }
+
         .stretchChildrenWidth {
             gap: 1rem;
 
@@ -350,6 +423,7 @@
     :global(.vtex-slider-layout-0-x-infoCardTextContainer) {
         display: none !important;
     }
+
     :global(.vtex-list-context-0-x-infoCardTextContainer) {
         display: none !important;
     }
